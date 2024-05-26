@@ -1,8 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
+
 
 public class PlayerController : MonoBehaviour
 {
@@ -20,6 +21,10 @@ public class PlayerController : MonoBehaviour
     public float lookSensitivity;
     private Vector2 mouseDelta;
 
+    public bool canLook = true;
+
+    public Action inventory;
+
 
     private Rigidbody _rigidbody;
 
@@ -34,7 +39,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        //Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
@@ -45,7 +50,7 @@ public class PlayerController : MonoBehaviour
 
     private void LateUpdate()
     {
-        CameraLook();
+        if(canLook) CameraLook();
     }
 
 
@@ -113,8 +118,21 @@ public class PlayerController : MonoBehaviour
             }
         }
         return false;
-
-
     }
 
+    public void OnInventory(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
+        {
+            inventory?.Invoke(); // Inventory Action 실행
+            ToggleCursor(); // ToggleCursor 실행
+        }
+    }
+
+    void ToggleCursor()
+    { 
+        bool toggle = Cursor.lockState == CursorLockMode.Locked; // Cursor의 lockstate 가 lock이라면 toggle이고
+        Cursor.lockState = toggle ? CursorLockMode.None : CursorLockMode.Locked; // toggle 이 true 면 
+        canLook = !toggle;
+    }
 }

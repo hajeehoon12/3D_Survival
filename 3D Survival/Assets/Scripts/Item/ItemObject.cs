@@ -19,7 +19,7 @@ public class ItemObject : MonoBehaviour, IInteractable
         return str;
     }
 
-    public void OnInteract()
+    public void OnInteract() // 아이템과 상호작용시 습득
     {
         CharacterManager.Instance.Player.itemData = data;
         CharacterManager.Instance.Player.addItem?.Invoke();

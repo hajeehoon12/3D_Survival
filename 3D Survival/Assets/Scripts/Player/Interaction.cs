@@ -1,0 +1,77 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using TMPro;
+using UnityEngine.InputSystem;
+
+public class Interaction : MonoBehaviour
+{
+    public float checkRate = 0.05f;
+    private float lastCheckTime;
+    public float maxCheckDistance;
+    public LayerMask layerMask;
+
+    public GameObject curInteractGameObject; // 현재 RayCast에 걸린 게임 물체
+    private IInteractable curInteractable; // 아이템 상호작용용 인터페이스
+
+    public TextMeshProUGUI promptText; // 아이템 상호작용 텍스트
+    private Camera camera;
+
+    private void Start()
+    {
+        camera = Camera.main;
+    }
+
+    private void Update() // 계속 체크하면서 시점의 가운데에 물체가 오는지 검사
+    {
+
+        if (Time.time - lastCheckTime > checkRate) // 시간검사
+        {
+            lastCheckTime = Time.time;
+
+            Ray ray = camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2)); // 화면 중앙 기준 Ray발사
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit, maxCheckDistance, layerMask)) // 충돌 됬을 때 hit에 정보넘김
+            {
+                if (hit.collider.gameObject != curInteractGameObject) // 지금 만나고 있는게 넣어진게 아닐때 새 정보 넣음 Update 최적화
+                {
+                    curInteractGameObject = hit.collider.gameObject;
+                    curInteractable = hit.collider.GetComponent<IInteractable>();
+                    SetPromptText();
+                    // 프롬포트에 출력해줄꺼임
+                }
+
+            }
+            else
+            {
+                curInteractGameObject = null;
+                curInteractable = null;
+                promptText.gameObject.SetActive(false);
+                //
+                //Debug.Log("물체가아님");
+            }
+        }
+
+    }
+
+    private void SetPromptText()
+    {
+        promptText.gameObject.SetActive(true);
+        promptText.text = curInteractable.GetInteractPrompt();
+    }
+
+    public void OnInteractInput(InputAction.CallbackContext context) // E 키 누르면 실행
+    {
+        if (context.phase == InputActionPhase.Started && curInteractable != null) // 
+        {
+            curInteractable.OnInteract();
+            curInteractGameObject = null;
+            curInteractable = null;
+            promptText.gameObject.SetActive(false);
+        }
+    }
+
+
+
+}

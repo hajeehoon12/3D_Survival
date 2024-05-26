@@ -11,12 +11,12 @@ GameObject:
   - component: {fileID: 5922353117413224327}
   - component: {fileID: 7827900903729360641}
   - component: {fileID: 1060613184713073621}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Rock1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 126
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &5922353117413224327
 Transform:
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 8010177599589490343}
   - component: {fileID: 1246271360431098870}
   - component: {fileID: 2685759501687957920}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Item_Rock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
