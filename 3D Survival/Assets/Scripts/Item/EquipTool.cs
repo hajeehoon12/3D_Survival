@@ -61,12 +61,21 @@ public class EquipTool : Equip
             if (doesGatherResources && hit.collider.TryGetComponent(out Resource resource)) // 장비가 자원캐기용인지와 해당 레이캐스트가 자원인지 확인
             {
                 resource.Gather(hit.point, hit.normal);
+
+                if (gameObject.name == "Equip_Axe(Clone)")
+                {
+                    AudioManager.instance.PlaySFX("Axe");
+                }
+
             }
 
             if (doesDamage && hit.collider.TryGetComponent(out NPC npc))
             {
                 npc.TakePhysicalDamage(damage);
-                AudioManager.instance.PlaySFX("SwordAttack2", 0.8f);
+                //if (gameObject.name == "Equip_Sword")
+                //{
+                    AudioManager.instance.PlaySFX("SwordAttack2", 0.8f);
+                //}
                 isAttacking = false;
             }
             else
@@ -77,8 +86,11 @@ public class EquipTool : Equip
         }
         if (isAttacking)
         {
-            AudioManager.instance.PlaySFX("SwordAttack", 0.8f);
-            isAttacking = false;
+            //if (gameObject.name == "Equip_Sword(Clone)")
+            //{
+                AudioManager.instance.PlaySFX("SwordAttack", 0.8f);
+            //}
+                isAttacking = false;
         }
     }
 

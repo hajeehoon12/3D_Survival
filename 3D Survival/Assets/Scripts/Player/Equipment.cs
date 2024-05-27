@@ -21,6 +21,10 @@ public class Equipment : MonoBehaviour
     {
         UnEquip();
         curEquip = Instantiate(data.equipPrefab, equipParent).GetComponent<Equip>();
+        //int index = curEquip.GetComponent<GameObject>().name.IndexOf("(Clone)");    // Clone Removed
+        //if(index > 0) curEquip.GetComponent<GameObject>().name.Substring(0, index);
+
+
     }
 
     public void UnEquip()
