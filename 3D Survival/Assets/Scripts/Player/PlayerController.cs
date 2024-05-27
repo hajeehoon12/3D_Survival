@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody _rigidbody;
 
     public UIInventory uiInventory;
+    public GameObject uiInven;
     
 
     private void Awake()
@@ -42,9 +43,8 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        inventory += uiInventory.Toggle; // 구독 미리하기
-        uiInventory.Toggle(); // 에러 방지용
+        uiInven.SetActive(false);
+        
     }
 
     // Update is called once per frame
@@ -168,15 +168,13 @@ public class PlayerController : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Started)
         {
-            inventory?.Invoke(); // Inventory Action 실행
-            ToggleCursor(); // ToggleCursor 실행
+            InvenOn();
         }
     }
 
-    void ToggleCursor() // 커서막기
-    { 
-        bool toggle = Cursor.lockState == CursorLockMode.Locked; // Cursor의 lockstate 가 lock이라면 toggle이고
-        Cursor.lockState = toggle ? CursorLockMode.None : CursorLockMode.Locked; // toggle 이 true 면 
-        canLook = !toggle;
+    public void InvenOn()
+    {
+        uiInventory.Toggle();
     }
+
 }

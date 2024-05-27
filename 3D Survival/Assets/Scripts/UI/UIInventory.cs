@@ -34,20 +34,17 @@ public class UIInventory : MonoBehaviour
 
     private void Awake()
     {
-        //inventoryWindow.SetActive(true);
+        controller = CharacterManager.Instance.Player.controller;
+        condition = CharacterManager.Instance.Player.condition;
+        dropPosition = CharacterManager.Instance.Player.dropPosition;
+        
     }
 
 
     private void Start()
     {
-        controller = CharacterManager.Instance.Player.controller;
-        condition = CharacterManager.Instance.Player.condition;
-        dropPosition = CharacterManager.Instance.Player.dropPosition;
-
         //controller.inventory += Toggle; 에러수정
         CharacterManager.Instance.Player.addItem += AddItem;
-
-        inventoryWindow.SetActive(false);
 
         
         slots = new ItemSlot[slotPanel.childCount];
@@ -60,6 +57,7 @@ public class UIInventory : MonoBehaviour
         }
         ClearSelectedItemWindow();
         UpdateUI();
+        
         //Toggle();
     }
 
@@ -83,8 +81,19 @@ public class UIInventory : MonoBehaviour
 
     public void Toggle()
     {
-        if (isOpen()) inventoryWindow.SetActive(false);
-        else inventoryWindow.SetActive(true);
+        if (inventoryWindow.activeSelf)
+        {
+            inventoryWindow.SetActive(false);
+            Cursor.lockState = CursorLockMode.Locked;
+            controller.canLook = true;
+        }
+        else
+        {
+            inventoryWindow.SetActive(true);
+            Cursor.lockState = CursorLockMode.None;
+            
+            controller.canLook = false;
+        }
     }
 
     public bool isOpen()
