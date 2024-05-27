@@ -34,7 +34,7 @@ public class Equipment : MonoBehaviour
 
     public void OnAttackInput(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Performed && curEquip != null && controller.canLook) // 공격중, 장착중, 시야고정풀림(인벤해제)
+        if (context.phase == InputActionPhase.Performed && curEquip != null && controller.canLook) // 공격중, 장착중, 정지상태가 아닐때
         {
             curEquip.OnAttackInput();
         }

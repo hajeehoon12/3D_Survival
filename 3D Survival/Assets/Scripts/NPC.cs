@@ -42,6 +42,10 @@ public class NPC : MonoBehaviour , IDamagable
 
     private float playerDistance;
 
+    private bool takingDmg = false;
+
+    private bool isDie = false;
+
     public float fieldOfView = 120f; // 몬스터 시야각
 
     private Animator animator;
@@ -66,6 +70,10 @@ public class NPC : MonoBehaviour , IDamagable
     
     void Update()
     {
+
+        if (isDie) return;     // 공격을 받거나 죽으면 행동을 멈춤
+        
+
         playerDistance = Vector3.Distance(transform.position, CharacterManager.Instance.Player.transform.position); // 플레이어와 거리차이 계산
 
         animator.SetBool("Moving", aiState != AIState.Idle); // AIState에 따라 Animator Bool값 결정
@@ -74,12 +82,12 @@ public class NPC : MonoBehaviour , IDamagable
         {
             case AIState.Idle:
             case AIState.Wandering:
-
+                if (takingDmg) return;
                 PassiveUpdate();
 
                 break;
             case AIState.Attacking:
-
+                if (takingDmg) return;
                 AttackingUpdate();
 
                 break;
@@ -230,6 +238,11 @@ public class NPC : MonoBehaviour , IDamagable
 
     public void TakePhysicalDamage(int damage)
     {
+        if (isDie) return;
+
+        takingDmg = true;
+        StartCoroutine(TakingDmgMotion());
+
         animator.SetTrigger("Damaged");
         if (attackCoroutine != null) StopCoroutine(attackCoroutine);
         health -= damage;
@@ -244,15 +257,25 @@ public class NPC : MonoBehaviour , IDamagable
 
     }
 
+    IEnumerator TakingDmgMotion()
+    {
+        yield return new WaitForSeconds(0.4f);
+        takingDmg = false;
+    }
+
     void Die()
     { 
         for(int i = 0; i < dropOnDeath.Length; i++)
         {
             GameObject DropItems = Instantiate(dropOnDeath[i].dropPrefab, transform.position + Vector3.up * 2, Quaternion.identity );
+            DropItems.GetComponent<Rigidbody>().AddForce( (Vector3.up * 5 + Vector3.forward * 3) * DropItems.GetComponent<Rigidbody>().mass, ForceMode.Impulse);
             StartCoroutine(DropRotate(DropItems));
         }
         animator.SetTrigger("Dead");
         StartCoroutine(SlowDie());
+        agent.speed = 0;
+        agent.isStopped = true;
+        isDie = true;
     }
 
     IEnumerator DropRotate(GameObject DropItems)
@@ -268,7 +291,7 @@ public class NPC : MonoBehaviour , IDamagable
 
     IEnumerator SlowDie()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(4f);
         Destroy(gameObject);
     }
 

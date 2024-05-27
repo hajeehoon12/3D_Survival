@@ -7,6 +7,8 @@ public class FootSteps : MonoBehaviour
     public AudioClip[] footstepClips;
     private AudioSource audioSource;
 
+    private PlayerController playerController;
+
     private Rigidbody _rigidbody;
 
     public float footstepThreshold;
@@ -17,18 +19,33 @@ public class FootSteps : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
+        playerController = GetComponent<PlayerController>();
     }
 
     private void Update()
     {
-        if (Mathf.Abs(_rigidbody.velocity.y) < 0.3f) // 높이 변화가 거의없다시피 할 때
+        if (playerController.IsGrounded()) // 높이 변화가 거의없다시피 할 때
         {
-            if (_rigidbody.velocity.magnitude > footstepThreshold)
+            if (!playerController.isRunning)
             {
-                if (Time.time - footStepTime > footstepRate)
+                if (_rigidbody.velocity.magnitude > footstepThreshold)
                 {
-                    footStepTime = Time.time;
-                    AudioManager.instance.PlaySFX("FootStep", 0.3f);
+                    if (Time.time - footStepTime > footstepRate)
+                    {
+                        footStepTime = Time.time;
+                        AudioManager.instance.PlaySFX("FootStep", 0.3f);
+                    }
+                }
+            }
+            else
+            {
+                if (_rigidbody.velocity.magnitude > footstepThreshold/1.5f)
+                {
+                    if (Time.time - footStepTime > footstepRate/2f)
+                    {
+                        footStepTime = Time.time;
+                        AudioManager.instance.PlaySFX("FootStep", 0.2f);
+                    }
                 }
             }
         }

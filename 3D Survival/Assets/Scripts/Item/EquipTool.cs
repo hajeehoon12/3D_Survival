@@ -9,6 +9,8 @@ public class EquipTool : Equip
     public float attackDistance;
     public float useStamina;
 
+    public bool isAttacking = false;
+
     [Header("Resource Gathering")] // 자원 캐기 가능
     public bool doesGatherResources;
 
@@ -34,21 +36,25 @@ public class EquipTool : Equip
             {
                 attacking = true;
                 animator.SetTrigger("Attack");
-                Invoke("OnCanAttack", attackRate);
+                StartCoroutine(OnCanAttack());
             }
         }
     }
 
-    void OnCanAttack()
+    IEnumerator OnCanAttack()
     {
+        yield return new WaitForSeconds(attackRate);
         attacking = false;
     }
+
+    
 
     public void OnHit()
     {
         Ray ray = camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
         RaycastHit hit;
 
+        isAttacking = true;
 
         if (Physics.Raycast(ray, out hit, attackDistance))
         {
@@ -60,7 +66,19 @@ public class EquipTool : Equip
             if (doesDamage && hit.collider.TryGetComponent(out NPC npc))
             {
                 npc.TakePhysicalDamage(damage);
+                AudioManager.instance.PlaySFX("SwordAttack2", 0.8f);
+                isAttacking = false;
             }
+            else
+            {
+                
+            }
+            
+        }
+        if (isAttacking)
+        {
+            AudioManager.instance.PlaySFX("SwordAttack", 0.8f);
+            isAttacking = false;
         }
     }
 

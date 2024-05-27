@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     public float jumPower;
     private Vector2 curMovementInput;
     public LayerMask groundLayerMask;
+    public bool isRunning = false;
+    private bool isJumping = false;
 
     [Header("Look")]
     public Transform cameraContainer;
@@ -28,6 +30,7 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody _rigidbody;
 
+    public UIInventory uiInventory;
     
 
     private void Awake()
@@ -40,12 +43,22 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        inventory += uiInventory.Toggle; // 구독 미리하기
+        uiInventory.Toggle(); // 에러 방지용
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         Move();
+        if (isJumping)
+        {
+            if (IsGrounded())
+            {
+                isJumping = false;
+                AudioManager.instance.PlaySFX("JumpToGround");
+            }
+        }
     }
 
     private void LateUpdate()
@@ -53,12 +66,31 @@ public class PlayerController : MonoBehaviour
         if(canLook) CameraLook();
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Jumper"))
+        {
+            GetComponent<Rigidbody>().AddForce(transform.up * GetComponent<Rigidbody>().mass * 20 , ForceMode.Impulse);
+            AudioManager.instance.PlaySFX("Jumper");
+            Debug.Log("Meet Jumper");
+            isJumping = true;
+        }
+    }
 
 
     void Move()
     { 
         Vector3 dir = transform.forward * curMovementInput.y + transform.right * curMovementInput.x;
-        dir *= moveSpeed;
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            isRunning = true;
+            dir *= moveSpeed * 2f; // run
+        }
+        else
+        {
+            isRunning = false;
+            dir *= moveSpeed;  // walk
+        }
         dir.y = _rigidbody.velocity.y; // gravity value 
 
         _rigidbody.velocity = dir;
@@ -94,13 +126,25 @@ public class PlayerController : MonoBehaviour
     }
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Started && IsGrounded())
+        if (context.phase == InputActionPhase.Started && IsGrounded() )
         {
-            _rigidbody.AddForce(Vector2.up * jumPower, ForceMode.Impulse);
+            if(!isRunning)
+                _rigidbody.AddForce(Vector2.up * jumPower * GetComponent<Rigidbody>().mass, ForceMode.Impulse);
+            else
+                _rigidbody.AddForce(Vector2.up * jumPower * 1.2f *  GetComponent<Rigidbody>().mass, ForceMode.Impulse);
+            StartCoroutine(JumpBoolChange());
+            AudioManager.instance.PlaySFX("Jump2");
         }
     }
 
-    bool IsGrounded()
+    IEnumerator JumpBoolChange()
+    {
+        yield return new WaitForSeconds(0.1f);
+        if(!IsGrounded())   isJumping = true;
+    }
+
+
+    public bool IsGrounded()
     {
         Ray[] rays = new Ray[4]
         {
@@ -120,7 +164,7 @@ public class PlayerController : MonoBehaviour
         return false;
     }
 
-    public void OnInventory(InputAction.CallbackContext context)
+    public void OnInventory(InputAction.CallbackContext context) // 인벤 실행
     {
         if (context.phase == InputActionPhase.Started)
         {
@@ -129,7 +173,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void ToggleCursor()
+    void ToggleCursor() // 커서막기
     { 
         bool toggle = Cursor.lockState == CursorLockMode.Locked; // Cursor의 lockstate 가 lock이라면 toggle이고
         Cursor.lockState = toggle ? CursorLockMode.None : CursorLockMode.Locked; // toggle 이 true 면 

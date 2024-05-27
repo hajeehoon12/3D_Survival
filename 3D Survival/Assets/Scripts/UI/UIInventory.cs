@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+//using System;
 
 public class UIInventory : MonoBehaviour
 {
@@ -31,16 +32,24 @@ public class UIInventory : MonoBehaviour
 
     private int curEquipIndex;
 
+    private void Awake()
+    {
+        //inventoryWindow.SetActive(true);
+    }
+
+
     private void Start()
     {
         controller = CharacterManager.Instance.Player.controller;
         condition = CharacterManager.Instance.Player.condition;
         dropPosition = CharacterManager.Instance.Player.dropPosition;
 
-        controller.inventory += Toggle;
+        //controller.inventory += Toggle; 에러수정
         CharacterManager.Instance.Player.addItem += AddItem;
 
         inventoryWindow.SetActive(false);
+
+        
         slots = new ItemSlot[slotPanel.childCount];
 
         for (int i = 0; i < slots.Length; i++)
@@ -50,6 +59,8 @@ public class UIInventory : MonoBehaviour
             slots[i].inventory = this;
         }
         ClearSelectedItemWindow();
+        UpdateUI();
+        //Toggle();
     }
 
     void Update()
@@ -78,6 +89,7 @@ public class UIInventory : MonoBehaviour
 
     public bool isOpen()
     {
+        //Debug.Log(inventoryWindow.activeInHierarchy);
         return inventoryWindow.activeInHierarchy; // 켜져있는지 확인
     }
 
@@ -236,6 +248,29 @@ public class UIInventory : MonoBehaviour
         UpdateUI();
     }
 
+    public void OnFastEquip() // Fast Equip
+    {
+
+        for (int i = 0; i < slots.Length; i++) // First Place can Equippable armor on
+        {
+            selectedItem = slots[i].item;
+            selectedItemIndex = i;
+            if (selectedItem != null)
+            {
+                if (selectedItem.type == ItemType.Equipable)
+                {
+                    OnEquipButton();
+                    AudioManager.instance.PlaySFX("SwordToHand");
+                    return;
+                }
+            }
+        }
+        selectedItem = null;  // when it is no equippable object in inventory initiate
+        selectedItemIndex = 0;
+    }
+
+
+
     public void OnEquipButton()
     {
         if (slots[curEquipIndex].equipped)
@@ -244,6 +279,8 @@ public class UIInventory : MonoBehaviour
         }
 
         slots[selectedItemIndex].equipped = true;
+
+        AudioManager.instance.PlaySFX("SwordToHand");
 
         curEquipIndex = selectedItemIndex;
         CharacterManager.Instance.Player.equip.EquipNew(selectedItem);
