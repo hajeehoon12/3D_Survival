@@ -29,6 +29,8 @@ public class UIInventory : MonoBehaviour
     ItemData selectedItem;
     int selectedItemIndex = 0;
 
+    private int curEquipIndex;
+
     private void Start()
     {
         controller = CharacterManager.Instance.Player.controller;
@@ -179,8 +181,8 @@ public class UIInventory : MonoBehaviour
         // 버튼 활성화
 
         useButton.SetActive(selectedItem.type == ItemType.Consumable);
-        equipButton.SetActive(selectedItem.type == ItemType.Equipable && slots[index].equipped ); // 장착이 안되있을 때
-        unEquipButton.SetActive(selectedItem.type == ItemType.Equipable && !slots[index].equipped); // 장착이 되있을 때
+        equipButton.SetActive(selectedItem.type == ItemType.Equipable && !slots[index].equipped ); // 장착이 안되있을 때
+        unEquipButton.SetActive(selectedItem.type == ItemType.Equipable && slots[index].equipped); // 장착이 되있을 때
         dropButton.SetActive(true);
 
 
@@ -208,6 +210,13 @@ public class UIInventory : MonoBehaviour
 
     public void OnDropButton() // DropButton 누를시
     {
+        if (curEquipIndex == selectedItemIndex)
+        { 
+            if (slots[curEquipIndex].equipped)
+            {
+                UnEquip(curEquipIndex);
+            }
+        }
         ThrowItem(selectedItem);
         RemoveSelectedItem();
     }
@@ -227,7 +236,37 @@ public class UIInventory : MonoBehaviour
         UpdateUI();
     }
 
+    public void OnEquipButton()
+    {
+        if (slots[curEquipIndex].equipped)
+        {
+            UnEquip(curEquipIndex);
+        }
 
+        slots[selectedItemIndex].equipped = true;
 
+        curEquipIndex = selectedItemIndex;
+        CharacterManager.Instance.Player.equip.EquipNew(selectedItem);
+        UpdateUI();
+
+        SelectItem(selectedItemIndex);
+    }
+
+    void UnEquip(int index)
+    {
+        slots[index].equipped = false;
+        CharacterManager.Instance.Player.equip.UnEquip();
+        UpdateUI();
+
+        if (selectedItemIndex == index)
+        {
+            SelectItem(selectedItemIndex);
+        }
+    }
+
+    public void OnUnEquipButton()
+    {
+        UnEquip(selectedItemIndex);
+    }
 
 }
