@@ -44,7 +44,7 @@ public class UIInventory : MonoBehaviour
     private void Start()
     {
         //controller.inventory += Toggle; 에러수정
-        CharacterManager.Instance.Player.addItem += AddItem;
+        
 
         
         slots = new ItemSlot[slotPanel.childCount];
@@ -57,7 +57,7 @@ public class UIInventory : MonoBehaviour
         }
         ClearSelectedItemWindow();
         UpdateUI();
-        
+        //inventoryWindow.SetActive(false);
         //Toggle();
     }
 
@@ -102,7 +102,7 @@ public class UIInventory : MonoBehaviour
         return inventoryWindow.activeInHierarchy; // 켜져있는지 확인
     }
 
-    void AddItem()
+    public void AddItem()
     {
         ItemData data = CharacterManager.Instance.Player.itemData;
 
@@ -136,7 +136,7 @@ public class UIInventory : MonoBehaviour
 
     }
 
-    void UpdateUI()
+    public void UpdateUI()
     {
         for (int i = 0; i < slots.Length; i++)
         {

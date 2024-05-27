@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEditor.Timeline.Actions.MenuPriority;
 
 
 public class PlayerController : MonoBehaviour
@@ -37,14 +38,17 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     { 
         _rigidbody = GetComponent<Rigidbody>();
+        
     }
 
 
 
     void Start()
     {
-        uiInven.SetActive(false);
         
+        uiInven.SetActive(true);
+        CharacterManager.Instance.Player.addItem += uiInventory.AddItem;
+
     }
 
     // Update is called once per frame
