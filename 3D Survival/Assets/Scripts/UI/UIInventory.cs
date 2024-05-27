@@ -57,8 +57,8 @@ public class UIInventory : MonoBehaviour
         }
         ClearSelectedItemWindow();
         UpdateUI();
-        //inventoryWindow.SetActive(false);
-        //Toggle();
+        
+        inventoryWindow.SetActive(false);
     }
 
     void Update()
@@ -176,7 +176,14 @@ public class UIInventory : MonoBehaviour
     void ThrowItem(ItemData data)
     {
         dropItem = Instantiate(data.dropPrefab, dropPosition.position, Quaternion.Euler(Vector3.one * Random.value * 360));
-        dropItem.GetComponent<Rigidbody>().AddForce(Vector3.forward * 2f + Vector3.up * 2f, ForceMode.Impulse);
+        dropItem.GetComponent<Rigidbody>().AddForce((Vector3.forward * 3f + Vector3.up * 3f) * dropItem.GetComponent<Rigidbody>().mass, ForceMode.Impulse);
+
+
+        if (selectedItem.type == ItemType.Equipable)
+        {
+            AudioManager.instance.PlaySFX("SwordDiscard");
+        }
+
         // 게임 오브젝트, 위치, 각도
     }
 
@@ -209,7 +216,7 @@ public class UIInventory : MonoBehaviour
 
     }
 
-    public void OnUseButton()
+    public void OnUseButton() // 소모템 사용시
     {
         if (selectedItem.type == ItemType.Consumable)
         {
@@ -222,6 +229,9 @@ public class UIInventory : MonoBehaviour
                         break;
                     case ConsumableType.Hunger:
                         condition.Eat(selectedItem.consumables[i].value);
+                        break;
+                    case ConsumableType.Stamina:
+                        condition.UseStamina(-selectedItem.consumables[i].value); // 스테미나 채우기
                         break;
                 }
             }

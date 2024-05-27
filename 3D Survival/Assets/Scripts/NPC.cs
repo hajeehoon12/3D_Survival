@@ -272,6 +272,7 @@ public class NPC : MonoBehaviour , IDamagable
             StartCoroutine(DropRotate(DropItems));
         }
         animator.SetTrigger("Dead");
+        AudioManager.instance.PlaySFX("MonsterDown");
         StartCoroutine(SlowDie());
         agent.speed = 0;
         agent.isStopped = true;

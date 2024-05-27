@@ -48,6 +48,7 @@ public class PlayerController : MonoBehaviour
         
         uiInven.SetActive(true);
         CharacterManager.Instance.Player.addItem += uiInventory.AddItem;
+        Cursor.lockState = CursorLockMode.Locked;
 
     }
 
@@ -77,7 +78,7 @@ public class PlayerController : MonoBehaviour
             GetComponent<Rigidbody>().AddForce(transform.up * GetComponent<Rigidbody>().mass * 20 , ForceMode.Impulse);
             AudioManager.instance.PlaySFX("Jumper");
             Debug.Log("Meet Jumper");
-            isJumping = true;
+            StartCoroutine(JumpBoolChange());
         }
     }
 
@@ -137,7 +138,7 @@ public class PlayerController : MonoBehaviour
             else
                 _rigidbody.AddForce(Vector2.up * jumPower * 1.2f *  GetComponent<Rigidbody>().mass, ForceMode.Impulse);
             StartCoroutine(JumpBoolChange());
-            AudioManager.instance.PlaySFX("Jump2");
+            AudioManager.instance.PlaySFX("Jump");
         }
     }
 
