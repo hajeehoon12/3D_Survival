@@ -794,7 +794,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   time: 0.4
-  fullDayLength: 60
+  fullDayLength: 300
   startTime: 0.4
   noon: {x: 90, y: 0, z: 0}
   sun: {fileID: 705507994}
@@ -2151,7 +2151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSource: {fileID: 0}
   fadeTime: 1
-  maxVolume: 0.2
+  maxVolume: 0.4
 --- !u!82 &952920890
 AudioSource:
   m_ObjectHideFlags: 0
