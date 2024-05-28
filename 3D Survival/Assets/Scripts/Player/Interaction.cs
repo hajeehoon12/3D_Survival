@@ -19,7 +19,7 @@ public class Interaction : MonoBehaviour
     public Text promptDes;
     public GameObject promptObj;
 
-    private Camera camera;
+    public Camera camera;
 
     private void Start()
     {

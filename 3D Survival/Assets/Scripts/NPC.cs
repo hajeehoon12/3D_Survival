@@ -191,7 +191,7 @@ public class NPC : MonoBehaviour , IDamagable
 
     void AttackingUpdate()
     {
-        if (playerDistance < attackDistance && IsPlayerInFieldOfView())
+        if (playerDistance < attackDistance && IsPlayerInFieldOfView()) // When in distance
         {
             agent.isStopped = true;
             if (Time.time - lastAttackTime > attackRate)
@@ -203,9 +203,9 @@ public class NPC : MonoBehaviour , IDamagable
                 attackCoroutine = StartCoroutine(AttackDelay());
             }
         }
-        else
+        else // detect and follow
         {
-            if (playerDistance < detectDistance)
+            if (playerDistance < detectDistance) 
             {
                 agent.isStopped = false;
                 NavMeshPath path = new NavMeshPath();

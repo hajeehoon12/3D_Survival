@@ -237,7 +237,7 @@ public class UIInventory : MonoBehaviour
 
             }
             RemoveSelectedItem();
-
+            return;
         }
 
         if (selectedItem.type == ItemType.Buff)
