@@ -22,6 +22,8 @@ public class PlayerCondition : MonoBehaviour, IDamagable
 
     public event Action onTakeDamage;
 
+    public bool playSpeedBuff = false;
+
  
     void Update()
     {
@@ -94,21 +96,38 @@ public class PlayerCondition : MonoBehaviour, IDamagable
             {
 
                 case ConsumableType.Health:
+
                     //Debug.Log("Health Buff Restore!");
                     Heal(value / (totalTime / timeThreshold));
+
                     break;
                 case ConsumableType.Hunger:
+
                     //Debug.Log("Hunger Buff Restore!");
                     Eat(value / (totalTime / timeThreshold));
+
                     break;
                 case ConsumableType.Stamina:
+
                     //Debug.Log("Stamina Buff Restore!");
                     UseStamina(-value / (totalTime / timeThreshold)); // 스테미나 채우기
+
+                    break;
+                case ConsumableType.Speed:
+
+                    if (!playSpeedBuff)
+                    {
+                        GetComponent<PlayerController>().SpeedBuff = true;
+                        playSpeedBuff = true;
+                    }
+
                     break;
             }
             yield return new WaitForSeconds(timeThreshold);
+
         }
         //RemoveSelectedItem();
+        playSpeedBuff = false;
         Debug.Log("Buff End!!");
 
     }

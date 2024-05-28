@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     public LayerMask groundLayerMask;
     public bool isRunning = false;
     private bool isJumping = false;
+    public bool SpeedBuff = false;
 
     [Header("Look")]
     public Transform cameraContainer;
@@ -84,17 +85,21 @@ public class PlayerController : MonoBehaviour
 
 
     void Move()
-    { 
+    {
+        float speedVol = 1f;
+
+        if (SpeedBuff) speedVol = 1.5f;
+
         Vector3 dir = transform.forward * curMovementInput.y + transform.right * curMovementInput.x;
         if (Input.GetKey(KeyCode.LeftShift))
         {
             isRunning = true;
-            dir *= moveSpeed * 2f; // run
+            dir *= moveSpeed * 2f * speedVol; // run
         }
         else
         {
             isRunning = false;
-            dir *= moveSpeed;  // walk
+            dir *= moveSpeed * speedVol;  // walk
         }
         dir.y = _rigidbody.velocity.y; // gravity value 
 

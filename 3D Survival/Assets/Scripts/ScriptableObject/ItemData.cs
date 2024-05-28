@@ -14,7 +14,8 @@ public enum ConsumableType
 { 
     Health,
     Hunger,
-    Stamina
+    Stamina,
+    Speed
 }
 
 [System.Serializable]
