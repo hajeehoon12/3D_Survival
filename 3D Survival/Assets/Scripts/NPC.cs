@@ -227,7 +227,7 @@ public class NPC : MonoBehaviour , IDamagable
         }
     }
 
-    bool IsPlayerInFieldOfView()
+    bool IsPlayerInFieldOfView() // if player is in npc fov
     {
         Vector3 directionToPlayer = CharacterManager.Instance.Player.transform.position - transform.position;
         float angle = Vector3.Angle(transform.forward, directionToPlayer); // NPC의 정면과 플레이어의 각도
@@ -236,7 +236,7 @@ public class NPC : MonoBehaviour , IDamagable
         
     }
 
-    public void TakePhysicalDamage(int damage)
+    public void TakePhysicalDamage(int damage) // get damaged
     {
         if (isDie) return;
 
@@ -257,13 +257,13 @@ public class NPC : MonoBehaviour , IDamagable
 
     }
 
-    IEnumerator TakingDmgMotion()
+    IEnumerator TakingDmgMotion() // check when getting dmged
     {
         yield return new WaitForSeconds(0.4f);
         takingDmg = false;
     }
 
-    void Die()
+    void Die() // when DIed
     { 
         for(int i = 0; i < dropOnDeath.Length; i++)
         {
@@ -279,7 +279,7 @@ public class NPC : MonoBehaviour , IDamagable
         isDie = true;
     }
 
-    IEnumerator DropRotate(GameObject DropItems)
+    IEnumerator DropRotate(GameObject DropItems) // Item Drop get rotation
     {
         float x = 0;
         while (x < 2160)
@@ -290,13 +290,13 @@ public class NPC : MonoBehaviour , IDamagable
         yield return null;
     }
 
-    IEnumerator SlowDie()
+    IEnumerator SlowDie() // Die Slowly
     {
         yield return new WaitForSeconds(4f);
         Destroy(gameObject);
     }
 
-    IEnumerator DamageFlash()
+    IEnumerator DamageFlash() // NPC get Damaged
     {
         for (int i = 0; i < meshRenderers.Length; i++)
         {

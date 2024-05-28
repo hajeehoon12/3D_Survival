@@ -75,6 +75,7 @@ public class PlayerCondition : MonoBehaviour, IDamagable
 
     public void StartBuff(ConsumableType Type, float value)
     {
+        Debug.Log("StartBuff!!");
         StartCoroutine(BuffItem(Type, value));
     }
 

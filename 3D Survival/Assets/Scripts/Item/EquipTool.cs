@@ -11,7 +11,7 @@ public class EquipTool : Equip
 
     public bool isAttacking = false;
 
-    [Header("Resource Gathering")] // 자원 캐기 가능
+    [Header("Resource Gathering")] 
     public bool doesGatherResources;
 
     [Header("Combat")] // 전투
@@ -58,18 +58,19 @@ public class EquipTool : Equip
 
         if (Physics.Raycast(ray, out hit, attackDistance))
         {
-            if (doesGatherResources && hit.collider.TryGetComponent(out Resource resource)) // 장비가 자원캐기용인지와 해당 레이캐스트가 자원인지 확인
+            if (doesGatherResources && hit.collider.TryGetComponent(out Resource resource)) // Hit Resources
             {
                 resource.Gather(hit.point, hit.normal);
 
                 if (gameObject.name == "Equip_Axe(Clone)")
                 {
                     AudioManager.instance.PlaySFX("Axe");
+                    isAttacking = false;
                 }
 
             }
 
-            if (doesDamage && hit.collider.TryGetComponent(out NPC npc))
+            if (doesDamage && hit.collider.TryGetComponent(out NPC npc)) // Hit NPC
             {
                 npc.TakePhysicalDamage(damage);
                 //if (gameObject.name == "Equip_Sword")
@@ -84,7 +85,7 @@ public class EquipTool : Equip
             }
             
         }
-        if (isAttacking)
+        if (isAttacking) // FFul Swing
         {
             //if (gameObject.name == "Equip_Sword(Clone)")
             //{
