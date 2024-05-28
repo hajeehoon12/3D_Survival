@@ -73,4 +73,43 @@ public class PlayerCondition : MonoBehaviour, IDamagable
         return true;
     }
 
+    public void StartBuff(ConsumableType Type, float value)
+    {
+        StartCoroutine(BuffItem(Type, value));
+    }
+
+
+
+    public IEnumerator BuffItem(ConsumableType Type, float value)
+    {
+        float time = 0f;
+        float timeThreshold = 0.1f;
+        float totalTime = 10f;
+        //Debug.Log("InCoroutine");
+        while (time < totalTime)
+        {
+            time += timeThreshold;
+            switch (Type)
+            {
+
+                case ConsumableType.Health:
+                    //Debug.Log("Health Buff Restore!");
+                    Heal(value / (totalTime / timeThreshold));
+                    break;
+                case ConsumableType.Hunger:
+                    //Debug.Log("Hunger Buff Restore!");
+                    Eat(value / (totalTime / timeThreshold));
+                    break;
+                case ConsumableType.Stamina:
+                    //Debug.Log("Stamina Buff Restore!");
+                    UseStamina(-value / (totalTime / timeThreshold)); // 스테미나 채우기
+                    break;
+            }
+            yield return new WaitForSeconds(timeThreshold);
+        }
+        //RemoveSelectedItem();
+        Debug.Log("Buff End!!");
+
+    }
+
 }

@@ -208,7 +208,7 @@ public class UIInventory : MonoBehaviour
 
         // 버튼 활성화
 
-        useButton.SetActive(selectedItem.type == ItemType.Consumable);
+        useButton.SetActive(selectedItem.type == ItemType.Consumable || selectedItem.type == ItemType.Buff);
         equipButton.SetActive(selectedItem.type == ItemType.Equipable && !slots[index].equipped ); // 장착이 안되있을 때
         unEquipButton.SetActive(selectedItem.type == ItemType.Equipable && slots[index].equipped); // 장착이 되있을 때
         dropButton.SetActive(true);
@@ -234,10 +234,24 @@ public class UIInventory : MonoBehaviour
                         condition.UseStamina(-selectedItem.consumables[i].value); // 스테미나 채우기
                         break;
                 }
+
+            }
+            RemoveSelectedItem();
+
+        }
+
+        if (selectedItem.type == ItemType.Buff)
+        {
+            for (int i = 0; i < selectedItem.consumables.Length; i++)
+            {
+                condition.StartBuff(selectedItem.consumables[i].type, selectedItem.consumables[i].value); // Go To PlayerCondition Buff
             }
             RemoveSelectedItem();
         }
+        
     }
+
+    
 
     public void OnDropButton() // DropButton 누를시
     {
