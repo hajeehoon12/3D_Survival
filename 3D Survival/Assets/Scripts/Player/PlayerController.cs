@@ -103,7 +103,7 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("Climbing");
         float climbDir = Input.GetAxisRaw("Vertical");
-        _rigidbody.velocity = new Vector3(0, climbDir * 6 -3, 0);
+        _rigidbody.velocity = new Vector3(0, climbDir * 8 -2f, 0);
     }
 
     void Move()

@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-
+using DG.Tweening;
 
 public enum AIState
 { 
     Idle,
     Wandering,
     Attacking,
-    Fleeing
+    Staying
 }
 
 
@@ -53,7 +53,9 @@ public class NPC : MonoBehaviour , IDamagable
 
     Coroutine attackCoroutine;
 
+    private bool inBattle = false;
 
+    public SkinnedMeshRenderer _body;
 
 
     private void Awake()
@@ -93,8 +95,9 @@ public class NPC : MonoBehaviour , IDamagable
                 AttackingUpdate();
 
                 break;
-            case AIState.Fleeing:
-                agent.speed = runSpeed;
+            case AIState.Staying:
+            default:
+                agent.speed = 0;
                 agent.isStopped = false;
                 break;
         }
@@ -110,20 +113,21 @@ public class NPC : MonoBehaviour , IDamagable
 
                 agent.speed = walkSpeed;
                 agent.isStopped = true;
-
+                
                 break;
 
             case AIState.Wandering:
 
                 agent.speed = walkSpeed;
                 agent.isStopped = false;
-
+                
                 break;
 
             case AIState.Attacking:
 
                 agent.speed = runSpeed;
                 agent.isStopped = false;
+                
 
                 break;
         }
@@ -142,6 +146,11 @@ public class NPC : MonoBehaviour , IDamagable
 
         if (playerDistance < detectDistance)
         {
+            if (!inBattle)
+            {
+                inBattle = true;
+                AudioManager.instance.PlayBGM("Battle");
+            }
             SetState(AIState.Attacking);
         }
 
@@ -261,7 +270,7 @@ public class NPC : MonoBehaviour , IDamagable
 
     IEnumerator TakingDmgMotion() // check when getting dmged
     {
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(0.2f);
         takingDmg = false;
     }
 
@@ -275,6 +284,7 @@ public class NPC : MonoBehaviour , IDamagable
         }
         animator.SetTrigger("Dead");
         AudioManager.instance.PlaySFX("MonsterDown");
+        
         StartCoroutine(SlowDie());
         agent.speed = 0;
         agent.isStopped = true;
@@ -284,33 +294,39 @@ public class NPC : MonoBehaviour , IDamagable
     IEnumerator DropRotate(GameObject DropItems) // Item Drop get rotation
     {
         float x = 0;
-        while (x < 2160)
+        while (x < 360)
         {
-            x += 2160 * Time.deltaTime;
+            x += 360 * Time.deltaTime;
             DropItems.transform.eulerAngles = new Vector3(x, 0, 0);
+            yield return new WaitForSeconds(Time.deltaTime);
         }
-        yield return null;
+        
     }
 
     IEnumerator SlowDie() // Die Slowly
     {
-
-        MusicZone musiczone;
-
-        if (GetComponentInChildren<MusicZone>() != null)
-        {
-            Debug.Log("Music Goes Down");
-            musiczone = GetComponentInChildren<MusicZone>();
-            StartCoroutine(musiczone.VolumeDown());
-        }
-
-        
+        Time.timeScale = 0.5f;
+        BGM_Change();
         yield return new WaitForSeconds(4f);
+        Time.timeScale = 1f;
         Destroy(gameObject);
+        
+
     }
+
+    void BGM_Change()
+    {
+        DOTween.To(() => AudioManager.instance.bgmPlayer.volume, x => AudioManager.instance.bgmPlayer.volume = x, 0f, 3);
+
+        AudioManager.instance.PlayBGM("Victory");    
+    }
+
+
+
 
     IEnumerator DamageFlash() // NPC get Damaged
     {
+        agent.isStopped = true;
         for (int i = 0; i < meshRenderers.Length; i++)
         {
             meshRenderers[i].material.color = new Color(1.0f, 0.6f, 0.6f);
@@ -323,6 +339,7 @@ public class NPC : MonoBehaviour , IDamagable
         {
             meshRenderers[i].material.color = Color.white;
         }
+        agent.isStopped = false;
     }
 
 }

@@ -16,7 +16,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] Sound[] sfx = null;
     [SerializeField] Sound[] bgm = null;
 
-    [SerializeField] AudioSource bgmPlayer = null;
+    [SerializeField] public AudioSource bgmPlayer = null;
     [SerializeField] AudioSource[] sfxPlayer = null;
     AudioSource myAudioSource;
 
@@ -40,7 +40,7 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        
+        PlayBGM("Peace");
     }
 
     public void PlayBGM(string p_bgmName)
