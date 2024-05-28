@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
     public bool canLook = true;
 
     public Action inventory;
+    
 
 
     private Rigidbody _rigidbody;
@@ -91,7 +92,7 @@ public class PlayerController : MonoBehaviour
         if (SpeedBuff) speedVol = 1.5f;
 
         Vector3 dir = transform.forward * curMovementInput.y + transform.right * curMovementInput.x;
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift) && CharacterManager.Instance.Player.condition.UseStamina(0.4f))
         {
             isRunning = true;
             dir *= moveSpeed * 2f * speedVol; // run
@@ -136,13 +137,15 @@ public class PlayerController : MonoBehaviour
     }
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Started && IsGrounded() )
+        if (context.phase == InputActionPhase.Started && IsGrounded() && (CharacterManager.Instance.Player.condition.UseStamina(10) ) )
         {
+
             if(!isRunning)
                 _rigidbody.AddForce(Vector2.up * jumPower * GetComponent<Rigidbody>().mass, ForceMode.Impulse);
             else
                 _rigidbody.AddForce(Vector2.up * jumPower * 1.2f *  GetComponent<Rigidbody>().mass, ForceMode.Impulse);
             StartCoroutine(JumpBoolChange());
+
             AudioManager.instance.PlaySFX("Jump");
         }
     }
