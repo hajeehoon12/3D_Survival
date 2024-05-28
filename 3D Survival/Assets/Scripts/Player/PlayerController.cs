@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     public float jumPower;
     private Vector2 curMovementInput;
     public LayerMask groundLayerMask;
+    public LayerMask wallLayerMask;
     public bool isRunning = false;
     private bool isJumping = false;
     public bool SpeedBuff = false;
@@ -58,6 +59,7 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         Move();
+
         if (isJumping)
         {
             if (IsGrounded())
@@ -66,7 +68,20 @@ public class PlayerController : MonoBehaviour
                 AudioManager.instance.PlaySFX("JumpToGround");
             }
         }
+
+        if (Input.GetKey(KeyCode.LeftControl))
+        {
+            //Debug.Log("I'm Pressing Ctrl");
+            if (IsWallClimbing())
+            {
+                //Debug.Log(IsWallClimbing());
+                Climb();
+            }
+        }
+
     }
+
+    
 
     private void LateUpdate()
     {
@@ -84,6 +99,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void Climb() // Climbing
+    {
+        Debug.Log("Climbing");
+        float climbDir = Input.GetAxisRaw("Vertical");
+        _rigidbody.velocity = new Vector3(0, climbDir * 6 -3, 0);
+    }
 
     void Move()
     {
@@ -102,8 +123,9 @@ public class PlayerController : MonoBehaviour
             isRunning = false;
             dir *= moveSpeed * speedVol;  // walk
         }
-        dir.y = _rigidbody.velocity.y; // gravity value 
 
+        dir.y = _rigidbody.velocity.y; // gravity value 
+        
         _rigidbody.velocity = dir;
     }
 
@@ -176,6 +198,27 @@ public class PlayerController : MonoBehaviour
         }
         return false;
     }
+
+    public bool IsWallClimbing()
+    {
+        bool isWall = false;
+        Ray[] rays = new Ray[2]
+        {
+            new Ray(transform.position + (transform.right * 0.01f) + (-transform.up * 0.3f), transform.forward),
+            new Ray(transform.position + (-transform.right * 0.01f) + (-transform.up * 0.3f), transform.forward)
+        };
+
+        for (int i = 0; i < rays.Length; i++)
+        {
+            //Debug.Log("Inspect");
+            if (Physics.Raycast(rays[i], 0.5f, wallLayerMask)) // Player 가 걸리는 경우 제외
+            {
+                isWall = true;
+            }
+        }
+        return isWall;
+    }
+
 
     public void OnInventory(InputAction.CallbackContext context) // 인벤 실행
     {
