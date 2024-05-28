@@ -15,7 +15,7 @@ MonoBehaviour:
   displayName: Speed_Potion
   description: Make Your Speed up for 10 sec
   type: 3
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 0c87730ccb15357459d39131ac886bcf, type: 3}
   dropPrefab: {fileID: 1409575026554637749, guid: 14215eeed11180d40aa03c45faa0e215, type: 3}
   canStack: 1
   maxStackAmount: 12
