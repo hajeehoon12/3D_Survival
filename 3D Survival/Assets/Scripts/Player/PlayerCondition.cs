@@ -127,9 +127,14 @@ public class PlayerCondition : MonoBehaviour, IDamagable
 
         }
         //RemoveSelectedItem();
-        playSpeedBuff = false;
+        if (playSpeedBuff) // if it was Speed Buff make buff End
+        { 
+            playSpeedBuff = false;
+            GetComponent<PlayerController>().SpeedBuff = false; 
+        }
         Debug.Log("Buff End!!");
-
     }
+
+
 
 }

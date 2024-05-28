@@ -89,7 +89,7 @@ public class PlayerController : MonoBehaviour
     {
         float speedVol = 1f;
 
-        if (SpeedBuff) speedVol = 1.5f;
+        if (SpeedBuff) speedVol = 2f;
 
         Vector3 dir = transform.forward * curMovementInput.y + transform.right * curMovementInput.x;
         if (Input.GetKey(KeyCode.LeftShift) && CharacterManager.Instance.Player.condition.UseStamina(0.4f))
