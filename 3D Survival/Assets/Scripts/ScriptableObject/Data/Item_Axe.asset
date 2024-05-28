@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93b1681822eddec42a4bb1f52e94d68b, type: 3}
   m_Name: Item_Axe
   m_EditorClassIdentifier: 
-  displayName: "\uB3C4\uB07C"
-  description: "\uC790\uC6D0\uC744 \uC7AC\uCDE8\uD560\uB54C \uC0AC\uC6A9\uB41C\uB2E4."
+  displayName: Axe
+  description: Can Chop Wood or Monsters
   type: 0
   icon: {fileID: 21300000, guid: 06e8d836c76eb494db7ab3784ffcb0eb, type: 3}
   dropPrefab: {fileID: 101071898304068274, guid: 790c2e5cd4c09d546a6b9e11179f67bc, type: 3}

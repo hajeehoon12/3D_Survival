@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93b1681822eddec42a4bb1f52e94d68b, type: 3}
   m_Name: Item_Wood
   m_EditorClassIdentifier: 
-  displayName: "\uB098\uBB34"
-  description: "\uB098\uBB34\uC5D0\uC11C \uC7AC\uCDE8\uD560 \uC218 \uC788\uB294 \uC7A5\uC791."
+  displayName: Wood
+  description: Have a lot of usages
   type: 2
   icon: {fileID: 21300000, guid: a5612e17f7779374da8564e7a11d823c, type: 3}
   dropPrefab: {fileID: 5353396618908010044, guid: 46b0d2d5c6558554fab7ab9dc2a23b29, type: 3}
   canStack: 1
   maxStackAmount: 12
+  consumables: []
+  equipPrefab: {fileID: 0}

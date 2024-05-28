@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93b1681822eddec42a4bb1f52e94d68b, type: 3}
   m_Name: Item_Sword
   m_EditorClassIdentifier: 
-  displayName: "\uCE7C"
-  description: "\uACF5\uACA9\uC6A9 \uCE7C\uC785\uB2C8\uB2E4."
+  displayName: LongSword
+  description: Sharppen longsword
   type: 0
   icon: {fileID: 21300000, guid: 4f2f320a217307a48a107491b1d17ebb, type: 3}
   dropPrefab: {fileID: 7062009774574616167, guid: 22677e251726408418e72a279d58ce9e, type: 3}

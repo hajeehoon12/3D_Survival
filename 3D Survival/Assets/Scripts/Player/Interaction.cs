@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using DG.Tweening;
 
 public class Interaction : MonoBehaviour
 {
@@ -14,7 +15,10 @@ public class Interaction : MonoBehaviour
     public GameObject curInteractGameObject; // 현재 RayCast에 걸린 게임 물체
     private IInteractable curInteractable; // 아이템 상호작용용 인터페이스
 
-    public TextMeshProUGUI promptText; // 아이템 상호작용 텍스트
+    public Text promptText; // 아이템 상호작용 텍스트
+    public Text promptDes;
+    public GameObject promptObj;
+
     private Camera camera;
 
     private void Start()
@@ -47,7 +51,7 @@ public class Interaction : MonoBehaviour
             {
                 curInteractGameObject = null;
                 curInteractable = null;
-                promptText.gameObject.SetActive(false);
+                promptObj.SetActive(false);
                 //
                 //Debug.Log("물체가아님");
             }
@@ -57,8 +61,17 @@ public class Interaction : MonoBehaviour
 
     private void SetPromptText()
     {
-        promptText.gameObject.SetActive(true);
-        promptText.text = curInteractable.GetInteractPrompt();
+        promptObj.SetActive(true);
+        
+        promptObj.GetComponent<Image>().DOFade(0, 0f);
+        promptText.DOFade(0, 0f);
+        promptDes.DOFade(0, 0f);
+
+        (promptText.text,promptDes.text) = curInteractable.GetInteractPrompt();
+
+        promptObj.GetComponent<Image>().DOFade(1, 2f);
+        promptText.DOFade(1, 2f);
+        promptDes.DOFade(1, 2f);
     }
 
     public void OnInteractInput(InputAction.CallbackContext context) // E 키 누르면 실행
@@ -68,7 +81,7 @@ public class Interaction : MonoBehaviour
             curInteractable.OnInteract();
             curInteractGameObject = null;
             curInteractable = null;
-            promptText.gameObject.SetActive(false);
+            promptObj.SetActive(false);
         }
     }
 

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93b1681822eddec42a4bb1f52e94d68b, type: 3}
   m_Name: Item_Ham
   m_EditorClassIdentifier: 
-  displayName: "\uD584"
-  description: "\uCCB4\uB825\uACFC \uBC30\uACE0\uD514\uC744 \uB9CE\uC774 \uCC44\uC6CC\uC90D\uB2C8\uB2E4."
+  displayName: Ham
+  description: Restore huge amount of Health and Hunger
   type: 1
   icon: {fileID: 21300000, guid: 704dd5b017fdcb142b1874adf545a4b4, type: 3}
   dropPrefab: {fileID: 7920597020004908529, guid: 43a2a3adbd966aa48b0e10c15f9c68cd, type: 3}

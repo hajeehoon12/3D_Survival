@@ -9,7 +9,7 @@ public class MusicZone : MonoBehaviour
     public float maxVolume;
     private float targetVolume;
 
-
+    private bool monsterDie = false;
 
     void Start()
     {
@@ -20,15 +20,33 @@ public class MusicZone : MonoBehaviour
         
     }
 
-    
+
     void Update()
     {
-        
-        if (!Mathf.Approximately(audioSource.volume, targetVolume))
-        { 
+
+        if (!Mathf.Approximately(audioSource.volume, targetVolume) && !monsterDie) // Fade Volume Up
+        {
             audioSource.volume = Mathf.MoveTowards(audioSource.volume, targetVolume, (maxVolume / fadeTime) * Time.deltaTime);
         }
     }
+
+    public IEnumerator VolumeDown() // Slow Volume Down
+    {
+        float time = 0f;
+
+        monsterDie = true;
+
+        while (time < 3)
+        {
+            time += Time.deltaTime;
+            audioSource.volume -= Time.deltaTime * targetVolume / 3;
+            Debug.Log(time);
+            yield return new WaitForSeconds(Time.deltaTime);
+        }
+        
+        Debug.Log("Music End");
+    }
+
 
     private void OnTriggerEnter(Collider other)
     {

@@ -54,6 +54,8 @@ public class NPC : MonoBehaviour , IDamagable
     Coroutine attackCoroutine;
 
 
+
+
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -292,6 +294,17 @@ public class NPC : MonoBehaviour , IDamagable
 
     IEnumerator SlowDie() // Die Slowly
     {
+
+        MusicZone musiczone;
+
+        if (GetComponentInChildren<MusicZone>() != null)
+        {
+            Debug.Log("Music Goes Down");
+            musiczone = GetComponentInChildren<MusicZone>();
+            StartCoroutine(musiczone.VolumeDown());
+        }
+
+        
         yield return new WaitForSeconds(4f);
         Destroy(gameObject);
     }
