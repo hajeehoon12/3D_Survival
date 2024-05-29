@@ -14,8 +14,8 @@ public class Resource : MonoBehaviour
         {
             if (capacity <= 0) break;
             capacity -= 1;
-            GameObject resources = Instantiate(itemToGive.dropPrefab, hitPoint + Vector3.forward * 1, Quaternion.LookRotation(hitNormal, Vector3.up));
-            resources.GetComponent<Rigidbody>().AddForce((Vector3.up + Vector3.forward)*2 , ForceMode.Impulse);
+            GameObject resources = Instantiate(itemToGive.dropPrefab, hitPoint - Vector3.forward * 1, Quaternion.LookRotation(hitNormal, Vector3.up));
+            resources.GetComponent<Rigidbody>().AddForce((resources.transform.up + resources.transform.forward)*2 , ForceMode.Impulse);
         }
     }
 

@@ -36,7 +36,7 @@ public class Interaction : MonoBehaviour
             Ray ray = camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2)); // 화면 중앙 기준 Ray발사
             RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit, maxCheckDistance, layerMask)) // 충돌 됬을 때 hit에 정보넘김
+            if (Physics.Raycast(ray, out hit, maxCheckDistance + CameraManager.instance.addDistance, layerMask)) // 충돌 됬을 때 hit에 정보넘김
             {
                 if (hit.collider.gameObject != curInteractGameObject) // 지금 만나고 있는게 넣어진게 아닐때 새 정보 넣음 Update 최적화
                 {

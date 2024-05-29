@@ -21,6 +21,8 @@ public class EquipTool : Equip
     private Animator animator;
     private Camera camera;
 
+    //int playerLayerMaskException = (1 << LayerMask.NameToLayer("Player"));
+
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -56,7 +58,7 @@ public class EquipTool : Equip
 
         isAttacking = true;
 
-        if (Physics.Raycast(ray, out hit, attackDistance))
+        if (Physics.Raycast(ray, out hit, attackDistance + CameraManager.instance.addDistance, ~(1 << LayerMask.NameToLayer("Player")) ) ) 
         {
             if (doesGatherResources && hit.collider.TryGetComponent(out Resource resource)) // Hit Resources
             {
