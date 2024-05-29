@@ -10,6 +10,8 @@ public class RaserTrap : MonoBehaviour
     public GameObject MagicTrap;
     public RaycastHit hit;
 
+    private float lastCheckTime;
+    private float checkThreshold = 0.5f;
     Vector3 LaunchPower = new Vector3(0, 20, 0);//Vector3.zero;
 
     private void Start()
@@ -28,16 +30,22 @@ public class RaserTrap : MonoBehaviour
 
         if (isTrapActivate) return;
 
-        if (Physics.SphereCast(transform.position - Vector3.up * 4f, 5f, Vector3.up, out hit, 5f , 1 << LayerMask.NameToLayer("Player") ) )
+        if (Time.time - lastCheckTime > checkThreshold) // 시간검사
         {
-            TrapOn();
-            
-        }
+            lastCheckTime = Time.time;
 
+            if (Physics.SphereCast(transform.position - Vector3.up * 4f, 5f, Vector3.up, out hit, 5f, 1 << LayerMask.NameToLayer("Player")))
+            {
+                TrapOn();
+
+            }
+
+        }
     }
 
     private void TrapOn()
     {
+        Debug.Log("You have just Activated Trap");
         isTrapActivate = true;
         StartCoroutine(TrapActivateMotion());
 
@@ -65,10 +73,13 @@ public class RaserTrap : MonoBehaviour
         while (time < 5f)
         {
             time += timeThreshold;
+            Debug.Log("Force Restoring!!");
+
+            hit.collider.transform.DOMove(transform.position, timeThreshold);
 
             if (Input.GetKey(KeyCode.W))
             {
-                Debug.Log("Yeah");
+                
                 LaunchPower += hit.collider.transform.forward * 10;
             }
             if (Input.GetKey(KeyCode.A))

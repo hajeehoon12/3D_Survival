@@ -303,8 +303,6 @@ public class UIInventory : MonoBehaviour
         selectedItemIndex = 0;
     }
 
-
-
     public void OnEquipButton()
     {
 
@@ -334,7 +332,7 @@ public class UIInventory : MonoBehaviour
 
     private void EquipPermanent()
     {
-        CharacterManager.Instance.Player.condition.NecklaceBuff(slots[curEquipIndex].equipped);
+        CharacterManager.Instance.Player.condition.NecklaceBuff(ref slots[curEquipPermanentIndex].equipped);
 
         slots[selectedItemIndex].equipped = !slots[selectedItemIndex].equipped;
 

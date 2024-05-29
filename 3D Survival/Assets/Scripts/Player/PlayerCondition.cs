@@ -142,7 +142,7 @@ public class PlayerCondition : MonoBehaviour, IDamagable
         Debug.Log("Buff End!!");
     }
 
-    public void NecklaceBuff(bool buffon)
+    public void NecklaceBuff(ref bool buffon)
     {
         if (!buffon)
         {
@@ -155,6 +155,7 @@ public class PlayerCondition : MonoBehaviour, IDamagable
 
         playSpeedBuff = !buffon;
         neckBuff.SetActive(!buffon);
+        buffon = !buffon;
 
         
     }
