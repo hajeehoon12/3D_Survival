@@ -81,8 +81,8 @@ public class CameraManager : MonoBehaviour
             addDistance = 0;
             isFP = true;
 
-            CharacterManager.Instance.Player.controller.minXLook = -85f;
-            CharacterManager.Instance.Player.controller.maxXLook = 85f;
+            CharacterManager.Instance.Player.controller.minXLook = -80f;
+            CharacterManager.Instance.Player.controller.maxXLook = 80f;
 
         });
         //curCamera.transform.localPosition = new Vector3(0, 1, 0);

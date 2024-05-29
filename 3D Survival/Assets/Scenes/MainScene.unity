@@ -2221,8 +2221,8 @@ MonoBehaviour:
   isRunning: 0
   SpeedBuff: 0
   cameraContainer: {fileID: 1590912389}
-  minXLook: -85
-  maxXLook: 85
+  minXLook: -80
+  maxXLook: 80
   lookSensitivity: 0.2
   canLook: 1
   uiInventory: {fileID: 1290184926}
