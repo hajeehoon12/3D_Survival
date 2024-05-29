@@ -61,8 +61,8 @@ public class CameraManager : MonoBehaviour
             addDistance = 5f;
             isFP = false;
 
-            CharacterManager.Instance.Player.controller.minXLook = -40f;
-            CharacterManager.Instance.Player.controller.maxXLook = 40f;
+            CharacterManager.Instance.Player.controller.minXLook = -30f;
+            CharacterManager.Instance.Player.controller.maxXLook = 50f;
 
         });
         
@@ -87,12 +87,4 @@ public class CameraManager : MonoBehaviour
         });
         //curCamera.transform.localPosition = new Vector3(0, 1, 0);
     }
-
-    public Ray StartPointofRay()
-    {
-        return startPoint;
-    }
-
-
-
 }

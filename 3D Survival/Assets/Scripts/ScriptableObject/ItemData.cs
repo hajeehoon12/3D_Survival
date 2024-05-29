@@ -7,7 +7,8 @@ public enum ItemType
     Equipable,
     Consumable,
     Resource,
-    Buff
+    Buff,
+    Permanent
 }
 
 public enum ConsumableType

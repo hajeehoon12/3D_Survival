@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
     public bool canLook = true;
 
     public Action inventory;
+    public bool canMove = true;
     
 
 
@@ -114,6 +115,8 @@ public class PlayerController : MonoBehaviour
 
     void Move()
     {
+        if (!canMove) return; // Don't execute Move if player can't move
+
         float speedVol = 1f;
 
         if (SpeedBuff) speedVol = 2f;

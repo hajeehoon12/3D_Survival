@@ -31,6 +31,7 @@ public class UIInventory : MonoBehaviour
     int selectedItemIndex = 0;
 
     private int curEquipIndex;
+    private int curEquipPermanentIndex; // Accesories
 
     private void Awake()
     {
@@ -209,8 +210,8 @@ public class UIInventory : MonoBehaviour
         // 버튼 활성화
 
         useButton.SetActive(selectedItem.type == ItemType.Consumable || selectedItem.type == ItemType.Buff);
-        equipButton.SetActive(selectedItem.type == ItemType.Equipable && !slots[index].equipped ); // 장착이 안되있을 때
-        unEquipButton.SetActive(selectedItem.type == ItemType.Equipable && slots[index].equipped); // 장착이 되있을 때
+        equipButton.SetActive( (selectedItem.type == ItemType.Equipable || selectedItem.type == ItemType.Permanent) && !slots[index].equipped ); // 장착이 안되있을 때
+        unEquipButton.SetActive( (selectedItem.type == ItemType.Equipable || selectedItem.type == ItemType.Permanent) && slots[index].equipped); // 장착이 되있을 때
         dropButton.SetActive(true);
 
 
@@ -306,6 +307,15 @@ public class UIInventory : MonoBehaviour
 
     public void OnEquipButton()
     {
+
+
+        if (slots[selectedItemIndex].item.type == ItemType.Permanent) // if itemtype is permanent Exception
+        {
+            EquipPermanent();
+            return;
+        }
+
+
         if (slots[curEquipIndex].equipped)
         {
             UnEquip(curEquipIndex);
@@ -320,6 +330,14 @@ public class UIInventory : MonoBehaviour
         UpdateUI();
 
         SelectItem(selectedItemIndex);
+    }
+
+    private void EquipPermanent()
+    {
+        CharacterManager.Instance.Player.condition.NecklaceBuff(slots[curEquipIndex].equipped);
+
+        slots[selectedItemIndex].equipped = !slots[selectedItemIndex].equipped;
+
     }
 
     void UnEquip(int index)

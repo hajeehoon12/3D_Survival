@@ -322,7 +322,7 @@ public class NPC : MonoBehaviour , IDamagable
         AudioManager.instance.StopBGM();
         //
         //AudioManager.instance.bgmPlayer.volume = 0.5f;
-        AudioManager.instance.PlayBGM("Thousands", 0.5f);
+        AudioManager.instance.PlayBGM("Peace", 0.5f);
     }
 
 

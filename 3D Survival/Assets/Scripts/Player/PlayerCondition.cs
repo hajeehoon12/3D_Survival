@@ -24,6 +24,13 @@ public class PlayerCondition : MonoBehaviour, IDamagable
 
     public bool playSpeedBuff = false;
 
+    public GameObject neckBuff;
+
+    void Start()
+    { 
+        neckBuff.SetActive(false);
+    }
+
  
     void Update()
     {
@@ -133,6 +140,23 @@ public class PlayerCondition : MonoBehaviour, IDamagable
             GetComponent<PlayerController>().SpeedBuff = false; 
         }
         Debug.Log("Buff End!!");
+    }
+
+    public void NecklaceBuff(bool buffon)
+    {
+        if (!buffon)
+        {
+            playSpeedBuff = true;
+        }
+        else
+        {
+            playSpeedBuff = false;
+        }
+
+        playSpeedBuff = !buffon;
+        neckBuff.SetActive(!buffon);
+
+        
     }
 
 
