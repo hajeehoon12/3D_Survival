@@ -16,6 +16,15 @@ public class InteractableUI : MonoBehaviour
     public bool isTPressed = false;
     public bool doingRoutine = false;
 
+    public GameObject InterfaceUI;
+
+
+    private void Start()
+    {
+        InterfaceUI.gameObject.SetActive(false);
+    }
+
+
     private void Update()
     {
 
@@ -30,11 +39,14 @@ public class InteractableUI : MonoBehaviour
             //Vector3 dir =  (ray - Camera.main.transform.position).normalized;
 
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            
+            
 
             if (Physics.Raycast( ray,out hit, checkInfoDistance + CameraManager.instance.addDistance, havingInfoLayerMask)) // transform.position, dir
             {
-                Debug.Log(hit.collider.gameObject.name);
-                ShowSpecialUI(hit.collider.gameObject.tag);
+                
+                ShowSpecialUI(hit);
+                
             }
 
         }
@@ -61,8 +73,16 @@ public class InteractableUI : MonoBehaviour
     }
 
 
-    public void ShowSpecialUI(string tag)
+    public void ShowSpecialUI(RaycastHit hit)
     {
+        InterfaceUI.SetActive(true);
+        //InterfaceUI.transform.position = hit.collider.gameObject.transform.position;
+        InterfaceUI.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) + (hit.distance + 0.5f) * transform.forward ;
+
+        InterfaceUI.transform.rotation = transform.rotation;
+        Debug.Log(hit.collider.gameObject.name);
+
+
         // if wall // Press Ctrl to Climb // and Press "W" + "S to climb up and down
         // if Trap // Becareful there is a hidden Trap!! // It'll pull you into the Center and shoot like a cannon Press "direction key" to shoot your body
         // if NPC // There is a Scary Bear // Equip your weapon and Press "Left Mouse Button" to fight against it
