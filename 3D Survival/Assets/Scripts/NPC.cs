@@ -86,6 +86,7 @@ public class NPC : MonoBehaviour , IDamagable
         {
             case AIState.Idle:
             case AIState.Wandering:
+
                 if (takingDmg) return;
                 PassiveUpdate();
 
@@ -149,7 +150,7 @@ public class NPC : MonoBehaviour , IDamagable
             if (!inBattle)
             {
                 inBattle = true;
-                AudioManager.instance.PlayBGM("Battle");
+                AudioManager.instance.PlayBGM("Battle", 0.5f);
             }
             SetState(AIState.Attacking);
         }
@@ -284,7 +285,7 @@ public class NPC : MonoBehaviour , IDamagable
         }
         animator.SetTrigger("Dead");
         AudioManager.instance.PlaySFX("MonsterDown");
-        
+        //GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ;
         StartCoroutine(SlowDie());
         agent.speed = 0;
         agent.isStopped = true;
@@ -296,29 +297,32 @@ public class NPC : MonoBehaviour , IDamagable
         float x = 0;
         while (x < 360)
         {
-            x += 360 * Time.deltaTime;
+            x += 360 * 0.1f;
             DropItems.transform.eulerAngles = new Vector3(x, 0, 0);
-            yield return new WaitForSeconds(Time.deltaTime);
+            yield return new WaitForSeconds(0.1f);
         }
         
     }
 
     IEnumerator SlowDie() // Die Slowly
     {
-        Time.timeScale = 0.5f;
-        BGM_Change();
+        
+        StartCoroutine(BGM_Change());
         yield return new WaitForSeconds(4f);
-        Time.timeScale = 1f;
+        //Debug.Log(isDie);
         Destroy(gameObject);
         
 
     }
 
-    void BGM_Change()
+    IEnumerator BGM_Change()
     {
-        DOTween.To(() => AudioManager.instance.bgmPlayer.volume, x => AudioManager.instance.bgmPlayer.volume = x, 0f, 3);
-
-        AudioManager.instance.PlayBGM("Victory");    
+        DOTween.To(() => AudioManager.instance.bgmPlayer.volume, x => AudioManager.instance.bgmPlayer.volume = x, 0f, 2);
+        yield return new WaitForSeconds(2.1f);
+        AudioManager.instance.StopBGM();
+        //
+        //AudioManager.instance.bgmPlayer.volume = 0.5f;
+        AudioManager.instance.PlayBGM("Thousands", 0.5f);
     }
 
 

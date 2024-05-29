@@ -40,7 +40,7 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        PlayBGM("Peace");
+        PlayBGM("Peace", 0.5f);
     }
 
     public void PlayBGM(string p_bgmName)
@@ -51,6 +51,7 @@ public class AudioManager : MonoBehaviour
             {
                 bgmPlayer.clip = bgm[i].clip;
                 bgmPlayer.Play();
+                return;
             }
         }
     }
@@ -63,6 +64,7 @@ public class AudioManager : MonoBehaviour
                 bgmPlayer.clip = bgm[i].clip;
                 bgmPlayer.Play();
                 bgmPlayer.volume = _volume;
+                break;
             }
         }
     }
