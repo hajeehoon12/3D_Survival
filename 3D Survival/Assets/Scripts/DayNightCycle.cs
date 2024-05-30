@@ -26,6 +26,9 @@ public class DayNightCycle : MonoBehaviour
     public AnimationCurve lightingIntensityMultiplier;
     public AnimationCurve reflectionIntensityMultiplier;
 
+    public GameObject LightOff;
+
+
     void Start()
     {
         timeRate = 1.0f / fullDayLength;
@@ -36,6 +39,9 @@ public class DayNightCycle : MonoBehaviour
     void Update()
     {
         time = (time + timeRate * Time.deltaTime) % 1.0f;
+
+        if(time > 0.75f || time <0.25f) LightOff.SetActive(false);
+        else LightOff.SetActive(true);
 
         UpdateLighting(sun, sunColor, sunIntensity);
         UpdateLighting(moon, moonColor, moonIntensity);

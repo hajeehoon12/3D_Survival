@@ -109,7 +109,7 @@ NavMeshSettings:
     agentRadius: 1
     agentHeight: 3
     agentSlope: 45
-    agentClimb: 3
+    agentClimb: 20
     ledgeDropHeight: 4
     maxJumpAcrossDistance: 0
     minRegionArea: 2
@@ -1585,6 +1585,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  LightOff: {fileID: 3490244208755897313}
 --- !u!4 &317412224
 Transform:
   m_ObjectHideFlags: 0
@@ -9342,7 +9343,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6559234532902242229, guid: 64f530374d903114da4a216abb316dd5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.32
+      value: -24
       objectReference: {fileID: 0}
     - target: {fileID: 6559234532902242229, guid: 64f530374d903114da4a216abb316dd5, type: 3}
       propertyPath: m_LocalPosition.y
@@ -9350,7 +9351,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6559234532902242229, guid: 64f530374d903114da4a216abb316dd5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -13.7
       objectReference: {fileID: 0}
     - target: {fileID: 6559234532902242229, guid: 64f530374d903114da4a216abb316dd5, type: 3}
       propertyPath: m_LocalRotation.w
@@ -44462,7 +44463,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6146588081127962815}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
