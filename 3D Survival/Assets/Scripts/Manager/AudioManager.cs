@@ -40,7 +40,7 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        PlayBGM("Peace", 0.5f);
+        PlayBGM("Peace", 0.3f);
     }
 
     public void PlayBGM(string p_bgmName)

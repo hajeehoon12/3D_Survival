@@ -48,6 +48,8 @@ public class NPC : MonoBehaviour , IDamagable
 
     public float fieldOfView = 120f; // 몬스터 시야각
 
+    private bool isAttacking = false;
+
     private Animator animator;
     private SkinnedMeshRenderer[] meshRenderers;
 
@@ -76,6 +78,7 @@ public class NPC : MonoBehaviour , IDamagable
     {
 
         if (isDie) return;     // 공격을 받거나 죽으면 행동을 멈춤
+        //if (isAttacking) return;
         
 
         playerDistance = Vector3.Distance(transform.position, CharacterManager.Instance.Player.transform.position); // 플레이어와 거리차이 계산
@@ -127,7 +130,7 @@ public class NPC : MonoBehaviour , IDamagable
             case AIState.Attacking:
 
                 agent.speed = runSpeed;
-                agent.isStopped = false;
+                agent.isStopped = true;
                 
 
                 break;
@@ -150,7 +153,7 @@ public class NPC : MonoBehaviour , IDamagable
             if (!inBattle)
             {
                 inBattle = true;
-                AudioManager.instance.PlayBGM("Battle", 0.5f);
+                AudioManager.instance.PlayBGM("Battle", 0.2f);
             }
             SetState(AIState.Attacking);
         }
@@ -192,11 +195,13 @@ public class NPC : MonoBehaviour , IDamagable
 
     IEnumerator AttackDelay()
     {
+
+        isAttacking = true;
         yield return new WaitForSeconds(attackSpeed);
         if (playerDistance < attackDistance && IsPlayerInFieldOfView())
             CharacterManager.Instance.Player.controller.GetComponent<IDamagable>().TakePhysicalDamage(damage);
         attackCoroutine = null;
-        
+        isAttacking = false;
     }
 
     void AttackingUpdate()
@@ -210,7 +215,14 @@ public class NPC : MonoBehaviour , IDamagable
                 
                 animator.speed = 1;
                 animator.SetTrigger("Attack");
+
+
+                if (attackCoroutine != null )
+                {
+                    StopCoroutine(attackCoroutine);
+                }
                 attackCoroutine = StartCoroutine(AttackDelay());
+
             }
         }
         else // detect and follow
@@ -322,7 +334,7 @@ public class NPC : MonoBehaviour , IDamagable
         AudioManager.instance.StopBGM();
         //
         //AudioManager.instance.bgmPlayer.volume = 0.5f;
-        AudioManager.instance.PlayBGM("Peace", 0.5f);
+        AudioManager.instance.PlayBGM("Peace", 0.3f);
     }
 
 
