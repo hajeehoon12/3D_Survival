@@ -109,9 +109,9 @@ NavMeshSettings:
     agentRadius: 1
     agentHeight: 3
     agentSlope: 45
-    agentClimb: 1
-    ledgeDropHeight: 0
-    maxJumpAcrossDistance: 0
+    agentClimb: 3
+    ledgeDropHeight: 4
+    maxJumpAcrossDistance: 4
     minRegionArea: 2
     manualCellSize: 0
     cellSize: 0.33333334
@@ -1694,7 +1694,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 314bff3ac3ded7246bbdc229d2084044, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: -1.5
+  moveSpeed: -10
   myDir: 1
 --- !u!114 &565877187
 MonoBehaviour:
@@ -2282,7 +2282,7 @@ MonoBehaviour:
     m_Bits: 1079
   wallLayerMask:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 1536
   isRunning: 0
   SpeedBuff: 0
   cameraContainer: {fileID: 1590912389}
@@ -2634,7 +2634,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   havingInfoLayerMask:
     serializedVersion: 2
-    m_Bits: 32384
+    m_Bits: 65152
   toCheckThreshold: 0.2
   checkInfoDistance: 5
   isTPressed: 0
@@ -6014,7 +6014,7 @@ GameObject:
   - component: {fileID: 1798817788}
   - component: {fileID: 1798817790}
   - component: {fileID: 1798817791}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Bear
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6029,14 +6029,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1798817785}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.7500765, z: -0, w: 0.6613511}
-  m_LocalPosition: {x: -6.42, y: 0.62, z: -18.8}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -68.66, y: 0.62, z: -18.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7292658343333648702}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: -97.194, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!95 &1798817787
 Animator:
   serializedVersion: 5
@@ -6091,22 +6091,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09827d4efd4594a4d8efea6c3b11bb7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 40
-  walkSpeed: 1.5
-  runSpeed: 5
+  health: 100
+  walkSpeed: 2.5
+  runSpeed: 30
   dropOnDeath:
   - {fileID: 11400000, guid: 9f1f4eb3787566d43b2edbd658d33def, type: 2}
   - {fileID: 11400000, guid: 8a71728f4cd93de44acd7b28938bc8fe, type: 2}
-  detectDistance: 10
-  minWanderDistance: 5
-  maxWanderDistance: 20
+  detectDistance: 30
+  minWanderDistance: 2
+  maxWanderDistance: 5
   minWanderWaitTime: 1
   maxWanderWaitTime: 2
   damage: 30
   attackRate: 1.5
   attackDistance: 3
   attackSpeed: 0.4
-  fieldOfView: 120
+  fieldOfView: 160
   _body: {fileID: 3890701810551048283}
 --- !u!195 &1798817790
 NavMeshAgent:
@@ -7633,7 +7633,7 @@ GameObject:
   m_Name: bush03 (56)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &23868835260841657
@@ -7719,7 +7719,7 @@ GameObject:
   m_Name: bush03 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &24846395554840419
@@ -7771,7 +7771,7 @@ GameObject:
   m_Name: bush02 (37)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &30971129529083035
@@ -7907,7 +7907,7 @@ GameObject:
   m_Name: bush03 (55)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &57700789249679985
@@ -8016,7 +8016,7 @@ GameObject:
   m_Name: bush02 (47)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!193 &71068694314864313
@@ -8166,7 +8166,7 @@ GameObject:
   m_Name: bush02 (66)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &74834346027795921
@@ -8215,7 +8215,7 @@ GameObject:
   m_Name: bush02 (14)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!23 &80038481042962482
@@ -8309,7 +8309,7 @@ GameObject:
   m_Name: bush02 (34)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!23 &80081512139454522
@@ -8397,7 +8397,7 @@ GameObject:
   m_Name: bush03 (16)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &88502550219126773
@@ -8533,7 +8533,7 @@ GameObject:
   m_Name: bush02 (65)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &95266630379482201
@@ -8719,7 +8719,7 @@ GameObject:
   m_Name: bush02 (92)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!23 &118810262859776831
@@ -8880,7 +8880,7 @@ GameObject:
   m_Name: bush02 (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!193 &172565433465238394
@@ -8908,7 +8908,7 @@ GameObject:
   m_Name: bush02 (81)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &172565433479963380
@@ -8986,7 +8986,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1838717087319263648}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Armature
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9018,7 +9018,7 @@ GameObject:
   m_Name: bush02 (104)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &238971754949051968
@@ -9179,7 +9179,7 @@ GameObject:
   m_Name: bush03 (84)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &264323386090369818
@@ -9264,7 +9264,7 @@ GameObject:
   m_Name: bush02 (61)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &290025483103651399
@@ -9324,7 +9324,7 @@ GameObject:
   m_Name: bush03 (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &303505624745651743
@@ -9478,7 +9478,7 @@ GameObject:
   m_Name: bush02 (89)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &340784718402153941
@@ -9521,7 +9521,7 @@ GameObject:
   m_Name: bush03 (12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &345741129659369283
@@ -9687,7 +9687,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6601728649710398304}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Root_M
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9844,7 +9844,7 @@ GameObject:
   m_Name: bush03 (49)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!33 &418285395477094665
@@ -10012,7 +10012,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 366239053844197388}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: MiddleToe2_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10483,7 +10483,7 @@ GameObject:
   m_Name: bush02 (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &559635115142279540
@@ -10495,7 +10495,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4212558711410740653}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: MiddleToe2_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10527,7 +10527,7 @@ GameObject:
   m_Name: bush03 (31)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &571237802627119930
@@ -10723,7 +10723,7 @@ GameObject:
   m_Name: bush02 (134)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!33 &708517061167320335
@@ -10853,7 +10853,7 @@ GameObject:
   m_Name: bush02 (114)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &723447455590848739
@@ -10971,7 +10971,7 @@ GameObject:
   m_Name: bush02 (105)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &772181469926644811
@@ -11007,7 +11007,7 @@ GameObject:
   m_Name: bush03 (74)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &778498793435102560
@@ -11110,7 +11110,7 @@ GameObject:
   m_Name: bush02 (154)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &790110894190184673
@@ -11188,7 +11188,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3661354931279871299}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Scapula_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11276,7 +11276,7 @@ GameObject:
   m_Name: bush02 (56)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &840846587336767220
@@ -11475,7 +11475,7 @@ GameObject:
   m_Name: bush02 (100)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &879121016580112655
@@ -11638,7 +11638,7 @@ GameObject:
   m_Name: bush03 (96)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &946564043936089324
@@ -11665,7 +11665,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1364986404962056560}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: eyelidDOWN_R_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11739,7 +11739,7 @@ GameObject:
   m_Name: bush03 (79)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &960360853058530685
@@ -16565,7 +16565,7 @@ GameObject:
   m_Name: bush03 (54)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &973587972303514010
@@ -16834,7 +16834,7 @@ GameObject:
   m_Name: bush03 (60)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1026373439048725880
@@ -16892,7 +16892,7 @@ GameObject:
   m_Name: bush02 (84)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!33 &1046307648618432323
@@ -17096,7 +17096,7 @@ GameObject:
   m_Name: bush02 (91)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1063082421248164028
@@ -17318,7 +17318,7 @@ GameObject:
   m_Name: bush03 (59)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1094329722628123748
@@ -17438,7 +17438,7 @@ GameObject:
   m_Name: bush03 (78)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1168178787404514397
@@ -17481,7 +17481,7 @@ GameObject:
   m_Name: bush02 (74)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1196124058154921403
@@ -17641,7 +17641,7 @@ GameObject:
   m_Name: bush02 (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!33 &1236396380587934195
@@ -17726,7 +17726,7 @@ GameObject:
   m_Name: bush02 (87)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!193 &1236396380605396097
@@ -17747,7 +17747,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5580299951459733000}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: ShoulderPart1_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17852,7 +17852,7 @@ GameObject:
   m_Name: bush02 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!193 &1284795842376576996
@@ -17955,7 +17955,7 @@ GameObject:
   m_Name: bush02 (25)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1338206282395934432
@@ -18021,7 +18021,7 @@ GameObject:
   m_Name: bush03 (63)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1377675110182146877
@@ -18216,7 +18216,7 @@ GameObject:
   m_Name: bush02 (41)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!33 &1498801769594837218
@@ -18310,7 +18310,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8903858072493404345}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Shoulder_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18326,7 +18326,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5378164943030407210}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Head_M
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18373,7 +18373,7 @@ GameObject:
   m_Name: bush02 (44)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!33 &1567083290763236840
@@ -18518,7 +18518,7 @@ GameObject:
   m_Name: bush02 (64)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!193 &1633961257201490203
@@ -18546,7 +18546,7 @@ GameObject:
   m_Name: bush02 (160)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1633961257216215189
@@ -18782,7 +18782,7 @@ GameObject:
   m_Name: bush02 (138)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!193 &1704647939748741564
@@ -18996,7 +18996,7 @@ GameObject:
   m_Name: bush03 (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1748903453066132902
@@ -19054,7 +19054,7 @@ GameObject:
   m_Name: bush02 (28)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!33 &1751398288334319460
@@ -19244,7 +19244,7 @@ GameObject:
   m_Name: bush03 (77)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!23 &1780344258913172024
@@ -19323,7 +19323,7 @@ GameObject:
   m_Name: bush03 (19)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1785919660341853474
@@ -19659,7 +19659,7 @@ GameObject:
   m_Name: bush02 (145)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1941842170475545292
@@ -19671,7 +19671,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 127417883213350589}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Ankle_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19694,7 +19694,7 @@ GameObject:
   m_Name: bush03 (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1957603913797973430
@@ -19781,7 +19781,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7551399301246673116}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Neck_M
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19797,7 +19797,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6872148546120860224}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Tail1_M
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19814,7 +19814,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3349701309199927361}
   - component: {fileID: 3890701810551048283}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19852,7 +19852,7 @@ GameObject:
   m_Name: bush03 (94)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!23 &2048802693017757280
@@ -19955,7 +19955,7 @@ GameObject:
   m_Name: bush02 (123)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!33 &2061546969543722217
@@ -20091,7 +20091,7 @@ GameObject:
   m_Name: bush01 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!193 &2074012589814427342
@@ -20170,7 +20170,7 @@ GameObject:
   m_Name: bush02 (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2083153268718896242
@@ -20206,7 +20206,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2931128181430541434}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Jaw_M
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20238,7 +20238,7 @@ GameObject:
   m_Name: bush03 (99)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2134455114341936060
@@ -20398,7 +20398,7 @@ GameObject:
   m_Name: bush02 (42)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &2145706736165270631
@@ -20410,7 +20410,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5503071557412185012}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Tongue2_M
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20457,7 +20457,7 @@ GameObject:
   m_Name: bush02 (152)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!33 &2156204105464087924
@@ -20542,7 +20542,7 @@ GameObject:
   m_Name: bush02 (27)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!33 &2164387909047018599
@@ -20614,7 +20614,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8055328680090520199}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: TongueEnd_M
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20816,7 +20816,7 @@ GameObject:
   m_Name: bush01 (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!23 &2348487410166003652
@@ -21042,7 +21042,7 @@ GameObject:
   m_Name: bush03 (90)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2442329438801411340
@@ -21078,7 +21078,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2198820363229020619}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Fingers1_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21094,7 +21094,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1005251586151047228}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Tail0_M
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21192,7 +21192,7 @@ GameObject:
   m_Name: bush02 (155)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!193 &2457150255831435998
@@ -21271,7 +21271,7 @@ GameObject:
   m_Name: bush02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2457150255850232656
@@ -21298,7 +21298,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1722128599856591803}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: ElbowPart1_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21396,7 +21396,7 @@ GameObject:
   m_Name: bush03 (33)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!193 &2505209217213404696
@@ -21490,7 +21490,7 @@ GameObject:
   m_Name: bush02 (111)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &2545595263326836759
@@ -21502,7 +21502,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5423880538918332248}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Toes1_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21591,7 +21591,7 @@ GameObject:
   m_Name: bush02 (116)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!193 &2582125662237750323
@@ -21612,7 +21612,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1509421203466002883}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Eye_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21646,7 +21646,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6293029737335563357}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Knee_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21735,7 +21735,7 @@ GameObject:
   m_Name: bush02 (70)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!193 &2611523961057612830
@@ -21787,7 +21787,7 @@ GameObject:
   m_Name: bush03 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!23 &2611946304421457805
@@ -21984,7 +21984,7 @@ GameObject:
   m_Name: bush02 (36)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2705956063052884248
@@ -22071,7 +22071,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2645569253573059015}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: eyelidUP_L_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22087,7 +22087,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4118009422152087452}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: HeadEnd_M
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22227,7 +22227,7 @@ GameObject:
   m_Name: bush02 (146)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2793232662188647346
@@ -22410,7 +22410,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5549876311901737790}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: MiddleFinger2_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22522,7 +22522,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3039206183927760559}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: eyelidDOWN_L_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22620,7 +22620,7 @@ GameObject:
   m_Name: bush02 (48)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2897878082283891893
@@ -22672,7 +22672,7 @@ GameObject:
   m_Name: bush02 (62)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2916389826524370313
@@ -22913,7 +22913,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4529974467012920789}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: ElbowPart2_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23113,7 +23113,7 @@ GameObject:
   m_Name: bush02 (127)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!33 &2972270604338042468
@@ -23191,7 +23191,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4686719064789083455}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: EyeEnd_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23239,7 +23239,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6587706155759282621}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Spine2_M
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23271,7 +23271,7 @@ GameObject:
   m_Name: bush02 (32)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &3079034936574813137
@@ -23445,7 +23445,7 @@ GameObject:
   m_Name: bush02 (126)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!23 &3095830527968880077
@@ -23675,7 +23675,7 @@ GameObject:
   m_Name: bush03 (24)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!33 &3159127135313347984
@@ -23829,7 +23829,7 @@ GameObject:
   m_Name: bush03 (61)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &3171282473980076695
@@ -23841,7 +23841,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3913904294116729828}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: eyelidDOWN_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23984,7 +23984,7 @@ GameObject:
   m_Name: bush02 (128)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &3230843527694884719
@@ -24111,7 +24111,7 @@ GameObject:
   m_Name: bush02 (72)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!33 &3247980508544353752
@@ -24174,7 +24174,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5569162241578422926}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Elbow_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24190,7 +24190,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 505890694455217271}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: MiddleToe1_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24383,7 +24383,7 @@ GameObject:
   m_Name: bush03 (57)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &3317614653016414162
@@ -24426,7 +24426,7 @@ GameObject:
   m_Name: bush03 (104)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &3317908407470909483
@@ -24801,7 +24801,7 @@ GameObject:
   m_Name: bush02 (59)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &3391130200379330525
@@ -24895,7 +24895,7 @@ GameObject:
   m_Name: bush02 (119)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &3434567020134777865
@@ -24998,7 +24998,7 @@ GameObject:
   m_Name: bush03 (80)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &3434792164661258728
@@ -25098,7 +25098,7 @@ GameObject:
   m_Name: bush03 (50)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!193 &3437287342855100112
@@ -25269,7 +25269,7 @@ GameObject:
   m_Name: bush03 (64)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!23 &3473783045132519703
@@ -25407,7 +25407,7 @@ GameObject:
   m_Name: bush02 (108)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &3496345199074082970
@@ -25501,7 +25501,7 @@ GameObject:
   m_Name: bush02 (93)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &3528146493628203642
@@ -25625,7 +25625,7 @@ GameObject:
   m_Name: bush02 (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!193 &3608901645969830927
@@ -25662,7 +25662,7 @@ GameObject:
   m_Name: bush03 (88)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &3610595937662310232
@@ -25762,7 +25762,7 @@ GameObject:
   m_Name: bush03 (43)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!23 &3645958898892296507
@@ -25850,7 +25850,7 @@ GameObject:
   m_Name: bush02 (163)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &3646571857581547747
@@ -25935,7 +25935,7 @@ GameObject:
   m_Name: bush03 (14)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &3651454923457378711
@@ -26096,7 +26096,7 @@ GameObject:
   m_Name: bush03 (47)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &3677319377184485437
@@ -26235,7 +26235,7 @@ GameObject:
   m_Name: bush03 (89)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &3698741183464619816
@@ -26395,7 +26395,7 @@ GameObject:
   m_Name: bush01 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!193 &3720834704032239333
@@ -26536,7 +26536,7 @@ GameObject:
   m_Name: bush02 (19)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &3745202304280438145
@@ -26705,7 +26705,7 @@ GameObject:
   m_Name: bush03 (51)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &3765320168652185480
@@ -26919,7 +26919,7 @@ GameObject:
   m_Name: bush03 (32)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &3785294447428688166
@@ -27028,7 +27028,7 @@ GameObject:
   m_Name: bush02 (52)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!193 &3809310473408491655
@@ -27175,7 +27175,7 @@ GameObject:
   m_Name: bush02 (73)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &3828881450380609896
@@ -27431,7 +27431,7 @@ GameObject:
   m_Name: bush02 (117)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &3913038903643108294
@@ -27505,7 +27505,7 @@ GameObject:
   m_Name: bush02 (45)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!23 &3916751050684253363
@@ -27599,7 +27599,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6824555225460426626}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: eyelidUP_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27801,7 +27801,7 @@ GameObject:
   m_Name: bush03 (27)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4007406670599987594
@@ -27828,7 +27828,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4075909002993869439}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Spine1_M
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27926,7 +27926,7 @@ GameObject:
   m_Name: bush03 (92)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4018342710576907881
@@ -28002,7 +28002,7 @@ GameObject:
   m_Name: bush02 (110)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4037822216711547272
@@ -28102,7 +28102,7 @@ GameObject:
   m_Name: bush02 (161)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!33 &4065178115497762631
@@ -28174,7 +28174,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3930206844673615938}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: EarEnd_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28222,7 +28222,7 @@ GameObject:
   m_Name: bush02 (106)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4076957205815260170
@@ -28300,7 +28300,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8120196447931410253}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: ShoulderPart1_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28425,7 +28425,7 @@ GameObject:
   m_Name: bush02 (107)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4178224168178634614
@@ -28528,7 +28528,7 @@ GameObject:
   m_Name: bush02 (129)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4203190367047972433
@@ -28660,7 +28660,7 @@ GameObject:
   m_Name: bush02 (109)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!193 &4281167499288066585
@@ -28763,7 +28763,7 @@ GameObject:
   m_Name: bush03 (45)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4315242802995359447
@@ -28958,7 +28958,7 @@ GameObject:
   m_Name: bush03 (40)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!33 &4361340393412106170
@@ -29037,7 +29037,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8314974682802717722}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: MiddleFinger1_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29100,7 +29100,7 @@ GameObject:
   m_Name: bush02 (17)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!23 &4402163677552986951
@@ -29194,7 +29194,7 @@ GameObject:
   m_Name: bush02 (150)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!23 &4427630036218868085
@@ -29257,7 +29257,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 670877989287157152}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: MiddleFinger1_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29304,7 +29304,7 @@ GameObject:
   m_Name: bush03 (20)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!23 &4465500176885106382
@@ -29406,7 +29406,7 @@ GameObject:
   m_Name: bush02 (112)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!33 &4525106146262234849
@@ -29501,7 +29501,7 @@ GameObject:
   m_Name: bush03 (93)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4545837906850722374
@@ -29661,7 +29661,7 @@ GameObject:
   m_Name: bush03 (102)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!193 &4550610253641731131
@@ -29698,7 +29698,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8036338752617419502}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Meshes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29736,7 +29736,7 @@ GameObject:
   m_Name: bush03 (97)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!33 &4584961693002299025
@@ -29808,7 +29808,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2779595190477695446}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Ear_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29840,7 +29840,7 @@ GameObject:
   m_Name: bush03 (65)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4611201766934322071
@@ -29966,7 +29966,7 @@ GameObject:
   m_Name: bush03 (42)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!33 &4636576233627704192
@@ -30087,7 +30087,7 @@ GameObject:
   m_Name: bush02 (120)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4641026234693711579
@@ -30181,7 +30181,7 @@ GameObject:
   m_Name: bush02 (115)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4642367138494866263
@@ -30239,7 +30239,7 @@ GameObject:
   m_Name: bush03 (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!23 &4644839783949808755
@@ -30318,7 +30318,7 @@ GameObject:
   m_Name: bush02 (71)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4652622513988685308
@@ -30436,7 +30436,7 @@ GameObject:
   m_Name: bush02 (82)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!23 &4659432728212007034
@@ -30581,7 +30581,7 @@ GameObject:
   m_Name: bush02 (77)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!193 &4679278374889542189
@@ -30609,7 +30609,7 @@ GameObject:
   m_Name: bush03 (105)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4679278374904166757
@@ -30769,7 +30769,7 @@ GameObject:
   m_Name: bush02 (57)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4686719064789083455
@@ -30803,7 +30803,7 @@ GameObject:
   m_Name: bush03 (53)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4706928835927771650
@@ -30921,7 +30921,7 @@ GameObject:
   m_Name: bush02 (80)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!33 &4723843634815196355
@@ -31042,7 +31042,7 @@ GameObject:
   m_Name: bush02 (53)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4748168724852084473
@@ -31094,7 +31094,7 @@ GameObject:
   m_Name: bush02 (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4771221129141170795
@@ -31247,7 +31247,7 @@ GameObject:
   m_Name: bush02 (22)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4825572378274107671
@@ -31350,7 +31350,7 @@ GameObject:
   m_Name: bush02 (16)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4841482647453320457
@@ -31503,7 +31503,7 @@ GameObject:
   m_Name: bush02 (139)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4909490913657788203
@@ -31672,7 +31672,7 @@ GameObject:
   m_Name: bush02 (144)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!23 &4931954597931457937
@@ -31757,7 +31757,7 @@ GameObject:
   m_Name: bush02 (167)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!193 &4931954597948025053
@@ -31845,7 +31845,7 @@ GameObject:
   m_Name: bush02 (158)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4963428806970754049
@@ -32287,7 +32287,7 @@ GameObject:
   m_Name: bush02 (149)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &5067250598147901876
@@ -32396,7 +32396,7 @@ GameObject:
   m_Name: bush02 (24)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!193 &5079830676284549343
@@ -32818,7 +32818,7 @@ GameObject:
   m_Name: bush02 (159)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &5117890610856983094
@@ -32995,7 +32995,7 @@ GameObject:
   m_Name: bush03 (100)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!33 &5144398111202660517
@@ -33065,7 +33065,7 @@ GameObject:
   m_Name: bush03 (52)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &5167719917353939465
@@ -33254,7 +33254,7 @@ GameObject:
   m_Name: bush02 (147)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &5195850077383123435
@@ -33273,7 +33273,7 @@ GameObject:
   m_Name: bush02 (76)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &5195850077383338685
@@ -33442,7 +33442,7 @@ GameObject:
   m_Name: bush03 (29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &5225071027867459846
@@ -33550,7 +33550,7 @@ GameObject:
   m_Name: bush02 (55)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &5272280818659479717
@@ -33719,7 +33719,7 @@ GameObject:
   m_Name: bush03 (48)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &5298496759475325520
@@ -33829,7 +33829,7 @@ GameObject:
   m_Name: bush02 (23)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!193 &5307143766034220085
@@ -33857,7 +33857,7 @@ GameObject:
   m_Name: bush02 (148)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &5307143766048986555
@@ -34113,7 +34113,7 @@ GameObject:
   m_Name: bush02 (101)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &5332268541942755723
@@ -34246,7 +34246,7 @@ GameObject:
   m_Name: bush02 (35)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &5361333466269924792
@@ -34448,7 +34448,7 @@ GameObject:
   m_Name: bush02 (140)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!23 &5380330310429615294
@@ -34542,7 +34542,7 @@ GameObject:
   m_Name: bush03 (87)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!23 &5389927039487479095
@@ -34612,7 +34612,7 @@ GameObject:
   m_Name: bush02 (30)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &5394847068849549678
@@ -34730,7 +34730,7 @@ GameObject:
   m_Name: bush02 (131)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!23 &5404612075209369490
@@ -34800,7 +34800,7 @@ GameObject:
   m_Name: bush02 (29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &5409158840414685683
@@ -34903,7 +34903,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1274447659464175738}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Elbow_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35001,7 +35001,7 @@ GameObject:
   m_Name: bush02 (98)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!193 &5476387345050779700
@@ -35044,7 +35044,7 @@ GameObject:
   m_Name: bush03 (69)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!33 &5476387345066812844
@@ -35174,7 +35174,7 @@ GameObject:
   m_Name: bush03 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &5492112245473077284
@@ -35490,7 +35490,7 @@ GameObject:
   m_Name: bush02 (43)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &5536402204895540659
@@ -35572,7 +35572,7 @@ GameObject:
   m_Name: bush02 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!23 &5551039693580012609
@@ -35651,7 +35651,7 @@ GameObject:
   m_Name: bush02 (136)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &5553327129772221163
@@ -35761,7 +35761,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5726786316631236397}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: MiddleToe1_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35835,7 +35835,7 @@ GameObject:
   m_Name: bush02 (99)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &5611516935308862882
@@ -35938,7 +35938,7 @@ GameObject:
   m_Name: bush03 (18)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &5617030176446488012
@@ -35996,7 +35996,7 @@ GameObject:
   m_Name: bush02 (51)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!33 &5621901151666401158
@@ -36141,7 +36141,7 @@ GameObject:
   m_Name: bush03 (91)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!193 &5633873964521085120
@@ -36510,7 +36510,7 @@ GameObject:
   m_Name: bush03 (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &5698143303049685439
@@ -36731,7 +36731,7 @@ GameObject:
   m_Name: bush02 (15)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &5710713606347604505
@@ -36846,7 +36846,7 @@ GameObject:
   m_Name: bush03 (28)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &5730791940421858826
@@ -36991,7 +36991,7 @@ GameObject:
   m_Name: bush02 (102)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &5762020322047696551
@@ -37083,7 +37083,7 @@ GameObject:
   m_Name: bush03 (26)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!23 &5808649422018325376
@@ -37283,7 +37283,7 @@ GameObject:
   m_Name: bush02 (46)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!23 &5865753179687685149
@@ -37353,7 +37353,7 @@ GameObject:
   m_Name: bush02 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &5870535791612430625
@@ -37440,7 +37440,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 23868835260841657}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: ElbowPart1_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37478,7 +37478,7 @@ GameObject:
   m_Name: bush03 (68)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &5955480337408459784
@@ -37800,7 +37800,7 @@ GameObject:
   m_Name: bush03 (95)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!82 &6037079401625244123
@@ -37981,7 +37981,7 @@ GameObject:
   m_Name: bush03 (106)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!193 &6047804504321608949
@@ -38043,7 +38043,7 @@ GameObject:
   m_Name: bush02 (95)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &6126746943514113393
@@ -38147,7 +38147,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1016442698400764835}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Scapula_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38170,7 +38170,7 @@ GameObject:
   m_Name: bush02 (135)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &6248286893172855374
@@ -38273,7 +38273,7 @@ GameObject:
   m_Name: bush03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &6250776001597875004
@@ -38463,7 +38463,7 @@ GameObject:
   m_Name: bush02 (68)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!33 &6306789303937438417
@@ -38617,7 +38617,7 @@ GameObject:
   m_Name: bush02 (12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &6332684960271272164
@@ -38662,7 +38662,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7416958978742897907}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Hip_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38685,7 +38685,7 @@ GameObject:
   m_Name: bush02 (49)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &6360016277905831119
@@ -38839,7 +38839,7 @@ GameObject:
   m_Name: bush03 (82)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &6369819743556729634
@@ -38948,7 +38948,7 @@ GameObject:
   m_Name: bush02 (18)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &6406144551150753748
@@ -39048,7 +39048,7 @@ GameObject:
   m_Name: bush03 (86)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!193 &6426478301224802995
@@ -39069,7 +39069,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3943954831690125313}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Knee_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39085,7 +39085,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5683352758563595301}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: eyelidUP_R_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39185,7 +39185,7 @@ GameObject:
   m_Name: bush03 (70)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &6537323408779052768
@@ -39272,7 +39272,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3765320168652185480}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Tongue1_M
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39361,7 +39361,7 @@ GameObject:
   m_Name: bush02 (113)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!193 &6553707172139269543
@@ -39417,7 +39417,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5298496759475325520}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: eyelidDOWN_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39515,7 +39515,7 @@ GameObject:
   m_Name: bush02 (121)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!198 &6654206168576110809
@@ -44259,7 +44259,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6794957288989568358}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Eye_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44314,7 +44314,7 @@ GameObject:
   m_Name: bush02 (133)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!23 &6759681308234707843
@@ -44408,7 +44408,7 @@ GameObject:
   m_Name: bush02 (157)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!23 &6770364517179677102
@@ -44562,7 +44562,7 @@ GameObject:
   m_Name: bush02 (97)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &6794957288989568358
@@ -44648,7 +44648,7 @@ GameObject:
   m_Name: bush02 (33)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &6813284990007423277
@@ -44767,7 +44767,7 @@ GameObject:
   m_Name: bush02 (142)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &6834664288379453243
@@ -44935,7 +44935,7 @@ GameObject:
   m_Name: bush03 (73)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &6914235745243738971
@@ -45104,7 +45104,7 @@ GameObject:
   m_Name: bush02 (26)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!193 &6940421691715946434
@@ -45386,7 +45386,7 @@ GameObject:
   m_Name: bush03 (62)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &6966831326194634139
@@ -45451,7 +45451,7 @@ GameObject:
   m_Name: bush02 (67)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &7026946091603450413
@@ -45529,7 +45529,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8084967454837016443}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Fingers1_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45552,7 +45552,7 @@ GameObject:
   m_Name: bush02 (58)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &7035520443869920665
@@ -45661,7 +45661,7 @@ GameObject:
   m_Name: bush02 (78)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!23 &7039162882925675930
@@ -45806,7 +45806,7 @@ GameObject:
   m_Name: bush01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!193 &7063024213939099754
@@ -45885,7 +45885,7 @@ GameObject:
   m_Name: bush03 (81)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &7080820273199289112
@@ -46011,7 +46011,7 @@ GameObject:
   m_Name: bush03 (66)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!193 &7092699431606226362
@@ -46105,7 +46105,7 @@ GameObject:
   m_Name: bush03 (101)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!193 &7109777277638998303
@@ -46208,7 +46208,7 @@ GameObject:
   m_Name: bush02 (164)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!193 &7118322550156506076
@@ -46251,7 +46251,7 @@ GameObject:
   m_Name: bush03 (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!33 &7118322550172522052
@@ -46515,7 +46515,7 @@ GameObject:
   m_Name: bush03 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &7170199666718682266
@@ -46558,7 +46558,7 @@ GameObject:
   m_Name: bush03 (30)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &7186753143077494837
@@ -51430,7 +51430,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5323947520496766026}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: EyeEnd_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -51700,7 +51700,7 @@ GameObject:
   m_Name: bush02 (79)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &7353235663734372539
@@ -51787,7 +51787,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 258820486288998265}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Ear_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -51834,7 +51834,7 @@ GameObject:
   m_Name: bush02 (54)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!33 &7406128425211862609
@@ -51935,7 +51935,7 @@ GameObject:
   m_Name: bush02 (165)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!23 &7419322673045705450
@@ -52147,7 +52147,7 @@ GameObject:
   m_Name: bush03 (38)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &7435997669848141309
@@ -52333,7 +52333,7 @@ GameObject:
   m_Name: bush03 (72)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!33 &7473637896401368360
@@ -52427,7 +52427,7 @@ GameObject:
   m_Name: bush02 (20)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!33 &7501120212409547656
@@ -52566,7 +52566,7 @@ GameObject:
   m_Name: bush03 (17)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &7517045980184524010
@@ -52675,7 +52675,7 @@ GameObject:
   m_Name: bush02 (168)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!33 &7534509974559821568
@@ -52760,7 +52760,7 @@ GameObject:
   m_Name: bush03 (67)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!193 &7534509974577359512
@@ -52788,7 +52788,7 @@ GameObject:
   m_Name: bush02 (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &7538301573035013312
@@ -52913,7 +52913,7 @@ GameObject:
   m_Name: bush03 (36)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!23 &7557188457843193708
@@ -53088,7 +53088,7 @@ GameObject:
   m_Name: bush03 (46)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &7567022209857599512
@@ -53191,7 +53191,7 @@ GameObject:
   m_Name: bush02 (38)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &7581880993852119325
@@ -53291,7 +53291,7 @@ GameObject:
   m_Name: bush02 (118)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!33 &7585961548740089590
@@ -53363,7 +53363,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4315242802995359447}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Toes1_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53452,7 +53452,7 @@ GameObject:
   m_Name: bush03 (83)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!193 &7645703241094874998
@@ -53665,7 +53665,7 @@ GameObject:
   m_Name: bush02 (96)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!193 &7662078236700049039
@@ -53693,7 +53693,7 @@ GameObject:
   m_Name: bush03 (41)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &7687307395849878431
@@ -53862,7 +53862,7 @@ GameObject:
   m_Name: bush02 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &7690488128842587606
@@ -53956,7 +53956,7 @@ GameObject:
   m_Name: bush03 (75)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &7694463642722801649
@@ -53998,7 +53998,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7845106418736868082}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Wrist_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54030,7 +54030,7 @@ GameObject:
   m_Name: bush03 (39)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &7747517485558445123
@@ -54466,7 +54466,7 @@ GameObject:
   m_Name: bush03 (71)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!33 &7778289876489522013
@@ -59261,7 +59261,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8397547989345750920}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: ElbowPart2_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59308,7 +59308,7 @@ GameObject:
   m_Name: bush02 (21)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!33 &7801364772085516917
@@ -59488,7 +59488,7 @@ GameObject:
   m_Name: bush03 (34)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!23 &7908593860289664790
@@ -59709,7 +59709,7 @@ GameObject:
   m_Name: bush03 (21)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!33 &7956412198177150302
@@ -59797,7 +59797,7 @@ GameObject:
   m_Name: bush03 (23)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &7959633893588899434
@@ -59897,7 +59897,7 @@ GameObject:
   m_Name: bush03 (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!23 &7961680862563888639
@@ -59969,7 +59969,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7292658343333648702}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Bear_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60207,7 +60207,7 @@ GameObject:
   m_Name: bush02 (122)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &7989843276864036928
@@ -60367,7 +60367,7 @@ GameObject:
   m_Name: bush02 (88)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!193 &7990699309992596330
@@ -60388,7 +60388,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7450980429826966376}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: MiddleFinger2_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60487,7 +60487,7 @@ GameObject:
   m_Name: bush03 (22)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &8051543799206522051
@@ -60701,7 +60701,7 @@ GameObject:
   m_Name: bush02 (166)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!193 &8111005221928190522
@@ -60780,7 +60780,7 @@ GameObject:
   m_Name: bush02 (153)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &8111005221947118516
@@ -60823,7 +60823,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4572919318156763488}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Shoulder_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60893,7 +60893,7 @@ GameObject:
   m_Name: bush03 (44)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!33 &8200594921064219777
@@ -61157,7 +61157,7 @@ GameObject:
   m_Name: bush02 (85)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!193 &8266662039180666382
@@ -61260,7 +61260,7 @@ GameObject:
   m_Name: bush02 (141)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &8314974682802717722
@@ -61361,7 +61361,7 @@ GameObject:
   m_Name: bush02 (124)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!193 &8324643649728168376
@@ -61404,7 +61404,7 @@ GameObject:
   m_Name: bush02 (31)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!23 &8333028978975987874
@@ -61476,7 +61476,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4400742768199290810}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Wrist_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -61550,7 +61550,7 @@ GameObject:
   m_Name: bush02 (90)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &8396924813375401857
@@ -61633,7 +61633,7 @@ GameObject:
   m_Name: bush02 (75)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!23 &8412368958013600575
@@ -61769,7 +61769,7 @@ GameObject:
   m_Name: bush02 (137)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!193 &8415168496200581597
@@ -61821,7 +61821,7 @@ GameObject:
   m_Name: bush02 (130)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!33 &8472781563525195910
@@ -62100,7 +62100,7 @@ GameObject:
   m_Name: bush02 (40)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!23 &8533846748916165268
@@ -62185,7 +62185,7 @@ GameObject:
   m_Name: bush02 (69)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!193 &8533846748932726744
@@ -62279,7 +62279,7 @@ GameObject:
   m_Name: bush03 (98)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!193 &8538141991195123319
@@ -62398,6 +62398,22 @@ PrefabInstance:
     - target: {fileID: 7500936631784402361, guid: a6ab1209e4f74cd4d84bfc4e7a478e92, type: 3}
       propertyPath: m_text
       value: Layer Name
+      objectReference: {fileID: 0}
+    - target: {fileID: 7500936631784402361, guid: a6ab1209e4f74cd4d84bfc4e7a478e92, type: 3}
+      propertyPath: m_fontSize
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 7500936631784402361, guid: a6ab1209e4f74cd4d84bfc4e7a478e92, type: 3}
+      propertyPath: m_fontSizeMax
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 7500936631784402361, guid: a6ab1209e4f74cd4d84bfc4e7a478e92, type: 3}
+      propertyPath: m_fontSizeMin
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 7500936631784402361, guid: a6ab1209e4f74cd4d84bfc4e7a478e92, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7630846668542666054, guid: a6ab1209e4f74cd4d84bfc4e7a478e92, type: 3}
       propertyPath: m_Pivot.x
@@ -62623,7 +62639,7 @@ GameObject:
   m_Name: bush03 (85)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!193 &8575244284386666503
@@ -62675,7 +62691,7 @@ GameObject:
   m_Name: bush02 (143)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!23 &8584650102250716245
@@ -62760,7 +62776,7 @@ GameObject:
   m_Name: bush02 (125)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!23 &8586508850996465962
@@ -62832,7 +62848,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4391283758330811463}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Ankle_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62915,7 +62931,7 @@ GameObject:
   m_Name: bush02 (83)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &8647689658445543264
@@ -63083,7 +63099,7 @@ GameObject:
   m_Name: bush02 (63)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!33 &8687917485919595940
@@ -63162,7 +63178,7 @@ GameObject:
   m_Name: bush02 (86)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &8710525643950165757
@@ -63307,7 +63323,7 @@ GameObject:
   m_Name: bush02 (39)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &8722531211817590541
@@ -63343,7 +63359,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6966831326194634139}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: eyelidUP_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63551,7 +63567,7 @@ GameObject:
   m_Name: bush03 (37)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!193 &8846312708351091196
@@ -63639,7 +63655,7 @@ GameObject:
   m_Name: bush03 (58)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &8856535551661849923
@@ -63780,7 +63796,7 @@ GameObject:
   m_Name: bush02 (162)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!33 &8882271863014073590
@@ -63843,7 +63859,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2897878082283891893}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Chest_M
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63890,7 +63906,7 @@ GameObject:
   m_Name: bush03 (76)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!33 &8901764981090836913
@@ -64051,7 +64067,7 @@ GameObject:
   m_Name: bush02 (169)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1001 &8940480338371868291
@@ -64228,7 +64244,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2698855966379177374}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Hip_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64251,7 +64267,7 @@ GameObject:
   m_Name: bush02 (156)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &8988474931769256968
@@ -64515,7 +64531,7 @@ GameObject:
   m_Name: bush03 (15)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &9012018826131087197
@@ -64624,7 +64640,7 @@ GameObject:
   m_Name: bush02 (94)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &9043403395124571158
@@ -64682,7 +64698,7 @@ GameObject:
   m_Name: bush02 (50)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!23 &9082560334822979954
@@ -64827,7 +64843,7 @@ GameObject:
   m_Name: bush02 (60)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!193 &9095828919915007267
@@ -64855,7 +64871,7 @@ GameObject:
   m_Name: bush03 (103)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &9105662304163572452
@@ -65009,7 +65025,7 @@ GameObject:
   m_Name: bush02 (103)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &9107682692265466933
@@ -65043,7 +65059,7 @@ GameObject:
   m_Name: bush01 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &9123401265380668054
@@ -65212,7 +65228,7 @@ GameObject:
   m_Name: bush02 (132)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &9171274924266007929
@@ -65246,7 +65262,7 @@ GameObject:
   m_Name: bush02 (13)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!33 &9171274924267276677
@@ -65326,7 +65342,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1698172202039124356}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: EarEnd_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -65342,7 +65358,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9017032674687709336}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: JawEnd_M
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -65431,7 +65447,7 @@ GameObject:
   m_Name: bush02 (151)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 3
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!193 &9212832661255639875

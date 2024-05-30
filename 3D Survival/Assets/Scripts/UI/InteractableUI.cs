@@ -102,7 +102,8 @@ public class InteractableUI : MonoBehaviour
     IEnumerator ActiveMousePointfor10Sec() // activate mouse for 10 sec
     {
         Cursor.lockState = CursorLockMode.None;
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(5f);
+        InterfaceUI.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         doingRoutine = false;
         isTPressed= false;
@@ -197,21 +198,8 @@ public class InteractableUI : MonoBehaviour
                 InteractMethod.text = "";
 
                 break;
-
-        
-        
-        
-        
-        
-        
-        
-        
         
         }
-    
-    
-    
-    
     }
 
 

@@ -1,4 +1,7 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+
 
 public class MovingPlatform : MonoBehaviour
 {
@@ -7,11 +10,11 @@ public class MovingPlatform : MonoBehaviour
     Rigidbody _player;
 
 
-
-
     [SerializeField] float moveSpeed;
     Vector3 moveVec;
     Vector3 dirVec;
+
+    Coroutine repeatCoroutine;
 
     public enum MoveDirection
     {
@@ -27,9 +30,13 @@ public class MovingPlatform : MonoBehaviour
         rigid = GetComponent<Rigidbody>();
     }
 
-    void Start()
+    private void Start()
     {
-        // 방향 벡터 초기화
+        myDir = 0;
+    }
+
+    void WhenPlayerGetIn()
+    {
         switch (myDir)
         {
             case MoveDirection.Vertical:
@@ -39,16 +46,16 @@ public class MovingPlatform : MonoBehaviour
                 dirVec = Vector3.right;
                 break;
             case MoveDirection.UpperLeft_LowerRight:
-                dirVec = new Vector3(1, 0, -1).normalized;
+                dirVec = new Vector3(0, 0, -1).normalized;
                 break;
             case MoveDirection.UpperRight_LowerLeft:
-                dirVec = new Vector3(1, 0, 1).normalized;
+                dirVec = new Vector3(-1, 0, 0).normalized;
+                break;
+            default:
                 break;
         }
-    }
 
-    void FixedUpdate()
-    {
+
         moveVec = dirVec * moveSpeed * Time.fixedDeltaTime;
         rigid.MovePosition(transform.position + moveVec);
 
@@ -56,22 +63,42 @@ public class MovingPlatform : MonoBehaviour
         {
             _player.MovePosition(_player.position + moveVec);
         }
-
     }
 
+
+
+    IEnumerator RepeatCycle()
+    {
+        while(true)
+        {
+            myDir += 1;
+            if ((int)myDir == 4) myDir = 0;
+            yield return new WaitForSeconds(5f);
+            
+        }
+
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
             Debug.Log("PlayerIn");
-
-            
-             
+            repeatCoroutine = StartCoroutine(RepeatCycle());
             _player = collision.gameObject.GetComponent<Rigidbody>();
             
         }
     }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            WhenPlayerGetIn();
+        }
+    }
+
+
 
     private void OnCollisionExit(Collision collision)
     {
@@ -79,6 +106,7 @@ public class MovingPlatform : MonoBehaviour
         {
             Debug.Log("PlayerOut");
             _player = null;
+            StopCoroutine(repeatCoroutine);
         }
     }
 
