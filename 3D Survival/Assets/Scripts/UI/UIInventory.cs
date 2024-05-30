@@ -85,11 +85,13 @@ public class UIInventory : MonoBehaviour
         if (inventoryWindow.activeSelf)
         {
             inventoryWindow.SetActive(false);
+            AudioManager.instance.PlaySFX("InventoryOff");
             Cursor.lockState = CursorLockMode.Locked;
             controller.canLook = true;
         }
         else
         {
+            AudioManager.instance.PlaySFX("Inventory");
             inventoryWindow.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
             
@@ -107,6 +109,7 @@ public class UIInventory : MonoBehaviour
     {
         ItemData data = CharacterManager.Instance.Player.itemData;
 
+        AudioManager.instance.PlaySFX("ItemAcquire");
 
 
         if (data.canStack) // 스택 가능하고

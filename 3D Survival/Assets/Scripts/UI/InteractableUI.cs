@@ -29,6 +29,7 @@ public class InteractableUI : MonoBehaviour
     private float lastCheckTime;
 
     public RaycastHit hit;
+    public string previousName = "0";
 
     public bool isTPressed = false;
     public bool doingRoutine = false;
@@ -65,7 +66,8 @@ public class InteractableUI : MonoBehaviour
             
 
             if (Physics.Raycast( ray,out hit, checkInfoDistance + CameraManager.instance.addDistance, havingInfoLayerMask)) // transform.position, dir
-            {            
+            {
+                if (previousName == hit.collider.gameObject.name) return;
                 ShowSpecialUI(hit);    
             }
 
@@ -113,6 +115,10 @@ public class InteractableUI : MonoBehaviour
     private void ShowSpecialUI(RaycastHit hit)
     {
         InterfaceUI.SetActive(true);
+
+        previousName = hit.collider.gameObject.name;
+        AudioManager.instance.PlaySFX("OpenInfo");
+
         //InterfaceUI.transform.position = hit.collider.gameObject.transform.position;
         InterfaceUI.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) + (hit.distance ) * transform.forward ;
 
