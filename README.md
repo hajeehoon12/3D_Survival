@@ -1,7 +1,8 @@
 # 3D_Survival
 Unity 3D_Survive_Simul
 
-
+반드시 소리를 키고 감상
+아래는 해당 플레이 영상
 https://www.youtube.com/watch?v=-FQMisXOKZs
 
 필수 및 선택 기능 전부 구현 완료
