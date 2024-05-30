@@ -101,7 +101,7 @@ public class RaserTrap : MonoBehaviour
         // Move() free
         hit.collider.GetComponent<Rigidbody>().AddForce(LaunchPower * hit.collider.GetComponent<Rigidbody>().mass , ForceMode.Impulse);
 
-        yield return new WaitForSeconds(3f); // trap activated after 3 sec , reactivate for trap
+        yield return new WaitForSeconds(5f); // trap activated after 3 sec , reactivate for trap
         CharacterManager.Instance.Player.controller.canMove = true;
         MagicTrap.SetActive(false);
         isTrapActivate = false;
