@@ -17,6 +17,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] Sound[] bgm = null;
 
     [SerializeField] public AudioSource bgmPlayer = null;
+    [SerializeField] public AudioSource bgmPlayer2 = null;
     [SerializeField] AudioSource[] sfxPlayer = null;
     AudioSource myAudioSource;
 
@@ -41,6 +42,7 @@ public class AudioManager : MonoBehaviour
     private void Start()
     {
         PlayBGM("Peace", 0.3f);
+        PlaySFX("Bird", 0.2f);
     }
 
     public void PlayBGM(string p_bgmName)
@@ -68,6 +70,26 @@ public class AudioManager : MonoBehaviour
             }
         }
     }
+
+    public void PlayBGM2(string p_bgmName, float _volume)
+    {
+        for (int i = 0; i < bgm.Length; i++)
+        {
+            if (p_bgmName == bgm[i].name)
+            {
+                bgmPlayer2.clip = bgm[i].clip;
+                bgmPlayer2.Play();
+                bgmPlayer2.volume = _volume;
+                break;
+            }
+        }
+    }
+
+    public void StopBGM2()
+    {
+        bgmPlayer2.Stop();
+    }
+
 
     public void StopBGM()
     {

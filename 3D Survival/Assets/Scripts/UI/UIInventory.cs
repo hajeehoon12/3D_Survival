@@ -221,6 +221,7 @@ public class UIInventory : MonoBehaviour
     {
         if (selectedItem.type == ItemType.Consumable)
         {
+            AudioManager.instance.PlaySFX("Cure", 0.2f);
             for (int i = 0; i < selectedItem.consumables.Length; i++)
             {
                 switch (selectedItem.consumables[i].type)
@@ -243,6 +244,7 @@ public class UIInventory : MonoBehaviour
 
         if (selectedItem.type == ItemType.Buff)
         {
+            AudioManager.instance.PlaySFX("SuperCure", 0.2f);
             for (int i = 0; i < selectedItem.consumables.Length; i++)
             {
                 condition.StartBuff(selectedItem.consumables[i].type, selectedItem.consumables[i].value); // Go To PlayerCondition Buff
@@ -333,7 +335,7 @@ public class UIInventory : MonoBehaviour
     private void EquipPermanent()
     {
         CharacterManager.Instance.Player.condition.NecklaceBuff(ref slots[curEquipPermanentIndex].equipped);
-
+        AudioManager.instance.PlaySFX("LegendItem");
         slots[selectedItemIndex].equipped = !slots[selectedItemIndex].equipped;
 
     }

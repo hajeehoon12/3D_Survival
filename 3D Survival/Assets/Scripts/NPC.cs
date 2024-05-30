@@ -48,7 +48,7 @@ public class NPC : MonoBehaviour , IDamagable
 
     public float fieldOfView = 120f; // 몬스터 시야각
 
-    private bool isAttacking = false;
+    //private bool isAttacking = false;
 
     private Animator animator;
     private SkinnedMeshRenderer[] meshRenderers;
@@ -196,18 +196,21 @@ public class NPC : MonoBehaviour , IDamagable
     IEnumerator AttackDelay()
     {
 
-        isAttacking = true;
+        //isAttacking = true;
+
         yield return new WaitForSeconds(attackSpeed);
+        AudioManager.instance.PlaySFX("BearHit");
         if (playerDistance < attackDistance && IsPlayerInFieldOfView())
             CharacterManager.Instance.Player.controller.GetComponent<IDamagable>().TakePhysicalDamage(damage);
         attackCoroutine = null;
-        isAttacking = false;
+        //isAttacking = false;
     }
 
     void AttackingUpdate()
     {
         if (playerDistance < attackDistance && IsPlayerInFieldOfView()) // When in distance
         {
+            
             agent.isStopped = true;
             if (Time.time - lastAttackTime > attackRate)
             {
@@ -288,8 +291,9 @@ public class NPC : MonoBehaviour , IDamagable
     }
 
     void Die() // when DIed
-    { 
-        for(int i = 0; i < dropOnDeath.Length; i++)
+    {
+        AudioManager.instance.PlaySFX("BearDie");
+        for (int i = 0; i < dropOnDeath.Length; i++)
         {
             GameObject DropItems = Instantiate(dropOnDeath[i].dropPrefab, transform.position + Vector3.up * 2, Quaternion.identity );
             DropItems.GetComponent<Rigidbody>().AddForce( (Vector3.up * 5 + Vector3.forward * 3) * DropItems.GetComponent<Rigidbody>().mass, ForceMode.Impulse);

@@ -36,7 +36,7 @@ public class InteractableUI : MonoBehaviour
     public GameObject InterfaceUI;
 
     public TMP_Text LayerName;
-    public TMP_Text LayerDesc;
+    //public TMP_Text LayerDesc;
     public TMP_Text InteractMethod;
 
 
@@ -114,7 +114,7 @@ public class InteractableUI : MonoBehaviour
     {
         InterfaceUI.SetActive(true);
         //InterfaceUI.transform.position = hit.collider.gameObject.transform.position;
-        InterfaceUI.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) + (hit.distance + 0.5f) * transform.forward ;
+        InterfaceUI.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) + (hit.distance ) * transform.forward ;
 
         InterfaceUI.transform.rotation = transform.rotation;
         //Debug.Log((LayerNum)hit.collider.gameObject.layer);
@@ -146,55 +146,55 @@ public class InteractableUI : MonoBehaviour
         {
             case LayerNum.Wall:
 
-                LayerDesc.text = "Press Ctrl to Climb";
+                //LayerDesc.text = "Press Ctrl to Climb";
                 InteractMethod.text = "Press \"W\" + \"S\" to climb up and down";
 
                 break;
             case LayerNum.Trap:
 
-                LayerDesc.text = "Becareful there is a hidden Trap!!";
+                //LayerDesc.text = "Becareful there is a hidden Trap!!";
                 InteractMethod.text = "It'll pull you into the Center and shoot like a cannon Press \"direction key\" to shoot your body";
 
                 break;
             case LayerNum.NPC:
 
-                LayerDesc.text = "There is a Scary Bear";
+                //LayerDesc.text = "There is a Scary Bear";
                 InteractMethod.text = "Equip your weapon and Press \"Left Mouse Button\" to fight against it";
 
                 break;
             case LayerNum.Interactable:
 
-                LayerDesc.text = "There is a item you can achieve";
+                //LayerDesc.text = "There is a item you can achieve";
                 InteractMethod.text = "Press \"E\" to get it!!";
 
                 break;
             case LayerNum.Fire:
 
-                LayerDesc.text = "Becareful!! you'll get damaged beneath the fire";
+                //LayerDesc.text = "Becareful!! you'll get damaged beneath the fire";
                 InteractMethod.text = "Get far distance from it!!";
 
                 break;
             case LayerNum.Resource:
 
-                LayerDesc.text = "You can achieve Resources with axe";
+                //LayerDesc.text = "You can achieve Resources with axe";
                 InteractMethod.text = "Equip your axe and Press \"Left Mouse Button\" to get it";
 
                 break;
             case LayerNum.MovingPlatform:
 
-                LayerDesc.text = "You can move automatically in moving platform";
+                //LayerDesc.text = "You can move automatically in moving platform";
                 InteractMethod.text = "You can escape using Jump!!";
 
                 break;
             case LayerNum.Jumper:
 
-                LayerDesc.text = "There is a Jump Zone";
+                //LayerDesc.text = "There is a Jump Zone";
                 InteractMethod.text = "You can get forced into sky!!";
 
                 break;
             default:
 
-                LayerDesc.text = "";
+                //LayerDesc.text = "";
                 InteractMethod.text = "";
 
                 break;

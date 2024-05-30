@@ -47,6 +47,9 @@ public class RaserTrap : MonoBehaviour
     {
         Debug.Log("You have just Activated Trap");
         isTrapActivate = true;
+        AudioManager.instance.StopBGM();
+        AudioManager.instance.PlayBGM("Trap", 0.5f);
+        AudioManager.instance.PlaySFX("Aura", 0.2f);
         StartCoroutine(TrapActivateMotion());
 
     }
@@ -100,13 +103,16 @@ public class RaserTrap : MonoBehaviour
         
         // Move() free
         hit.collider.GetComponent<Rigidbody>().AddForce(LaunchPower * hit.collider.GetComponent<Rigidbody>().mass , ForceMode.Impulse);
-
-        yield return new WaitForSeconds(5f); // trap activated after 3 sec , reactivate for trap
+        AudioManager.instance.PlayBGM2("ShootingBody", 1f);
+        yield return new WaitForSeconds(7f); // trap activated after 3 sec , reactivate for trap
         CharacterManager.Instance.Player.controller.canMove = true;
         MagicTrap.SetActive(false);
         isTrapActivate = false;
         //NuclearLaunch
         LaunchPower = new Vector3(0, 20, 0);
+        AudioManager.instance.StopBGM();
+        AudioManager.instance.StopBGM2();
+        AudioManager.instance.PlayBGM("Peace", 0.2f);
 
     }
 

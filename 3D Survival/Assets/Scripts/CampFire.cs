@@ -29,6 +29,7 @@ public class CampFire : MonoBehaviour
     {
         if (other.TryGetComponent(out IDamagable damagable))
         {
+            AudioManager.instance.PlayBGM2("Fire", 1f);
             things.Add(damagable);
         }
     }
@@ -38,6 +39,7 @@ public class CampFire : MonoBehaviour
         if (other.TryGetComponent(out IDamagable damagable))
         {
             things.Remove(damagable);
+            AudioManager.instance.StopBGM2();
         }
     }
 

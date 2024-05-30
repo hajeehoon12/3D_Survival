@@ -37,6 +37,8 @@ public class MovingPlatform : MonoBehaviour
 
     void WhenPlayerGetIn()
     {
+
+        
         switch (myDir)
         {
             case MoveDirection.Vertical:
@@ -81,6 +83,7 @@ public class MovingPlatform : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        AudioManager.instance.PlayBGM2("Macha", 0.5f);
         if (collision.gameObject.CompareTag("Player"))
         {
             Debug.Log("PlayerIn");
@@ -104,6 +107,7 @@ public class MovingPlatform : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            AudioManager.instance.StopBGM2();
             Debug.Log("PlayerOut");
             _player = null;
             StopCoroutine(repeatCoroutine);
