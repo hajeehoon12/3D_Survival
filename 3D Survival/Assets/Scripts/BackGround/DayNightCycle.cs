@@ -26,6 +26,9 @@ public class DayNightCycle : MonoBehaviour
     public AnimationCurve lightingIntensityMultiplier;
     public AnimationCurve reflectionIntensityMultiplier;
 
+    [Header("Weather Change")]
+    public ControlSky _controlSky;
+
     public GameObject LightOff;
 
 

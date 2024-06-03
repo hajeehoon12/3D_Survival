@@ -1782,6 +1782,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  _controlSky: {fileID: 3564514642605944804}
   LightOff: {fileID: 3490244208755897313}
 --- !u!4 &317412224
 Transform:
@@ -92090,7 +92091,7 @@ GameObject:
   - component: {fileID: 1396029955355133438}
   - component: {fileID: 3564514642605944804}
   m_Layer: 0
-  m_Name: Terrain
+  m_Name: Weather Effects
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

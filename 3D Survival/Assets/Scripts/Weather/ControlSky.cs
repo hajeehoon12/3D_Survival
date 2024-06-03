@@ -64,7 +64,7 @@ public class ControlSky : MonoBehaviour
         RenderSettings.skybox.SetFloat("_Rotation", Time.time * 2.0f);
     }
 
-    void IfDay()
+    public void IfDay()
     {
         RenderSettings.skybox = dayMat;
         RenderSettings.fogColor = dayFog;
@@ -83,7 +83,7 @@ public class ControlSky : MonoBehaviour
         sunriseEffect.SetActive(false);
     }
 
-    void IfNight()
+    public void IfNight()
     {
         RenderSettings.skybox = nightMat;
         RenderSettings.fogColor = nightFog;
@@ -102,7 +102,7 @@ public class ControlSky : MonoBehaviour
         sunriseEffect.SetActive(false);
     }
 
-    void IfSnowy()
+    public void IfSnowy()
     {
         RenderSettings.skybox = snowyMat;
         RenderSettings.fogColor = snowyFog;
@@ -121,7 +121,7 @@ public class ControlSky : MonoBehaviour
         sunriseEffect.SetActive(false);
     }
 
-    void IfRainy()
+    public void IfRainy()
     {
         RenderSettings.skybox = rainyMat;
         RenderSettings.fogColor = rainyFog;
@@ -139,7 +139,7 @@ public class ControlSky : MonoBehaviour
         sunsetEffect.SetActive(false);
         sunriseEffect.SetActive(false);
     }
-    void IfSunset()
+    public void IfSunset()
     {
         RenderSettings.skybox = sunsetMat;
         RenderSettings.fogColor = sunsetFog;
@@ -158,7 +158,7 @@ public class ControlSky : MonoBehaviour
         sunriseEffect.SetActive(false);
     }
 
-    void IfSunRise()
+    public void IfSunRise()
     {
         RenderSettings.skybox = sunriseMat;
         RenderSettings.fogColor = sunriseFog;
