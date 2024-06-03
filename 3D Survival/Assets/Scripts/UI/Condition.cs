@@ -27,6 +27,11 @@ public class Condition : MonoBehaviour
         return curValue / maxValue;
     }
 
+    public void MakeMaxValue()
+    {
+        curValue = maxValue;    
+    }
+
     public void Add(float value)
     {
         curValue = Mathf.Min(curValue + value, maxValue);
