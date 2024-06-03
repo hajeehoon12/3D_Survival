@@ -10,22 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 93b1681822eddec42a4bb1f52e94d68b, type: 3}
-  m_Name: Item_Potion
+  m_Name: Item_Water
   m_EditorClassIdentifier: 
-  displayName: Potion
-  description: Make full conditions gradiently over 10 seconds.
-  type: 3
-  icon: {fileID: 21300000, guid: 2abe8990305908043a4cc358619090a8, type: 3}
-  dropPrefab: {fileID: 9057245013298961233, guid: 60fde689a206e8b41aa7c86d984470b4, type: 3}
+  displayName: Water
+  description: Restore huge amount of Thirsty.
+  type: 1
+  icon: {fileID: 21300000, guid: 0c87730ccb15357459d39131ac886bcf, type: 3}
+  dropPrefab: {fileID: 1409575026554637749, guid: 3bb0f3a29f523ad448b8ad63661db4ce, type: 3}
   canStack: 1
   maxStackAmount: 12
   consumables:
-  - type: 0
-    value: 100
-  - type: 3
-    value: 100
-  - type: 1
-    value: 400
   - type: 2
-    value: 400
+    value: 300
   equipPrefab: {fileID: 0}
