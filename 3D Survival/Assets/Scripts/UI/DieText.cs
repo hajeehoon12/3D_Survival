@@ -1,39 +1,71 @@
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
-using DG.Tweening;
+using System.Collections;
 
 public class DieText : MonoBehaviour
 {
-    private TextMeshProUGUI tmpText;
-    private CanvasGroup canvasGroup;
-    private RectTransform rectTransform;
+    public TextMeshProUGUI tmpText;
+    public RectTransform rectTransform;
 
     void Awake()
     {
-        tmpText = GetComponentInChildren<TextMeshProUGUI>();
-        canvasGroup = gameObject.AddComponent<CanvasGroup>();
-        rectTransform = GetComponent<RectTransform>();
+        ShowDieMessage();
     }
 
     public void ShowDieMessage()
+    {   
+        StartCoroutine(AnimateText());
+    }
+
+    private IEnumerator AnimateText()
     {
-        // 초기 설정
-        canvasGroup.alpha = 0;
         rectTransform.localScale = Vector3.one;
         tmpText.maxVisibleCharacters = 0;
+        Color originalColor = tmpText.color;
+        tmpText.color = new Color(originalColor.r, originalColor.g, originalColor.b, 0);
 
-        // DOTween을 이용해 텍스트를 1글자씩 보이게 하기
-        tmpText.DOText(tmpText.text, 1.0f).SetEase(Ease.Linear);
+        float fadeInDuration = 0.5f;
+        float scaleUpDuration = 1.0f;
+        float visibleDuration = 2.0f;
+        float fadeOutDuration = 1.0f;
+        float scale = 1.5f;
 
-        // 페이드 인 애니메이션과 스케일 애니메이션
-        Sequence sequence = DOTween.Sequence();
-        sequence.Append(canvasGroup.DOFade(1, 1.0f)); // 페이드 인
-        sequence.Join(rectTransform.DOScale(1.5f, 1.0f)); // 스케일 애니메이션
+        float elapsedTime = 0f;
 
-        // 일정 시간 후에 페이드 아웃 및 삭제
-        sequence.AppendInterval(2.0f);
-        sequence.Append(canvasGroup.DOFade(0, 1.0f)); // 페이드 아웃
-        sequence.OnComplete(() => Destroy(gameObject)); // 삭제
+        while (elapsedTime < fadeInDuration)
+        {
+            float alpha = Mathf.Lerp(0, 1, elapsedTime / fadeInDuration);
+            tmpText.color = new Color(originalColor.r, originalColor.g, originalColor.b, alpha);
+            rectTransform.localScale = Vector3.Lerp(Vector3.one, new Vector3(scale, scale, scale), elapsedTime / fadeInDuration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        tmpText.color = new Color(originalColor.r, originalColor.g, originalColor.b, 1);
+        rectTransform.localScale = new Vector3(scale, scale, scale);
+
+        int totalVisibleCharacters = tmpText.text.Length;
+        for (int i = 0; i <= totalVisibleCharacters; i++)
+        {
+            tmpText.maxVisibleCharacters = i;
+            yield return new WaitForSeconds(0.03f);
+        }
+
+        yield return new WaitForSeconds(visibleDuration);
+
+        elapsedTime = 0f;
+        while (elapsedTime < fadeOutDuration)
+        {
+            float alpha = Mathf.Lerp(1, 0, elapsedTime / fadeOutDuration);
+            tmpText.color = new Color(originalColor.r, originalColor.g, originalColor.b, alpha);
+            rectTransform.localScale = Vector3.Lerp(new Vector3(scale, scale, scale), new Vector3(scale * 1.2f, scale * 1.2f, scale * 1.2f), elapsedTime / fadeOutDuration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        tmpText.color = new Color(originalColor.r, originalColor.g, originalColor.b, 0);
+        rectTransform.localScale = new Vector3(scale * 1.2f, scale * 1.2f, scale * 1.2f);
+
+        Destroy(gameObject);
     }
 }
