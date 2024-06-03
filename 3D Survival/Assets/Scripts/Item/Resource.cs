@@ -9,14 +9,15 @@ public class Resource : MonoBehaviour
     public int quantityPerHit = 1; // 한방에 얼마나 다는지
     public int capacity; // 내구도 용량
     public int maxCapacity;
-    //public Material _material;
+    public Material[] _materials;
+    //public float tempY;
 
     private void Start()
     {
         capacity = maxCapacity;
 
         
-        //_material = GetComponent<MeshRenderer>().material;
+        _materials = GetComponent<MeshRenderer>().materials;
         
     }
 
@@ -40,7 +41,7 @@ public class Resource : MonoBehaviour
     private void ReGroath()
     { 
         gameObject.SetActive(false);
-        Invoke("ResourceInit", 10f);
+        Invoke("ResourceInit", 5f);
 
     }
 
@@ -48,9 +49,16 @@ public class Resource : MonoBehaviour
     {
         gameObject.SetActive(true);
 
-        
-        //_material.DOFade(0, 0f);
-        //_material.DOFade(1, 2f);
+        foreach (Material _material in _materials)
+        {
+            _material.DOFloat(1f, "_Cutoff",0f ).OnComplete(()=> _material.DOFloat(0.3f, "_Cutoff", 10f).SetEase(Ease.InExpo));
+            
+        }
+
+        //tempY = gameObject.transform.localScale.y;
+        //Debug.Log(tempY);
+        //gameObject.transform.DOScaleY(0, 0f);
+        //gameObject.transform.DOScaleY(tempY,10f);
         
 
         capacity = maxCapacity;
