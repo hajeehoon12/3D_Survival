@@ -49,10 +49,11 @@ public class Resource : MonoBehaviour
     {
         gameObject.SetActive(true);
 
+
+
         foreach (Material _material in _materials)
         {
             _material.DOFloat(1f, "_Cutoff",0f ).OnComplete(()=> _material.DOFloat(0.3f, "_Cutoff", 10f).SetEase(Ease.InExpo));
-            
         }
 
         //tempY = gameObject.transform.localScale.y;
