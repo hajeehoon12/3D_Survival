@@ -1,21 +1,49 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
-
+using UnityEngine.UI;
+using DG.Tweening;
 public class DieText : MonoBehaviour
 {
     public TextMeshProUGUI tmpText;
     public RectTransform rectTransform;
+    public GameObject _backGround;
+
+    private bool isDying = false;
+    
 
     void Awake()
     {
-        ShowDieMessage();
+       _backGround.SetActive(false);
     }
 
     public void ShowDieMessage()
-    {   
+    {
+
+        if (isDying) return;
+        isDying = true;
+        AudioManager.instance.StopBGM();
+        AudioManager.instance.PlayBGM("Died");
+        _backGround.SetActive(true);
         StartCoroutine(AnimateText());
+        
+        _backGround.GetComponent<Image>().DOFade(1, 4f).OnComplete(() =>
+        {
+            CharacterManager.Instance.Player.gameObject.transform.position = CharacterManager.Instance.Player.condition.startPos;
+            _backGround.GetComponent<Image>().DOFade(0, 1f).OnComplete(() =>
+                {
+                    
+                    CharacterManager.Instance.Player.condition.FullCondition();
+                    isDying = false;
+                    _backGround.SetActive(false);
+
+                }
+            );
+        }
+        
+        );
     }
+
 
     private IEnumerator AnimateText()
     {
@@ -25,7 +53,7 @@ public class DieText : MonoBehaviour
         tmpText.color = new Color(originalColor.r, originalColor.g, originalColor.b, 0);
 
         float fadeInDuration = 0.5f;
-        float scaleUpDuration = 1.0f;
+        //float scaleUpDuration = 1.0f;
         float visibleDuration = 2.0f;
         float fadeOutDuration = 1.0f;
         float scale = 1.5f;
@@ -66,6 +94,8 @@ public class DieText : MonoBehaviour
         tmpText.color = new Color(originalColor.r, originalColor.g, originalColor.b, 0);
         rectTransform.localScale = new Vector3(scale * 1.2f, scale * 1.2f, scale * 1.2f);
 
-        Destroy(gameObject);
+        AudioManager.instance.PlayBGM("Peace", 0.3f);
+        AudioManager.instance.PlaySFX("Bird", 0.2f);
+        gameObject.SetActive(false);
     }
 }
