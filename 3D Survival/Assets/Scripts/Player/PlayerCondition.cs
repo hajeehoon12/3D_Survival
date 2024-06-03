@@ -27,9 +27,10 @@ public class PlayerCondition : MonoBehaviour, IDamagable
 
     public GameObject neckBuff;
 
-    private Vector3 startPos;
+    public Vector3 startPos;
 
     public DieText _DiedMessage;
+    public GameObject _DiedImage;
 
     void Start()
     { 
@@ -79,9 +80,15 @@ public class PlayerCondition : MonoBehaviour, IDamagable
     public void Die()
     {
         Debug.Log("Die!!");
+        _DiedImage.gameObject.SetActive(true);
         _DiedMessage.gameObject.SetActive(true);
         _DiedMessage.ShowDieMessage();
-        transform.position = startPos;
+        //transform.position = startPos;
+        
+    }
+
+    public void FullCondition()
+    {
         health.MakeMaxValue();
         hunger.MakeMaxValue();
         thirsty.MakeMaxValue();
