@@ -235,9 +235,13 @@ public class UIInventory : MonoBehaviour
                     case ConsumableType.Hunger:
                         condition.Eat(selectedItem.consumables[i].value);
                         break;
+                    case ConsumableType.Drink:
+                        condition.Drink(selectedItem.consumables[i].value);
+                        break;
                     case ConsumableType.Stamina:
                         condition.UseStamina(-selectedItem.consumables[i].value); // 스테미나 채우기
                         break;
+
                 }
 
             }
