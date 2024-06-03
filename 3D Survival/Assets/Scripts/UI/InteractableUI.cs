@@ -144,10 +144,6 @@ public class InteractableUI : MonoBehaviour
 
     private void ShowDataBase(LayerNum layerName)
     {
-
-        
-
-
         switch (layerName)
         {
             case LayerNum.Wall:
