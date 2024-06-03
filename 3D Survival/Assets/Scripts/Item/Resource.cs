@@ -10,7 +10,7 @@ public class Resource : MonoBehaviour
     public int capacity; // 내구도 용량
     public int maxCapacity;
     public Material[] _materials;
-    //public float tempY;
+    public float tempY;
 
     private void Start()
     {
@@ -56,10 +56,10 @@ public class Resource : MonoBehaviour
             _material.DOFloat(1f, "_Cutoff",0f ).OnComplete(()=> _material.DOFloat(0.3f, "_Cutoff", 10f).SetEase(Ease.InExpo));
         }
 
-        //tempY = gameObject.transform.localScale.y;
+        tempY = gameObject.transform.localScale.y;
         //Debug.Log(tempY);
-        //gameObject.transform.DOScaleY(0, 0f);
-        //gameObject.transform.DOScaleY(tempY,10f);
+        gameObject.transform.DOScaleY(0, 0f);
+        gameObject.transform.DOScaleY(tempY,2f);
         
 
         capacity = maxCapacity;
