@@ -22,7 +22,9 @@ public class DieText : MonoBehaviour
 
         if (isDying) return;
         isDying = true;
+        CharacterManager.Instance.Player.controller.canMove = false;
         AudioManager.instance.StopBGM();
+        AudioManager.instance.StopBGM2();
         AudioManager.instance.PlayBGM("Died");
         _backGround.SetActive(true);
         StartCoroutine(AnimateText());
@@ -35,6 +37,7 @@ public class DieText : MonoBehaviour
                     
                     CharacterManager.Instance.Player.condition.FullCondition();
                     isDying = false;
+                    CharacterManager.Instance.Player.controller.canMove = true;
                     _backGround.SetActive(false);
 
                 }
@@ -93,6 +96,7 @@ public class DieText : MonoBehaviour
 
         tmpText.color = new Color(originalColor.r, originalColor.g, originalColor.b, 0);
         rectTransform.localScale = new Vector3(scale * 1.2f, scale * 1.2f, scale * 1.2f);
+
 
         AudioManager.instance.PlayBGM("Peace", 0.3f);
         AudioManager.instance.PlaySFX("Bird", 0.2f);
