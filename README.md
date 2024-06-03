@@ -4,8 +4,14 @@ Unity 3D_Survive_Simul
 반드시 소리를 키고 감상
 아래는 해당 플레이 영상
 
+https://www.youtube.com/watch?v=oLjj7X6bu1Y
+
+
+
+위는 플레이 영상 아래는 기능 영상
 
 https://www.youtube.com/watch?v=-FQMisXOKZs
+
 
 필수 및 선택 기능 전부 구현 완료
 추가적으로 스테미나, 악세서리, 오오라 버프, 사운드, 곰과의 전투 등 추가
