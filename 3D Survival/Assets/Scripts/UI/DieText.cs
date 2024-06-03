@@ -9,7 +9,7 @@ public class DieText : MonoBehaviour
 
     void Awake()
     {
-        ShowDieMessage();
+       
     }
 
     public void ShowDieMessage()
@@ -25,7 +25,7 @@ public class DieText : MonoBehaviour
         tmpText.color = new Color(originalColor.r, originalColor.g, originalColor.b, 0);
 
         float fadeInDuration = 0.5f;
-        float scaleUpDuration = 1.0f;
+        //float scaleUpDuration = 1.0f;
         float visibleDuration = 2.0f;
         float fadeOutDuration = 1.0f;
         float scale = 1.5f;
@@ -66,6 +66,6 @@ public class DieText : MonoBehaviour
         tmpText.color = new Color(originalColor.r, originalColor.g, originalColor.b, 0);
         rectTransform.localScale = new Vector3(scale * 1.2f, scale * 1.2f, scale * 1.2f);
 
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }
