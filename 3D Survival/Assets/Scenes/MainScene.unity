@@ -1557,8 +1557,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5caa447fb2e57a54ab8855be6812c612, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 0.4
-  fullDayLength: 300
+  time: 0.25
+  fullDayLength: 60
   startTime: 0.4
   noon: {x: 90, y: 0, z: 0}
   sun: {fileID: 705507994}
@@ -1784,6 +1784,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   _controlSky: {fileID: 3564514642605944804}
   LightOff: {fileID: 3490244208755897313}
+  totalTime: 0.25
 --- !u!4 &317412224
 Transform:
   m_ObjectHideFlags: 0
@@ -92091,7 +92092,7 @@ GameObject:
   - component: {fileID: 1396029955355133438}
   - component: {fileID: 3564514642605944804}
   m_Layer: 0
-  m_Name: Weather Effects
+  m_Name: Weather_Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

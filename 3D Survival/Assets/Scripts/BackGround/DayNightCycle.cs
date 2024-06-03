@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -32,6 +33,10 @@ public class DayNightCycle : MonoBehaviour
     public GameObject LightOff;
 
 
+    public float totalTime = 0.25f;
+    private float latestTime = 0f;
+    public int change = 0;
+
     void Start()
     {
         timeRate = 1.0f / fullDayLength;
@@ -41,9 +46,20 @@ public class DayNightCycle : MonoBehaviour
    
     void Update()
     {
-        time = (time + timeRate * Time.deltaTime) % 1.0f;
+        totalTime += timeRate * Time.deltaTime;
 
-        if(time > 0.75f || time <0.25f) LightOff.SetActive(false);
+        
+
+        time = totalTime % 1.0f;
+
+        if (totalTime - latestTime > (1f / 6f))
+        {
+            latestTime = totalTime;
+            WeatherChange();
+        }
+
+
+        if (time > 0.75f || time <0.25f) LightOff.SetActive(false);
         else LightOff.SetActive(true);
 
         UpdateLighting(sun, sunColor, sunIntensity);
@@ -55,6 +71,35 @@ public class DayNightCycle : MonoBehaviour
 
     }
 
+    private void WeatherChange()
+    {
+        change += 1;
+
+        switch (change % 6)
+        {
+            case 0:
+                _controlSky.IfRainy();
+                break;
+            case 1:
+                _controlSky.IfSunRise();
+                break;
+            case 2:
+                _controlSky.IfDay();
+                break;
+            case 3:
+                _controlSky.IfSnowy();
+                break;
+            case 4:
+                _controlSky.IfSunset();
+                break;
+            case 5:
+                _controlSky.IfNight();
+                break;
+            default:
+                _controlSky.IfDay();
+                break;
+        }
+    }
 
     void UpdateLighting(Light lightSource, Gradient gradient, AnimationCurve intensityCurve)
     { 
