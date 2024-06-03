@@ -27,6 +27,8 @@ public class PlayerCondition : MonoBehaviour, IDamagable
 
     public GameObject neckBuff;
 
+    private Vector3 startPos = new Vector3(-10f,1f,-30f);
+
     void Start()
     { 
         neckBuff.SetActive(false);
@@ -73,6 +75,11 @@ public class PlayerCondition : MonoBehaviour, IDamagable
     public void Die()
     {
         Debug.Log("Die!!");
+        transform.position = startPos;
+        Heal(Mathf.Infinity);
+        Eat(Mathf.Infinity);
+        Drink(Mathf.Infinity);
+        stamina.Add(Mathf.Infinity);
     }
 
     public void TakePhysicalDamage(int damage)
@@ -128,7 +135,7 @@ public class PlayerCondition : MonoBehaviour, IDamagable
                 case ConsumableType.Stamina:
 
                     //Debug.Log("Stamina Buff Restore!");
-                    UseStamina(-value / (totalTime / timeThreshold)); // ½ºÅ×¹Ì³ª Ã¤¿ì±â
+                    UseStamina(-value / (totalTime / timeThreshold)); // ï¿½ï¿½ï¿½×¹Ì³ï¿½ Ã¤ï¿½ï¿½ï¿½
 
                     break;
                 case ConsumableType.Speed:
