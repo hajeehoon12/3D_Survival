@@ -22,9 +22,9 @@ TagManager:
   - MovingPlatform
   - Jumper
   - NPC
-  - 
-  - 
-  - 
+  - PlayerBody
+  - Ground
+  - Bushes
   - 
   - 
   - 

@@ -21,6 +21,7 @@ public class UIInventory : MonoBehaviour
     public GameObject useButton;
     public GameObject equipButton;
     public GameObject unEquipButton;
+    public GameObject constructButton;
     public GameObject dropButton;
     public GameObject dropItem;
 
@@ -28,6 +29,8 @@ public class UIInventory : MonoBehaviour
     private PlayerCondition condition;
 
     ItemData selectedItem;
+    ItemData tempedItem;
+
     int selectedItemIndex = 0;
 
     private int curEquipIndex;
@@ -80,6 +83,7 @@ public class UIInventory : MonoBehaviour
         equipButton.SetActive(false);
         unEquipButton.SetActive(false);
         dropButton.SetActive(false);   
+        constructButton.SetActive(false);
     }
 
     public void Toggle()
@@ -181,16 +185,20 @@ public class UIInventory : MonoBehaviour
 
     void ThrowItem(ItemData data)
     {
-        dropItem = Instantiate(data.dropPrefab, dropPosition.position, Quaternion.Euler(Vector3.one * Random.value * 360));
-        dropItem.GetComponent<Rigidbody>().AddForce((Vector3.forward * 3f + Vector3.up * 3f) * dropItem.GetComponent<Rigidbody>().mass, ForceMode.Impulse);
+        
 
 
         if (selectedItem.type == ItemType.Equipable)
         {
             AudioManager.instance.PlaySFX("SwordDiscard");
         }
-
         // 게임 오브젝트, 위치, 각도
+    }
+
+    void ThrowConstructItem(ItemData data)
+    {
+        dropItem = Instantiate(data.dropPrefab, dropPosition.position, Quaternion.Euler(Vector3.one * Random.value * 360));
+        dropItem.GetComponent<Rigidbody>().AddForce((Vector3.forward * 3f + Vector3.up * 3f) * dropItem.GetComponent<Rigidbody>().mass, ForceMode.Impulse);
     }
 
     public void SelectItem(int index) // 아이템 선택 시
@@ -217,6 +225,7 @@ public class UIInventory : MonoBehaviour
         useButton.SetActive(selectedItem.type == ItemType.Consumable || selectedItem.type == ItemType.Buff);
         equipButton.SetActive( (selectedItem.type == ItemType.Equipable || selectedItem.type == ItemType.Permanent) && !slots[index].equipped ); // 장착이 안되있을 때
         unEquipButton.SetActive( (selectedItem.type == ItemType.Equipable || selectedItem.type == ItemType.Permanent) && slots[index].equipped); // 장착이 되있을 때
+        constructButton.SetActive((selectedItem.type ==ItemType.Construct));
         dropButton.SetActive(true);
 
 
@@ -300,6 +309,32 @@ public class UIInventory : MonoBehaviour
         ThrowItem(selectedItem);
         RemoveSelectedItem();
     }
+
+    public void OnConstructButton()
+    {
+        Debug.Log("OnConstructMode");
+        tempedItem = selectedItem;
+        CharacterManager.Instance.Player.controller.constructMode = true;
+        ConstructSync();
+        RemoveSelectedItem();
+        Toggle();
+    }
+
+    private void ConstructSync()
+    {
+        CharacterManager.Instance.Player.controller.constructPrefab = tempedItem.constructObject;
+        CharacterManager.Instance.Player.controller.virtualConstructGreen = tempedItem.virtualObjectGreen;
+        CharacterManager.Instance.Player.controller.virtualConstructRed = tempedItem.virtualObjectRed;
+    }
+
+    public void ConstructCancel()
+    {
+        ThrowConstructItem(tempedItem);
+        
+    }
+
+
+
 
     void RemoveSelectedItem() // 사용 혹은 버리기 시 아이템 수량 한개 제거 로직 실행
     {
