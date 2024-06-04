@@ -27,11 +27,16 @@ public class PlayerCondition : MonoBehaviour, IDamagable
 
     public GameObject neckBuff;
 
-    private Vector3 startPos = new Vector3(-10f,1f,-30f);
+    public Vector3 startPos;
+
+    public DieText _DiedMessage;
+    public GameObject _DiedImage;
 
     void Start()
     { 
         neckBuff.SetActive(false);
+        startPos = transform.position;
+        _DiedMessage.gameObject.SetActive(false);
     }
 
  
@@ -75,11 +80,19 @@ public class PlayerCondition : MonoBehaviour, IDamagable
     public void Die()
     {
         Debug.Log("Die!!");
-        transform.position = startPos;
-        Heal(Mathf.Infinity);
-        Eat(Mathf.Infinity);
-        Drink(Mathf.Infinity);
-        stamina.Add(Mathf.Infinity);
+        _DiedImage.gameObject.SetActive(true);
+        _DiedMessage.gameObject.SetActive(true);
+        _DiedMessage.ShowDieMessage();
+        //transform.position = startPos;
+        
+    }
+
+    public void FullCondition()
+    {
+        health.MakeMaxValue();
+        hunger.MakeMaxValue();
+        thirsty.MakeMaxValue();
+        stamina.MakeMaxValue();
     }
 
     public void TakePhysicalDamage(int damage)
