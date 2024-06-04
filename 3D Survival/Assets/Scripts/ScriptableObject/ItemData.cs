@@ -8,7 +8,8 @@ public enum ItemType
     Consumable,
     Resource,
     Buff,
-    Permanent
+    Permanent,
+    Construct
 }
 
 public enum ConsumableType
@@ -48,6 +49,9 @@ public class ItemData : ScriptableObject
 
     [Header("Equip")]
     public GameObject equipPrefab;
+
+    [Header("Construct")]
+    public GameObject constructObject;
 
 
 

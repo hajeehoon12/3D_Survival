@@ -6740,7 +6740,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff7a78f3e50b7846b683ee874aaee52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 0}
+  data: {fileID: 11400000, guid: e1ba4fb8c68badb4a9bd7ebdee704250, type: 2}
 --- !u!114 &1827960862
 MonoBehaviour:
   m_ObjectHideFlags: 0
