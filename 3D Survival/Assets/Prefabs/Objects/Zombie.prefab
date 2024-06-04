@@ -1392,10 +1392,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6047785384500308037}
   - component: {fileID: 3699432329917333190}
-  - component: {fileID: 2664709293169562785}
   - component: {fileID: 7665541411957804424}
-  - component: {fileID: 1573118015555481671}
   - component: {fileID: 8915158364521854334}
+  - component: {fileID: 218275486315763732}
+  - component: {fileID: 1573118015555481671}
   m_Layer: 0
   m_Name: Zombie
   m_TagString: Untagged
@@ -1441,35 +1441,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &2664709293169562785
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6342609943586475242}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09827d4efd4594a4d8efea6c3b11bb7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 100
-  walkSpeed: 2.5
-  runSpeed: 7
-  dropOnDeath:
-  - {fileID: 11400000, guid: 9f1f4eb3787566d43b2edbd658d33def, type: 2}
-  - {fileID: 11400000, guid: 8a71728f4cd93de44acd7b28938bc8fe, type: 2}
-  detectDistance: 30
-  minWanderDistance: 2
-  maxWanderDistance: 5
-  minWanderWaitTime: 1
-  maxWanderWaitTime: 2
-  damage: 30
-  attackRate: 1.5
-  attackDistance: 3
-  attackSpeed: 0.4
-  fieldOfView: 160
-  _body: {fileID: 0}
 --- !u!65 &7665541411957804424
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1491,28 +1462,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.4253883, y: 1.8584056, z: 0.44397736}
   m_Center: {x: 0.010126114, y: 0.9043915, z: 0}
---- !u!195 &1573118015555481671
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6342609943586475242}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.8
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0.1
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!54 &8915158364521854334
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1540,6 +1489,57 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &218275486315763732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6342609943586475242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87e4c763498eefe47a644757e41220c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 30
+  walkSpeed: 2.5
+  runSpeed: 5
+  dropOnDeath:
+  - {fileID: 11400000, guid: 8a71728f4cd93de44acd7b28938bc8fe, type: 2}
+  - {fileID: 11400000, guid: 90b3286bf2c75da468079c3934cf3497, type: 2}
+  detectDistance: 30
+  minWanderDistance: 2
+  maxWanderDistance: 5
+  minWanderWaitTime: 1
+  maxWanderWaitTime: 2
+  damage: 30
+  attackRate: 1.5
+  attackDistance: 3
+  attackSpeed: 0.4
+  fieldOfView: 120
+  _body: {fileID: 141069732074071262}
+--- !u!195 &1573118015555481671
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6342609943586475242}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.8
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0.1
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &6618194039944344459
 GameObject:
   m_ObjectHideFlags: 0
