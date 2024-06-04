@@ -3051,6 +3051,9 @@ MonoBehaviour:
   minXLook: -80
   maxXLook: 80
   lookSensitivity: 0.2
+  constructPrefab: {fileID: 0}
+  constructMode: 0
+  spawnConstructPrefab: {fileID: 0}
   canLook: 1
   canMove: 1
   uiInventory: {fileID: 1290184926}
@@ -12650,7 +12653,7 @@ GameObject:
   - component: {fileID: 7326134375704316072}
   - component: {fileID: 5335199794334365597}
   - component: {fileID: 6518708283896716362}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100188,7 +100191,7 @@ GameObject:
   - component: {fileID: 3587920015581365968}
   - component: {fileID: 7838305870054033652}
   - component: {fileID: 5169072899394358026}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -26,6 +26,12 @@ public class PlayerController : MonoBehaviour
     public float lookSensitivity;
     private Vector2 mouseDelta;
 
+    [Header("Contruct Mode")]
+    public GameObject constructPrefab;
+    public bool constructMode = false;
+    public GameObject spawnConstructPrefab;
+
+
     public bool canLook = true;
 
     public Action inventory;
@@ -59,6 +65,13 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+
+        if (constructMode)
+        {
+            DoConstructMode();
+            return;
+        }
+
         Move();
 
         if (isJumping)
@@ -105,6 +118,53 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(JumpBoolChange());
         }
     }
+
+
+    private void DoConstructMode()
+    {
+
+        Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
+        RaycastHit hit;
+
+        
+
+        if (Physics.Raycast(ray, out hit, 10f + CameraManager.instance.addDistance, (1 << LayerMask.NameToLayer("Player"))))
+        { 
+        
+        }
+
+
+            if (spawnConstructPrefab == null)
+        {
+            spawnConstructPrefab = Instantiate(spawnConstructPrefab);
+        }
+
+
+
+
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            // Do construct
+            constructPrefab = null;
+            spawnConstructPrefab = null;
+            uiInventory.ConstructCancel();
+            constructMode = false;
+            
+        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            // cancel constructmode
+            constructPrefab = null;
+            spawnConstructPrefab = null;
+            uiInventory.ConstructCancel();
+            constructMode = false;
+            
+        }
+    }
+
+
+
 
     private void Climb() // Climbing
     {

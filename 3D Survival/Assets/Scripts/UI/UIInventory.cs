@@ -29,6 +29,8 @@ public class UIInventory : MonoBehaviour
     private PlayerCondition condition;
 
     ItemData selectedItem;
+    ItemData tempedItem;
+
     int selectedItemIndex = 0;
 
     private int curEquipIndex;
@@ -183,16 +185,20 @@ public class UIInventory : MonoBehaviour
 
     void ThrowItem(ItemData data)
     {
-        dropItem = Instantiate(data.dropPrefab, dropPosition.position, Quaternion.Euler(Vector3.one * Random.value * 360));
-        dropItem.GetComponent<Rigidbody>().AddForce((Vector3.forward * 3f + Vector3.up * 3f) * dropItem.GetComponent<Rigidbody>().mass, ForceMode.Impulse);
+        
 
 
         if (selectedItem.type == ItemType.Equipable)
         {
             AudioManager.instance.PlaySFX("SwordDiscard");
         }
-
         // 게임 오브젝트, 위치, 각도
+    }
+
+    void ThrowConstructItem(ItemData data)
+    {
+        dropItem = Instantiate(data.dropPrefab, dropPosition.position, Quaternion.Euler(Vector3.one * Random.value * 360));
+        dropItem.GetComponent<Rigidbody>().AddForce((Vector3.forward * 3f + Vector3.up * 3f) * dropItem.GetComponent<Rigidbody>().mass, ForceMode.Impulse);
     }
 
     public void SelectItem(int index) // 아이템 선택 시
@@ -305,8 +311,19 @@ public class UIInventory : MonoBehaviour
     }
 
     public void OnConstructButton()
-    { 
-    
+    {
+        Debug.Log("OnConstructMode");
+        tempedItem = selectedItem;
+        CharacterManager.Instance.Player.controller.constructMode = true;
+        CharacterManager.Instance.Player.controller.constructPrefab = tempedItem.constructObject;
+        RemoveSelectedItem();
+        Toggle();
+    }
+
+    public void ConstructCancel()
+    {
+        ThrowConstructItem(tempedItem);
+        
     }
 
 
