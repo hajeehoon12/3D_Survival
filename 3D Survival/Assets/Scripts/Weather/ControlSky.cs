@@ -81,6 +81,7 @@ public class ControlSky : MonoBehaviour
         rainyEffect.SetActive(false);
         sunsetEffect.SetActive(false);
         sunriseEffect.SetActive(false);
+        AudioManager.instance.StopBGM2();
     }
 
     public void IfNight()
@@ -100,6 +101,7 @@ public class ControlSky : MonoBehaviour
         rainyEffect.SetActive(false);
         sunsetEffect.SetActive(false);
         sunriseEffect.SetActive(false);
+        AudioManager.instance.StopBGM2();
     }
 
     public void IfSnowy()
@@ -119,6 +121,7 @@ public class ControlSky : MonoBehaviour
         rainyEffect.SetActive(false);
         sunsetEffect.SetActive(false);
         sunriseEffect.SetActive(false);
+        AudioManager.instance.StopBGM2();
     }
 
     public void IfRainy()
@@ -138,6 +141,8 @@ public class ControlSky : MonoBehaviour
         rainyEffect.SetActive(true);
         sunsetEffect.SetActive(false);
         sunriseEffect.SetActive(false);
+        AudioManager.instance.StopBGM2();
+        AudioManager.instance.PlayBGM2("RainThunder", 0.5f);
     }
     public void IfSunset()
     {
@@ -156,6 +161,7 @@ public class ControlSky : MonoBehaviour
         rainyEffect.SetActive(false);
         sunsetEffect.SetActive(true);
         sunriseEffect.SetActive(false);
+        AudioManager.instance.StopBGM2();
     }
 
     public void IfSunRise()
@@ -175,6 +181,7 @@ public class ControlSky : MonoBehaviour
         rainyEffect.SetActive(false);
         sunsetEffect.SetActive(false);
         sunriseEffect.SetActive(true);
+        AudioManager.instance.StopBGM2();
     }
 
     void OnGUI()

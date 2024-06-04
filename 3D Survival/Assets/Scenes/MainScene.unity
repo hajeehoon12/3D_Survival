@@ -124239,6 +124239,10 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 86acb7a2c349c8b4d8813233e5c402b8, type: 3}
   - name: OpenInfo
     clip: {fileID: 8300000, guid: 2663fc871454a3b4ba1db420b9daa5e5, type: 3}
+  - name: Eat
+    clip: {fileID: 8300000, guid: 937f48763f2bbd941aea5f49cf6ea344, type: 3}
+  - name: Drink
+    clip: {fileID: 8300000, guid: 3adaa6152ee5d5940b9499a432fa6a8e, type: 3}
   bgm:
   - name: Earth
     clip: {fileID: 8300000, guid: c8480ad98530e15469ad83f66f537fbd, type: 3}
@@ -124264,6 +124268,10 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 69fff16c41273964984726b26316ced3, type: 3}
   - name: Died
     clip: {fileID: 8300000, guid: a8ce5e1f049569a4f8031181eea2fa13, type: 3}
+  - name: RainThunder
+    clip: {fileID: 8300000, guid: 86a93989b4139814792c5694ed2cb76f, type: 3}
+  - name: RainThunder
+    clip: {fileID: 8300000, guid: 86a93989b4139814792c5694ed2cb76f, type: 3}
   bgmPlayer: {fileID: 423377937244358933}
   bgmPlayer2: {fileID: 2110217758}
   sfxPlayer:
