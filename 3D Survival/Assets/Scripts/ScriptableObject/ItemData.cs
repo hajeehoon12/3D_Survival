@@ -20,14 +20,7 @@ public enum ConsumableType
     Speed
 }
 
-public enum MaterialType
-{
-    Wood,
-    Rock,
-    Carrot,
-    Ham,
-    Water
-}
+
 
 [System.Serializable]
 public class ItemDataConsumable
@@ -36,11 +29,7 @@ public class ItemDataConsumable
     public float value;
 }
 
-public class ItemDataMaterial
-{
-    public MaterialType type;
-    public float value;
-}
+
 
 
 
@@ -61,9 +50,6 @@ public class ItemData : ScriptableObject
 
     [Header("Consumable")]
     public ItemDataConsumable[] consumables;
-
-    [Header("Material")]
-    public ItemDataMaterial[] materials;
 
     [Header("Equip")]
     public GameObject equipPrefab;

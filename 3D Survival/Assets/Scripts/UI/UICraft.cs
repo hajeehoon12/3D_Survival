@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class UICraft : MonoBehaviour
 {
@@ -23,6 +24,8 @@ public class UICraft : MonoBehaviour
 
     private PlayerController controller;
     private PlayerCondition condition;
+    UIInventory inventory;
+    Player player;
 
     ItemData selectedItem;
     int selectedItemIndex = 0;
@@ -55,7 +58,7 @@ public class UICraft : MonoBehaviour
 
     }
 
-    void ClearSelectedCraftWindow() 
+    void ClearSelectedCraftWindow()
     {
         selectedItemName.text = string.Empty;
         selectedDescription.text = string.Empty;
@@ -125,11 +128,15 @@ public class UICraft : MonoBehaviour
         {
             selectedStatName.text += selectedItem.consumables[i].type.ToString() + "\n";
             selectedStatValue.text += selectedItem.consumables[i].value.ToString() + "\n";
-            selectedMaterialName.text += selectedItem.materials[i].type.ToString() + "\n";
-            selectedMaterialValue.text += selectedItem.materials[i].value.ToString() + "\n";
         }
-
         CraftButton.SetActive(true);
     }
+
+    public void OnCraftButton()
+    {
+        //Instantiate(selectedItem.dropPrefab,Transform parent);
+    }
+
+
 
 }
