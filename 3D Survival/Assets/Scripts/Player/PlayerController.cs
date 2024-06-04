@@ -33,6 +33,10 @@ public class PlayerController : MonoBehaviour
     public GameObject virtualSpawn;
     public GameObject virtualConstructGreen;
     public GameObject virtualConstructRed;
+    public InteractableUI interUI;
+
+
+    public bool canConstruct = false;
 
 
     public bool canLook = true;
@@ -140,7 +144,7 @@ public class PlayerController : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, 10f + CameraManager.instance.addDistance, (1 << LayerMask.NameToLayer("Ground"))))
         {
-            Debug.Log(hit.point);
+            //Debug.Log(hit.point);
             virtualSpawn.transform.position=(hit.point)+ new Vector3(0, 3, 0);
             virtualSpawn.transform.LookAt(transform.position);
             virtualSpawn.transform.localEulerAngles = new Vector3(0, virtualSpawn.transform.localEulerAngles.y, virtualSpawn.transform.localEulerAngles.z);
@@ -150,15 +154,26 @@ public class PlayerController : MonoBehaviour
         if (Input.GetMouseButtonDown(0)) // left mouse button = do construct target object
         {
             // Do construct
-            
+
+            if (!canConstruct)
+            {
+                interUI.CantBuildMessage(hit);
+                AudioManager.instance.PlaySFX("CantBuild");
+                return;
+            }
+
+            AudioManager.instance.PlaySFX("Construct");
+
             virtualSpawn.SetActive(false);
             spawnConstructPrefab = Instantiate(constructPrefab);
             spawnConstructPrefab.transform.position = virtualSpawn.transform.position;
+            spawnConstructPrefab.transform.localEulerAngles = virtualSpawn.transform.localEulerAngles;
             constructPrefab = null;
             Destroy(virtualSpawn);
             virtualSpawn = null;
             //uiInventory.ConstructCancel();
             constructMode = false;
+            
             
         }
         if (Input.GetKeyDown(KeyCode.Escape)) // Esc button = cancel construct

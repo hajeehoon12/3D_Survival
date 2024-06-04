@@ -329,6 +329,7 @@ GameObject:
   - component: {fileID: 8511201612396983469}
   - component: {fileID: 8416223567326315336}
   - component: {fileID: 5197864674828587476}
+  - component: {fileID: 6874176368070013509}
   m_Layer: 0
   m_Name: Wood_House_Virtual
   m_TagString: Untagged
@@ -405,6 +406,28 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &6874176368070013509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5260897580060828325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f0fa95747690cf439c22eee9a74e64c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _constructMask:
+    serializedVersion: 2
+    m_Bits: 393216
+  _Renderers:
+  - {fileID: 2083388330598255691}
+  - {fileID: 7224293633628148455}
+  - {fileID: 2318209452406983552}
+  - {fileID: 4874295703436071856}
+  - {fileID: 6560020195423248586}
+  - {fileID: 1222040445077943323}
 --- !u!1 &5340052284684151946
 GameObject:
   m_ObjectHideFlags: 0
