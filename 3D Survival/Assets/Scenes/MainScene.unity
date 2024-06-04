@@ -6912,7 +6912,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1840244765}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1290184926}
+        m_TargetAssemblyTypeName: UIInventory, Assembly-CSharp
+        m_MethodName: OnConstructButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1840244765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105536,7 +105548,7 @@ GameObject:
   - component: {fileID: 9188193819480944767}
   - component: {fileID: 1693411450477612627}
   - component: {fileID: 6533150935471083786}
-  m_Layer: 6
+  m_Layer: 16
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}

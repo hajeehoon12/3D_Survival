@@ -304,6 +304,14 @@ public class UIInventory : MonoBehaviour
         RemoveSelectedItem();
     }
 
+    public void OnConstructButton()
+    { 
+    
+    }
+
+
+
+
     void RemoveSelectedItem() // 사용 혹은 버리기 시 아이템 수량 한개 제거 로직 실행
     {
         slots[selectedItemIndex].quantity--;
