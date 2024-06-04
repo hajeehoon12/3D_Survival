@@ -1394,7 +1394,7 @@ GameObject:
   - component: {fileID: 3699432329917333190}
   - component: {fileID: 7665541411957804424}
   - component: {fileID: 8915158364521854334}
-  - component: {fileID: 218275486315763732}
+  - component: {fileID: -4404775601271826881}
   - component: {fileID: 1573118015555481671}
   m_Layer: 0
   m_Name: Zombie_Pattern1
@@ -1489,7 +1489,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &218275486315763732
+--- !u!114 &-4404775601271826881
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1498,9 +1498,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6342609943586475242}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87e4c763498eefe47a644757e41220c4, type: 3}
+  m_Script: {fileID: 11500000, guid: c93ee316f113f1f45ad4e4a333fd2082, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 0
   health: 30
   walkSpeed: 2.5
   runSpeed: 5

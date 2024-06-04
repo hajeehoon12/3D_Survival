@@ -68,25 +68,24 @@ public class Monster_Zombie_Pattern1 : MonoBehaviour , IDamagable
     
     void Update()
     {
-
         if (isDie) return;
 
         playerDistance = Vector3.Distance(transform.position, CharacterManager.Instance.Player.transform.position);
-
         animator.SetBool("Moving", aiState != AIState.Idle);
+
         switch (aiState)
         {
             case AIState.Idle:
             case AIState.Wandering:
-
                 if (takingDmg) return;
                 PassiveUpdate();
-
                 break;
             case AIState.Attacking:
                 if (takingDmg) return;
                 AttackingUpdate();
-
+                break;
+            case AIState.Fleeing:
+                FleeingUpdate();
                 break;
             case AIState.Staying:
             default:
@@ -103,30 +102,24 @@ public class Monster_Zombie_Pattern1 : MonoBehaviour , IDamagable
         switch (aiState)
         {
             case AIState.Idle:
-
                 agent.speed = walkSpeed;
                 agent.isStopped = true;
-                
                 break;
-
             case AIState.Wandering:
-
                 agent.speed = walkSpeed;
                 agent.isStopped = false;
-                
                 break;
-
             case AIState.Attacking:
-
                 agent.speed = runSpeed;
                 agent.isStopped = true;
-                
-
+                break;
+            case AIState.Fleeing:
+                agent.speed = runSpeed;
+                agent.isStopped = false;
                 break;
         }
 
         animator.speed = agent.speed / walkSpeed;
-
     }
 
     void PassiveUpdate()
@@ -234,6 +227,24 @@ public class Monster_Zombie_Pattern1 : MonoBehaviour , IDamagable
         }
     }
 
+    private void FleeingUpdate()
+    {
+        Vector3 directionAwayFromPlayer = transform.position - CharacterManager.Instance.Player.transform.position;
+        Vector3 fleeDestination = transform.position + directionAwayFromPlayer.normalized * detectDistance;
+
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(fleeDestination, out hit, maxWanderDistance, NavMesh.AllAreas))
+        {
+            agent.SetDestination(hit.position);
+        }
+
+        if (playerDistance > detectDistance * 1.5f)
+        {
+            SetState(AIState.Wandering);
+        }
+    }
+
+    
     bool IsPlayerInFieldOfView() // if player is in npc fov
     {
         Vector3 directionToPlayer = CharacterManager.Instance.Player.transform.position - transform.position;
@@ -244,7 +255,7 @@ public class Monster_Zombie_Pattern1 : MonoBehaviour , IDamagable
     }
 
     public void TakePhysicalDamage(int damage) // get damaged
-    {   
+    {
         if (isDie) return;
 
         takingDmg = true;
@@ -257,9 +268,12 @@ public class Monster_Zombie_Pattern1 : MonoBehaviour , IDamagable
         {
             Die();
         }
+        else if (health <= maxHealth * 0.3f) // chage AIState when health is less than 30%
+        {
+            SetState(AIState.Fleeing);
+        }
 
         StartCoroutine(DamageFlash());
-
     }
 
     IEnumerator TakingDmgMotion() // check when getting dmged
