@@ -20,8 +20,8 @@ MonoBehaviour:
   canStack: 1
   maxStackAmount: 12
   consumables:
-  - type: 0
-    value: 50
   - type: 1
     value: 60
+  - type: 0
+    value: 50
   equipPrefab: {fileID: 0}
