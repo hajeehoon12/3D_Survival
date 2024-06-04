@@ -16,7 +16,7 @@ MonoBehaviour:
   description: BluePrint of the WoodHouse
   type: 5
   icon: {fileID: 21300000, guid: b605993f8edd89d45baf35903eabdde9, type: 3}
-  dropPrefab: {fileID: 466301219598124304, guid: 6474843926eb24543869869ce018365e, type: 3}
+  dropPrefab: {fileID: 176358393337037719, guid: 7eb0677b1a929bd42a7f35ea3471019c, type: 3}
   canStack: 0
   maxStackAmount: 0
   consumables: []

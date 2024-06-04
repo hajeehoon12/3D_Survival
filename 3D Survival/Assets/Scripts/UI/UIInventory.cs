@@ -21,6 +21,7 @@ public class UIInventory : MonoBehaviour
     public GameObject useButton;
     public GameObject equipButton;
     public GameObject unEquipButton;
+    public GameObject constructButton;
     public GameObject dropButton;
     public GameObject dropItem;
 
@@ -80,6 +81,7 @@ public class UIInventory : MonoBehaviour
         equipButton.SetActive(false);
         unEquipButton.SetActive(false);
         dropButton.SetActive(false);   
+        constructButton.SetActive(false);
     }
 
     public void Toggle()
@@ -217,6 +219,7 @@ public class UIInventory : MonoBehaviour
         useButton.SetActive(selectedItem.type == ItemType.Consumable || selectedItem.type == ItemType.Buff);
         equipButton.SetActive( (selectedItem.type == ItemType.Equipable || selectedItem.type == ItemType.Permanent) && !slots[index].equipped ); // 장착이 안되있을 때
         unEquipButton.SetActive( (selectedItem.type == ItemType.Equipable || selectedItem.type == ItemType.Permanent) && slots[index].equipped); // 장착이 되있을 때
+        constructButton.SetActive((selectedItem.type ==ItemType.Construct));
         dropButton.SetActive(true);
 
 
