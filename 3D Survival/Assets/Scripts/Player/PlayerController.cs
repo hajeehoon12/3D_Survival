@@ -73,7 +73,7 @@ public class PlayerController : MonoBehaviour
         if (constructMode)
         {
             DoConstructMode();
-            return;
+            //return; // if Memory Leak go return
         }
 
         Move();
@@ -142,6 +142,8 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log(hit.point);
             virtualSpawn.transform.position=(hit.point)+ new Vector3(0, 3, 0);
+            virtualSpawn.transform.LookAt(transform.position);
+            virtualSpawn.transform.localEulerAngles = new Vector3(0, virtualSpawn.transform.localEulerAngles.y, virtualSpawn.transform.localEulerAngles.z);
         }
 
 
