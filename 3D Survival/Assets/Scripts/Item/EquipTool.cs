@@ -89,6 +89,12 @@ public class EquipTool : Equip
                     AudioManager.instance.PlaySFX("SwordAttack2", 0.8f);
                     isAttacking = false;
                 }
+                else if (hit.collider.TryGetComponent(out Monster_Zombie_Pattern1 monster_Zombie_Pattern1)) // Hit Monster_Zombie
+                {
+                    monster_Zombie_Pattern1.TakePhysicalDamage(damage);
+                    AudioManager.instance.PlaySFX("SwordAttack2", 0.8f);
+                    isAttacking = false;
+                }
             }
             
         }
