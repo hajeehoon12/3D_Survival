@@ -115,10 +115,9 @@ public class UICraft : MonoBehaviour
 
         selectedItemName.text = selectedItem.displayName;
         selectedDescription.text = selectedItem.description;
-        selectedMaterialName.text = selectedItem.materialName;
-        selectedMaterialValue.text = selectedItem.materialValue;
 
-
+        selectedMaterialName.text = string.Empty;
+        selectedMaterialValue.text = string.Empty;
         selectedStatName.text = string.Empty;
         selectedStatValue.text = string.Empty;
 
@@ -126,8 +125,11 @@ public class UICraft : MonoBehaviour
         {
             selectedStatName.text += selectedItem.consumables[i].type.ToString() + "\n";
             selectedStatValue.text += selectedItem.consumables[i].value.ToString() + "\n";
+            selectedMaterialName.text += selectedItem.materials[i].type.ToString() + "\n";
+            selectedMaterialValue.text += selectedItem.materials[i].value.ToString() + "\n";
         }
 
+        CraftButton.SetActive(true);
     }
 
 }
