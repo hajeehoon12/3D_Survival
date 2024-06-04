@@ -30,6 +30,9 @@ public class PlayerController : MonoBehaviour
     public GameObject constructPrefab;
     public bool constructMode = false;
     public GameObject spawnConstructPrefab;
+    public GameObject virtualSpawn;
+    public GameObject virtualConstructGreen;
+    public GameObject virtualConstructRed;
 
 
     public bool canLook = true;
@@ -59,6 +62,7 @@ public class PlayerController : MonoBehaviour
         uiInven.SetActive(true);
         CharacterManager.Instance.Player.addItem += uiInventory.AddItem;
         Cursor.lockState = CursorLockMode.Locked;
+        constructMode = false;
 
     }
 
@@ -123,40 +127,43 @@ public class PlayerController : MonoBehaviour
     private void DoConstructMode()
     {
 
+        if (virtualSpawn == null)
+        {
+            virtualSpawn= Instantiate(virtualConstructGreen);
+        }
+
+
         Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
         RaycastHit hit;
 
         
 
-        if (Physics.Raycast(ray, out hit, 10f + CameraManager.instance.addDistance, (1 << LayerMask.NameToLayer("Player"))))
-        { 
-        
-        }
-
-
-            if (spawnConstructPrefab == null)
+        if (Physics.Raycast(ray, out hit, 10f + CameraManager.instance.addDistance, (1 << LayerMask.NameToLayer("Ground"))))
         {
-            spawnConstructPrefab = Instantiate(spawnConstructPrefab);
+            Debug.Log(hit.point);
+            virtualSpawn.transform.position=(hit.point)+ new Vector3(0, 3, 0);
         }
 
 
-
-
-
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0)) // left mouse button = do construct target object
         {
             // Do construct
+            
+            virtualSpawn.SetActive(false);
+            spawnConstructPrefab = Instantiate(constructPrefab);
+            spawnConstructPrefab.transform.position = virtualSpawn.transform.position;
             constructPrefab = null;
-            spawnConstructPrefab = null;
-            uiInventory.ConstructCancel();
+            Destroy(virtualSpawn);
+            virtualSpawn = null;
+            //uiInventory.ConstructCancel();
             constructMode = false;
             
         }
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape)) // Esc button = cancel construct
         {
             // cancel constructmode
             constructPrefab = null;
-            spawnConstructPrefab = null;
+            virtualSpawn = null;
             uiInventory.ConstructCancel();
             constructMode = false;
             

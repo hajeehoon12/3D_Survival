@@ -648,7 +648,7 @@ GameObject:
   - component: {fileID: 4462293292378243484}
   - component: {fileID: 5422003392554579642}
   m_Layer: 0
-  m_Name: Wood_House
+  m_Name: Wood_House_Real
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

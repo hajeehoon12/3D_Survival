@@ -3041,7 +3041,7 @@ MonoBehaviour:
   jumPower: 8
   groundLayerMask:
     serializedVersion: 2
-    m_Bits: 1079
+    m_Bits: 132151
   wallLayerMask:
     serializedVersion: 2
     m_Bits: 1536

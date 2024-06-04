@@ -315,9 +315,16 @@ public class UIInventory : MonoBehaviour
         Debug.Log("OnConstructMode");
         tempedItem = selectedItem;
         CharacterManager.Instance.Player.controller.constructMode = true;
-        CharacterManager.Instance.Player.controller.constructPrefab = tempedItem.constructObject;
+        ConstructSync();
         RemoveSelectedItem();
         Toggle();
+    }
+
+    private void ConstructSync()
+    {
+        CharacterManager.Instance.Player.controller.constructPrefab = tempedItem.constructObject;
+        CharacterManager.Instance.Player.controller.virtualConstructGreen = tempedItem.virtualObjectGreen;
+        CharacterManager.Instance.Player.controller.virtualConstructRed = tempedItem.virtualObjectRed;
     }
 
     public void ConstructCancel()

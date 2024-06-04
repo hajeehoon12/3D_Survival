@@ -52,6 +52,8 @@ public class ItemData : ScriptableObject
 
     [Header("Construct")]
     public GameObject constructObject;
+    public GameObject virtualObjectGreen;
+    public GameObject virtualObjectRed;
 
 
 
