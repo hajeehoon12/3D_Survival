@@ -179,10 +179,12 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape)) // Esc button = cancel construct
         {
             // cancel constructmode
+            Destroy(virtualSpawn);
             constructPrefab = null;
             virtualSpawn = null;
             uiInventory.ConstructCancel();
             constructMode = false;
+            AudioManager.instance.PlaySFX("CancelConstruct");
             
         }
     }
