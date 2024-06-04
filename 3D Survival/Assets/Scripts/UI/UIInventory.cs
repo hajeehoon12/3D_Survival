@@ -33,6 +33,8 @@ public class UIInventory : MonoBehaviour
     private int curEquipIndex;
     private int curEquipPermanentIndex; // Accesories
 
+    private bool MusicOn = false;
+
     private void Awake()
     {
         controller = CharacterManager.Instance.Player.controller;
@@ -224,23 +226,50 @@ public class UIInventory : MonoBehaviour
     {
         if (selectedItem.type == ItemType.Consumable)
         {
-            AudioManager.instance.PlaySFX("Cure", 0.2f);
+            
             for (int i = 0; i < selectedItem.consumables.Length; i++)
             {
                 switch (selectedItem.consumables[i].type)
                 {
-                    case ConsumableType.Health:
-                        condition.Heal(selectedItem.consumables[i].value);
-                        break;
                     case ConsumableType.Hunger:
                         condition.Eat(selectedItem.consumables[i].value);
+                        if (!MusicOn)
+                        {
+                            MusicOn = true;
+                            AudioManager.instance.PlaySFX("Eat", 1f);
+                        }
+                        break;
+                    case ConsumableType.Drink:
+                        condition.Drink(selectedItem.consumables[i].value);
+                        if (!MusicOn)
+                        {
+                            MusicOn = true;
+                            AudioManager.instance.PlaySFX("Drink", 1f);
+                        }
+                        break;
+                    case ConsumableType.Health:
+                        condition.Heal(selectedItem.consumables[i].value);
+
+                        if (!MusicOn)
+                        {
+                            MusicOn = true;
+                            AudioManager.instance.PlaySFX("Cure", 0.2f);
+                        }
+
                         break;
                     case ConsumableType.Stamina:
                         condition.UseStamina(-selectedItem.consumables[i].value); // 스테미나 채우기
+                        if (!MusicOn)
+                        {
+                            MusicOn = true;
+                            AudioManager.instance.PlaySFX("Drink", 0.2f);
+                        }
                         break;
+
                 }
 
             }
+            MusicOn = false;
             RemoveSelectedItem();
             return;
         }
