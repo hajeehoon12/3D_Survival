@@ -15,7 +15,7 @@ MonoBehaviour:
   displayName: Water
   description: Restore huge amount of Thirsty.
   type: 1
-  icon: {fileID: 21300000, guid: 0c87730ccb15357459d39131ac886bcf, type: 3}
+  icon: {fileID: 21300000, guid: 16d142603919a304697143e73ad82c5f, type: 3}
   dropPrefab: {fileID: 1409575026554637749, guid: 3bb0f3a29f523ad448b8ad63661db4ce, type: 3}
   canStack: 1
   maxStackAmount: 12

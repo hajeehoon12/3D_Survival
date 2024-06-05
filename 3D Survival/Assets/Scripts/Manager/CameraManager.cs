@@ -28,7 +28,8 @@ public class CameraManager : MonoBehaviour
 
     private void Start()
     {
-        curCamera = Camera.main;       
+        curCamera = Camera.main;
+        curCamera.cullingMask = ~(1 << LayerMask.NameToLayer("PlayerBody"));
     }
 
 
@@ -45,6 +46,7 @@ public class CameraManager : MonoBehaviour
         if (!isMoveEnd) return;
         equipCamera.enabled = false;
         isMoveEnd = false;
+        curCamera.cullingMask |= 1 << LayerMask.NameToLayer("PlayerBody");
         //curCamera.transform.localPosition = new Vector3(0, 3, -5);
         curCamera.transform.DOLocalRotate(new Vector3(30, 0, 0), 1f);
         //curCamera.transform.localEulerAngles = new Vector3(30, 0, 0);
@@ -78,6 +80,7 @@ public class CameraManager : MonoBehaviour
 
             CharacterManager.Instance.Player.controller.minXLook = -80f;
             CharacterManager.Instance.Player.controller.maxXLook = 80f;
+            curCamera.cullingMask = ~(1 << LayerMask.NameToLayer("PlayerBody"));
 
         });
         //curCamera.transform.localPosition = new Vector3(0, 1, 0);

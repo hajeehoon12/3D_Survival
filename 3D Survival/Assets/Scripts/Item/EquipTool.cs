@@ -14,7 +14,7 @@ public class EquipTool : Equip
     [Header("Resource Gathering")] 
     public bool doesGatherResources;
 
-    [Header("Combat")] // ÀüÅõ
+    [Header("Combat")] // ï¿½ï¿½ï¿½ï¿½
     public bool doesDamage;
     public int damage;
 
@@ -72,18 +72,17 @@ public class EquipTool : Equip
 
             }
 
-            if (doesDamage && hit.collider.TryGetComponent(out NPC npc)) // Hit NPC
+            if (doesDamage)
             {
-                npc.TakePhysicalDamage(damage);
-                //if (gameObject.name == "Equip_Sword")
-                //{
-                    AudioManager.instance.PlaySFX("SwordAttack2", 0.8f);
-                //}
-                isAttacking = false;
-            }
-            else
-            {
-                
+                if (hit.collider.TryGetComponent(out NPC npc)) // Hit NPC
+                {
+                    npc.TakePhysicalDamage(damage);
+                    //if (gameObject.name == "Equip_Sword")
+                    //{
+                        AudioManager.instance.PlaySFX("SwordAttack2", 0.8f);
+                    //}
+                    isAttacking = false;
+                }
             }
             
         }

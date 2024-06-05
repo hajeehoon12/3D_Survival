@@ -9,15 +9,22 @@ public enum AIState
     Idle,
     Wandering,
     Attacking,
-    Staying
+    Staying,
+    Fleeing
 }
 
+public enum MonsterPattern
+{
+    None,
+    Coward
+}
 
 public class NPC : MonoBehaviour , IDamagable
 {
 
     [Header("Stats")]
     public int health;
+    public int maxHealth;
     public float walkSpeed;
     public float runSpeed;
     public ItemData[] dropOnDeath;
@@ -26,6 +33,7 @@ public class NPC : MonoBehaviour , IDamagable
     private NavMeshAgent agent;
     public float detectDistance;
     private AIState aiState;
+    public MonsterPattern pattern;
 
     [Header("Wandering")]
     public float minWanderDistance;
@@ -40,13 +48,18 @@ public class NPC : MonoBehaviour , IDamagable
     public float attackDistance;
     public float attackSpeed;
 
+    [Header("Sound")]
+    public string hitSound;
+
+    public string dieSound;
+
+
+
     private float playerDistance;
-
     private bool takingDmg = false;
-
     private bool isDie = false;
 
-    public float fieldOfView = 120f; // ¸ó½ºÅÍ ½Ã¾ß°¢
+    public float fieldOfView = 120f;
 
     //private bool isAttacking = false;
 
@@ -64,12 +77,13 @@ public class NPC : MonoBehaviour , IDamagable
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
-        meshRenderers = GetComponentsInChildren<SkinnedMeshRenderer>(); // »ö±ò º¯ÇÏ°Ô ÇÏ±â À§ÇÔ
+        meshRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
     }
 
 
     void Start()
-    {
+    {   
+        maxHealth = health;
         SetState(AIState.Wandering);
     }
 
@@ -77,13 +91,12 @@ public class NPC : MonoBehaviour , IDamagable
     void Update()
     {
 
-        if (isDie) return;     // °ø°ÝÀ» ¹Þ°Å³ª Á×À¸¸é Çàµ¿À» ¸ØÃã
+        if (isDie) return;
         //if (isAttacking) return;
-        
 
-        playerDistance = Vector3.Distance(transform.position, CharacterManager.Instance.Player.transform.position); // ÇÃ·¹ÀÌ¾î¿Í °Å¸®Â÷ÀÌ °è»ê
+        playerDistance = Vector3.Distance(transform.position, CharacterManager.Instance.Player.transform.position); // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 
-        animator.SetBool("Moving", aiState != AIState.Idle); // AIState¿¡ µû¶ó Animator Bool°ª °áÁ¤
+        animator.SetBool("Moving", aiState != AIState.Idle); // AIStateï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Animator Boolï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
         switch (aiState)
         {
@@ -99,6 +112,10 @@ public class NPC : MonoBehaviour , IDamagable
                 AttackingUpdate();
 
                 break;
+            case AIState.Fleeing:
+                FleeingUpdate();
+
+                break;
             case AIState.Staying:
             default:
                 agent.speed = 0;
@@ -107,7 +124,7 @@ public class NPC : MonoBehaviour , IDamagable
         }
     }
 
-    public void SetState(AIState state) // AI »óÅÂ
+    public void SetState(AIState state) // AI ï¿½ï¿½ï¿½ï¿½
     {
         aiState = state;
 
@@ -134,10 +151,33 @@ public class NPC : MonoBehaviour , IDamagable
                 
 
                 break;
+            case AIState.Fleeing:
+
+                agent.speed = runSpeed;
+                agent.isStopped = false;
+
+                break;
         }
 
         animator.speed = agent.speed / walkSpeed;
 
+    }
+
+    void FleeingUpdate() //Fleeing pattern
+    {
+        Vector3 directionAwayFromPlayer = transform.position - CharacterManager.Instance.Player.transform.position;
+        Vector3 fleeDestination = transform.position + directionAwayFromPlayer.normalized * detectDistance;
+
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(fleeDestination, out hit, maxWanderDistance, NavMesh.AllAreas))
+        {
+            agent.SetDestination(hit.position);
+        }
+
+        if (playerDistance > detectDistance * 1.5f)
+        {
+            SetState(AIState.Wandering);
+        }
     }
 
     void PassiveUpdate()
@@ -171,17 +211,17 @@ public class NPC : MonoBehaviour , IDamagable
 
     Vector3 GetWanderLocation()
     {
-        NavMeshHit hit; // ÃÖ´Ü °æ·Î ¹ÝÈ¯¿ë
+        NavMeshHit hit; // ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½È¯ï¿½ï¿½
 
         NavMesh.SamplePosition(transform.position + (Random.onUnitSphere * 
             Random.Range(minWanderDistance, maxWanderDistance)) , out hit, maxWanderDistance, NavMesh.AllAreas);
         // (Vector3 sourcePosition, out NavMeshHit hit, float maxDistance, int areaMask)
-        // sourcePosition : ÀÏÁ¤ÇÑ ¿µ¿ª ÁöÁ¤ , hit: ÃÖ´Ü°æ·Î ¹ÝÈ¯°ª,  maxDistance: ÃÖ°í°Å¸®, areaMask : ·¹ÀÌ¾î ÇÊÅÍ¸µ
+        // sourcePosition : ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ , hit: ï¿½Ö´Ü°ï¿½ï¿½ ï¿½ï¿½È¯ï¿½ï¿½,  maxDistance: ï¿½Ö°ï¿½ï¿½Å¸ï¿½, areaMask : ï¿½ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½Í¸ï¿½
         // 
 
         int i = 0;
 
-        while (Vector3.Distance(transform.position, hit.position) < detectDistance) // 30¹ø°¡·® È®ÀÎÀÛ¾÷ ¹Ýº¹¼öÇà
+        while (Vector3.Distance(transform.position, hit.position) < detectDistance) // 30ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½Û¾ï¿½ ï¿½Ýºï¿½ï¿½ï¿½ï¿½ï¿½
         {
             NavMesh.SamplePosition(transform.position + (Random.onUnitSphere *
             Random.Range(minWanderDistance, maxWanderDistance)), out hit, maxWanderDistance, NavMesh.AllAreas);
@@ -199,7 +239,7 @@ public class NPC : MonoBehaviour , IDamagable
         //isAttacking = true;
 
         yield return new WaitForSeconds(attackSpeed);
-        AudioManager.instance.PlaySFX("BearHit");
+        AudioManager.instance.PlaySFX(hitSound);
         if (playerDistance < attackDistance && IsPlayerInFieldOfView())
             CharacterManager.Instance.Player.controller.GetComponent<IDamagable>().TakePhysicalDamage(damage);
         attackCoroutine = null;
@@ -234,8 +274,8 @@ public class NPC : MonoBehaviour , IDamagable
             {
                 agent.isStopped = false;
                 NavMeshPath path = new NavMeshPath();
-                if (agent.CalculatePath(CharacterManager.Instance.Player.transform.position, path)) // Path¸¦ °è»êÇÏ¿© pathÁ¤º¸¸¦ ³Ñ°ÜÁÜ
-                { // Path °è»êÀÌ °¡´ÉÇÏ¸é, Player¿¡°Ô µµ´ÞÇÒ ¼ö ÀÖ´Â °æ·Î°¡ ÀÖ´Ù¸é
+                if (agent.CalculatePath(CharacterManager.Instance.Player.transform.position, path)) // Pathï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ pathï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ°ï¿½ï¿½ï¿½
+                { // Path ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½, Playerï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½Î°ï¿½ ï¿½Ö´Ù¸ï¿½
                     agent.SetDestination(CharacterManager.Instance.Player.transform.position);
                 }
                 else
@@ -257,10 +297,8 @@ public class NPC : MonoBehaviour , IDamagable
     bool IsPlayerInFieldOfView() // if player is in npc fov
     {
         Vector3 directionToPlayer = CharacterManager.Instance.Player.transform.position - transform.position;
-        float angle = Vector3.Angle(transform.forward, directionToPlayer); // NPCÀÇ Á¤¸é°ú ÇÃ·¹ÀÌ¾îÀÇ °¢µµ
-        return angle < fieldOfView * 0.5f; // ÃÑ°¢¿¡¼­ Àý´ñ°ªÀÌ±â¿¡ Àý¹ÝÀ¸·Î ¸¸µë
-
-        
+        float angle = Vector3.Angle(transform.forward, directionToPlayer); // NPCï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        return angle < fieldOfView * 0.5f; // ï¿½Ñ°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì±â¿¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     }
 
     public void TakePhysicalDamage(int damage) // get damaged
@@ -275,11 +313,14 @@ public class NPC : MonoBehaviour , IDamagable
         health -= damage;
         if (health <= 0)
         {
-            //Á×´Â´Ù
             Die();
         }
+        else if (pattern == MonsterPattern.Coward && health <= maxHealth * 0.3f)
+        {
+            SetState(AIState.Fleeing);
+        }
 
-        // µ¥¹ÌÁö È¿°ú
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È¿ï¿½ï¿½
         StartCoroutine(DamageFlash());
 
     }
@@ -292,7 +333,7 @@ public class NPC : MonoBehaviour , IDamagable
 
     void Die() // when DIed
     {
-        AudioManager.instance.PlaySFX("BearDie");
+        AudioManager.instance.PlaySFX(dieSound);
         for (int i = 0; i < dropOnDeath.Length; i++)
         {
             GameObject DropItems = Instantiate(dropOnDeath[i].dropPrefab, transform.position + Vector3.up * 2, Quaternion.identity );
