@@ -12,21 +12,22 @@ public class EquipTool : Equip
     public bool isAttacking = false;
 
     [Header("Resource Gathering")] 
-    public bool doesGatherResources;
+    public bool doesGatherWood;
+    public bool doesGatherBush;
 
     [Header("Combat")] // ����
     public bool doesDamage;
     public int damage;
 
     private Animator animator;
-    private Camera camera;
+    private Camera toolCamera;
 
     //int playerLayerMaskException = (1 << LayerMask.NameToLayer("Player"));
 
     private void Start()
     {
         animator = GetComponent<Animator>();
-        camera = Camera.main;
+        toolCamera = Camera.main;
     }
 
 
@@ -53,23 +54,36 @@ public class EquipTool : Equip
 
     public void OnHit()
     {
-        Ray ray = camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
+        Ray ray = toolCamera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
         RaycastHit hit;
 
         isAttacking = true;
 
         if (Physics.Raycast(ray, out hit, attackDistance + CameraManager.instance.addDistance, ~(1 << LayerMask.NameToLayer("Player")) ) ) 
         {
-            if (doesGatherResources && hit.collider.TryGetComponent(out Resource resource)) // Hit Resources
+            if (doesGatherWood && hit.collider.TryGetComponent(out Resource woodResource) && hit.collider.gameObject.layer == LayerMask.NameToLayer("Woods")) // Hit Resources
             {
-                resource.Gather(hit.point, hit.normal);
+                woodResource.Gather(hit.point, hit.normal);
 
                 if (gameObject.name == "Equip_Axe(Clone)")
                 {
                     AudioManager.instance.PlaySFX("Axe");
                     isAttacking = false;
+                    //return;
                 }
 
+            }
+
+            if (doesGatherBush && hit.collider.TryGetComponent(out Resource bushResource))
+            {
+                bushResource.Gather(hit.point, hit.normal);
+
+                if (gameObject.name == "Equip_Sickle(Clone)")
+                {
+                    AudioManager.instance.PlaySFX("Axe");
+                    isAttacking = false;
+                    //return;
+                }
             }
 
             if (doesDamage)
@@ -80,8 +94,9 @@ public class EquipTool : Equip
                     //if (gameObject.name == "Equip_Sword")
                     //{
                         AudioManager.instance.PlaySFX("SwordAttack2", 0.8f);
-                    //}
+                    //} 
                     isAttacking = false;
+                    //return;
                 }
             }
             
@@ -93,6 +108,7 @@ public class EquipTool : Equip
                 AudioManager.instance.PlaySFX("SwordAttack", 0.8f);
             //}
                 isAttacking = false;
+            return;
         }
     }
 

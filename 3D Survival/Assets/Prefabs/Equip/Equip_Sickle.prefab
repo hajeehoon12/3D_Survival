@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 1799810224937880485}
   - component: {fileID: 2259010312294518967}
   - component: {fileID: 4710722050906777554}
-  - component: {fileID: 3257696913230297437}
   - component: {fileID: -6928814319182085253}
+  - component: {fileID: -1481655676971468682}
   m_Layer: 8
   m_Name: Equip_Sickle
   m_TagString: Untagged
@@ -92,25 +92,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &3257696913230297437
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2198950001879247591}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d66fb22a93201e34d9887e3a2477a791, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackRate: 1
-  attackDistance: 3
-  useStamina: 10
-  isAttacking: 0
-  doesGatherResources: 1
-  doesDamage: 0
-  damage: 0
 --- !u!95 &-6928814319182085253
 Animator:
   serializedVersion: 5
@@ -132,6 +113,25 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-1481655676971468682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2198950001879247591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdf7eb8e0cd83494da67b3cce6b1f948, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackRate: 0.8
+  attackDistance: 2
+  useStamina: 15
+  isAttacking: 0
+  doesGatherBush: 1
+  doesDamage: 1
+  damage: 5
 --- !u!1 &3500449000953991736
 GameObject:
   m_ObjectHideFlags: 0
