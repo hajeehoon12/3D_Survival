@@ -250,7 +250,8 @@ public class PlayerController : MonoBehaviour
     {
         uiInventory.Toggle();
     }
-    public void OnCraft(InputAction.CallbackContext context) // 인벤 실행
+
+    public void OnCraft(InputAction.CallbackContext context) 
     {
         if (context.phase == InputActionPhase.Started)
         {

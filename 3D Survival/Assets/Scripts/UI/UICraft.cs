@@ -10,6 +10,7 @@ public class UICraft : MonoBehaviour
 
     public GameObject craftWindow;
     public Transform slotPanel;
+    public Transform dropPosition;
 
     [Header("Select Item")]
     public TextMeshProUGUI selectedItemName;
@@ -76,14 +77,14 @@ public class UICraft : MonoBehaviour
         {
             craftWindow.SetActive(false);
             AudioManager.instance.PlaySFX("InventoryOff");
-            Cursor.lockState = CursorLockMode.Locked;
+            UnityEngine.Cursor.lockState = CursorLockMode.Locked;
             controller.canLook = true;
         }
         else
         {
             AudioManager.instance.PlaySFX("Inventory");
             craftWindow.SetActive(true);
-            Cursor.lockState = CursorLockMode.None;
+            UnityEngine.Cursor.lockState = CursorLockMode.None;
 
             controller.canLook = false;
         }
@@ -134,9 +135,13 @@ public class UICraft : MonoBehaviour
 
     public void OnCraftButton()
     {
-        //Instantiate(selectedItem.dropPrefab,Transform parent);
+        //제작 시, 재료 아이템이 사라지고 인벤에 제작한 아이템이 들어오도록 해야함
+        Craft(selectedItem);
     }
 
-
+    void Craft(ItemData data)
+    {
+        Instantiate(data.dropPrefab,dropPosition.position, Quaternion.identity);
+    }
 
 }
