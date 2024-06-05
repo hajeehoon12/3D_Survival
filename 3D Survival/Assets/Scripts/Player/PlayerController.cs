@@ -120,6 +120,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.CompareTag("Jumper"))
         {
+            GetComponent<Rigidbody>().velocity = Vector3.zero;
             GetComponent<Rigidbody>().AddForce(transform.up * GetComponent<Rigidbody>().mass * 20 , ForceMode.Impulse);
             AudioManager.instance.PlaySFX("Jumper");
             Debug.Log("Meet Jumper");

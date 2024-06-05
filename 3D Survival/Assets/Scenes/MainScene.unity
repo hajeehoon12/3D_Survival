@@ -3041,10 +3041,10 @@ MonoBehaviour:
   jumPower: 8
   groundLayerMask:
     serializedVersion: 2
-    m_Bits: 132151
+    m_Bits: 656439
   wallLayerMask:
     serializedVersion: 2
-    m_Bits: 1536
+    m_Bits: 525824
   isRunning: 0
   SpeedBuff: 0
   cameraContainer: {fileID: 1590912389}
@@ -3056,7 +3056,7 @@ MonoBehaviour:
   spawnConstructPrefab: {fileID: 0}
   virtualSpawn: {fileID: 0}
   virtualConstructGreen: {fileID: 0}
-  virtualConstructRed: {fileID: 0}
+  heightOfConstruct: 0
   interUI: {fileID: 928964442}
   canConstruct: 0
   canLook: 1
@@ -24516,6 +24516,63 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4125960340823375600}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1700435078569252242
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2748522593759990351, guid: 93112b5ec0c7105418bbb7551ec68294, type: 3}
+      propertyPath: m_Name
+      value: Item_Sickle
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949875010973808473, guid: 93112b5ec0c7105418bbb7551ec68294, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -6.73
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949875010973808473, guid: 93112b5ec0c7105418bbb7551ec68294, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.37
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949875010973808473, guid: 93112b5ec0c7105418bbb7551ec68294, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -39.273
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949875010973808473, guid: 93112b5ec0c7105418bbb7551ec68294, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949875010973808473, guid: 93112b5ec0c7105418bbb7551ec68294, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949875010973808473, guid: 93112b5ec0c7105418bbb7551ec68294, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949875010973808473, guid: 93112b5ec0c7105418bbb7551ec68294, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949875010973808473, guid: 93112b5ec0c7105418bbb7551ec68294, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949875010973808473, guid: 93112b5ec0c7105418bbb7551ec68294, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949875010973808473, guid: 93112b5ec0c7105418bbb7551ec68294, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -90
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 93112b5ec0c7105418bbb7551ec68294, type: 3}
 --- !u!4 &1701791932949299398
 Transform:
   m_ObjectHideFlags: 0
@@ -124676,6 +124733,8 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: c294ed4da520c484e95dd37a2a477e86, type: 3}
   - name: CancelConstruct
     clip: {fileID: 8300000, guid: efa7dc6bb0fd7804db6bc978d10a707b, type: 3}
+  - name: Hammer
+    clip: {fileID: 8300000, guid: 3e7d186bf4d1147409694a5edaab6ea2, type: 3}
   bgm:
   - name: Earth
     clip: {fileID: 8300000, guid: c8480ad98530e15469ad83f66f537fbd, type: 3}
@@ -161442,3 +161501,4 @@ SceneRoots:
   - {fileID: 412075033205673135}
   - {fileID: 8563601855635186102}
   - {fileID: 1061121091}
+  - {fileID: 1700435078569252242}
