@@ -23,4 +23,4 @@ MonoBehaviour:
   equipPrefab: {fileID: 0}
   constructObject: {fileID: 6551539925880267203, guid: 2d9fc68281e1f844284548911d1c52eb, type: 3}
   virtualObjectGreen: {fileID: 5260897580060828325, guid: d7ce4dde44fa8fe49a344e3c5699527a, type: 3}
-  heightOfBuilding: 2.8
+  heightOfBuilding: 3
