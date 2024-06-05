@@ -1,40 +1,54 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class PatrollPattern : MonoBehaviour, IMonsterPattern
-{   
+{
+    private Vector3 centerPoint;
+    private float patrolRadius = 10f;
+    private NavMeshAgent agent;
+    private bool inBattle = false;
 
-    //Since this script will be added with add component, the A and B coordinates should be reserved by specifying random values. ( scheduled )
-
-    public Vector3 pointA;
-    public Vector3 pointB;
-    private bool movingToB = true;
-
-    public PatrollPattern(Vector3 pointA, Vector3 pointB)
+    private void Awake()
     {
-        this.pointA = pointA;
-        this.pointB = pointB;
-    } 
-
-    public void ApplyOnStart(NPC npc)
-    {
-
+        agent = GetComponent<NavMeshAgent>();
     }
 
+    public void ApplyOnStart(NPC npc)
+    {   
+        npc.SetState(AIState.Patrolling);
+        centerPoint = npc.transform.position;
+        MoveToNewPatrolPoint(npc);
+    }
 
     public void ApplyOnUpdate(NPC npc)
     {
-        Vector3 target = movingToB ? pointB : pointA;
-        //npc.MoveTo(target);
-
-        if (Vector3.Distance(npc.transform.position, target) < 0.1f)
+        if (!inBattle)
         {
-            movingToB = !movingToB;
+            if (agent.remainingDistance < 0.1f)
+            {
+                MoveToNewPatrolPoint(npc);
+            }
+
+            float playerDistance = Vector3.Distance(npc.transform.position, CharacterManager.Instance.Player.transform.position);
+            if (npc.IsPlayerInFieldOfView() && playerDistance < npc.detectDistance)
+            {   
+                inBattle = true;
+                npc.SetState(AIState.Attacking);
+            }
         }
     }
 
     public void ApplyOnTakeDamage(NPC npc)
     {
-
+        
     }
 
+    private void MoveToNewPatrolPoint(NPC npc)
+    {
+        Vector3 randomDirection = Random.insideUnitSphere * patrolRadius;
+        randomDirection += centerPoint;
+        NavMeshHit hit;
+        NavMesh.SamplePosition(randomDirection, out hit, patrolRadius, NavMesh.AllAreas);
+        agent.SetDestination(hit.position);
+    }
 }
