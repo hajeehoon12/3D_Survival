@@ -101,6 +101,8 @@ public class NPC : MonoBehaviour , IDamagable
 
         animator.SetBool("Moving", aiState != AIState.Idle); // AIState�� ���� Animator Bool�� ����
 
+        currentPattern?.ApplyOnUpdate(this);
+
         switch (aiState)
         {
             case AIState.Idle:
@@ -126,7 +128,7 @@ public class NPC : MonoBehaviour , IDamagable
                 break;
         }
 
-        currentPattern?.ApplyOnUpdate(this);
+        
 
     }
 
