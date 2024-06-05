@@ -3041,10 +3041,10 @@ MonoBehaviour:
   jumPower: 8
   groundLayerMask:
     serializedVersion: 2
-    m_Bits: 132151
+    m_Bits: 656439
   wallLayerMask:
     serializedVersion: 2
-    m_Bits: 1536
+    m_Bits: 525824
   isRunning: 0
   SpeedBuff: 0
   cameraContainer: {fileID: 1590912389}
@@ -3056,7 +3056,7 @@ MonoBehaviour:
   spawnConstructPrefab: {fileID: 0}
   virtualSpawn: {fileID: 0}
   virtualConstructGreen: {fileID: 0}
-  virtualConstructRed: {fileID: 0}
+  heightOfConstruct: 0
   interUI: {fileID: 928964442}
   canConstruct: 0
   canLook: 1
