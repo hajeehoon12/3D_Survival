@@ -11,6 +11,9 @@ public class Resource : MonoBehaviour
     public int maxCapacity;
     public Material[] _materials;
     public float tempY;
+
+    [Header("Regeneration")]
+    public float reGroathTime;
     
 
     private void Start()
@@ -44,7 +47,7 @@ public class Resource : MonoBehaviour
     private void ReGroath()
     { 
         gameObject.SetActive(false);
-        Invoke("ResourceInit", 5f);
+        Invoke("ResourceInit", reGroathTime);
 
     }
 
