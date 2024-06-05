@@ -3,6 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
+
+public enum ResourceType
+{ 
+    Wood,
+    Bush,
+    Rock,
+    Ores
+}
+
 public class Resource : MonoBehaviour
 {
     public ItemData itemToGive;
@@ -14,6 +23,7 @@ public class Resource : MonoBehaviour
 
     [Header("Regeneration")]
     public float reGroathTime;
+    public ResourceType resourceType;
     
 
     private void Start()
@@ -37,14 +47,14 @@ public class Resource : MonoBehaviour
             GameObject resources = Instantiate(itemToGive.dropPrefab, hitPoint - Vector3.forward * 1, Quaternion.LookRotation(hitNormal, Vector3.up));
             resources.GetComponent<Rigidbody>().AddForce((resources.transform.up + resources.transform.forward)*2 , ForceMode.Impulse);
 
-            if (capacity == 0)
+            if (capacity == 0 && (resourceType == ResourceType.Wood || resourceType == ResourceType.Bush))
             {
-                ReGroath();
+                PlantReGroath();
             }
         }
     }
 
-    private void ReGroath()
+    private void PlantReGroath() // wood && bush regroath
     { 
         gameObject.SetActive(false);
         Invoke("ResourceInit", reGroathTime);
