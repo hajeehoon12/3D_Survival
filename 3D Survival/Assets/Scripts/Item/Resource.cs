@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using System;
 
 
 public enum ResourceType
@@ -20,6 +21,7 @@ public class Resource : MonoBehaviour
     public int maxCapacity;
     public Material[] _materials;
     public float tempY;
+    public Vector3 maxScale;
 
     [Header("Regeneration")]
     public float reGroathTime;
@@ -29,6 +31,7 @@ public class Resource : MonoBehaviour
     private void Start()
     {
         capacity = maxCapacity;
+        maxScale = transform.localScale;
 
 
         if (resourceType == ResourceType.Wood || resourceType == ResourceType.Bush)
@@ -48,7 +51,13 @@ public class Resource : MonoBehaviour
             if (capacity <= 0) break;
             capacity -= 1;
             GameObject resources = Instantiate(itemToGive.dropPrefab, hitPoint - Vector3.forward * 1, Quaternion.LookRotation(hitNormal, Vector3.up));
-            resources.GetComponent<Rigidbody>().AddForce((resources.transform.up + resources.transform.forward)*2 , ForceMode.Impulse);
+            resources.GetComponent<Rigidbody>().AddForce((resources.transform.up + resources.transform.forward) , ForceMode.Impulse);
+
+            if (resourceType == ResourceType.Rock)
+            {
+                transform.localScale -= maxScale * (1/ (float)maxCapacity);
+            }
+
 
             if (capacity == 0)
             {
@@ -57,11 +66,29 @@ public class Resource : MonoBehaviour
                     PlantReGroath();
                     return;
                 }
-                gameObject.SetActive(false);
+                if (resourceType == ResourceType.Rock)
+                {
+                    RockReGroath();
+                }
+                
             }
             
         }
     }
+
+    private void RockReGroath()
+    {
+        gameObject.SetActive(false);
+        Invoke("RockInit", reGroathTime);
+    }
+
+    private void RockInit()
+    {
+        gameObject.SetActive(true);
+        gameObject.transform.DOScale(maxScale, 5f);
+    }
+
+
 
     private void PlantReGroath() // wood && bush regroath
     { 
