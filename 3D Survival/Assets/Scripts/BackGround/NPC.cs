@@ -10,7 +10,8 @@ public enum AIState
     Wandering,
     Attacking,
     Staying,
-    Fleeing
+    Fleeing,
+    Patrolling
 }
 
 public enum MonsterPattern
@@ -87,7 +88,6 @@ public class NPC : MonoBehaviour , IDamagable
         maxHealth = health;
         SetState(AIState.Wandering);
         currentPattern?.ApplyOnStart(this);
-
     }
 
     
@@ -121,14 +121,15 @@ public class NPC : MonoBehaviour , IDamagable
                 FleeingUpdate();
 
                 break;
+            case AIState.Patrolling:
+
+                break;
             case AIState.Staying:
             default:
                 agent.speed = 0;
                 agent.isStopped = false;
                 break;
         }
-
-        
 
     }
 
@@ -191,6 +192,12 @@ public class NPC : MonoBehaviour , IDamagable
                 agent.isStopped = false;
 
                 break;
+            case AIState.Patrolling:
+
+                agent.speed = walkSpeed;
+                agent.isStopped = false;
+
+            break;
         }
 
         animator.speed = agent.speed / walkSpeed;
