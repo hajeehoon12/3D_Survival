@@ -20,7 +20,7 @@ MonoBehaviour:
   canStack: 0
   maxStackAmount: 0
   consumables: []
-  equipPrefab: {fileID: 0}
+  equipPrefab: {fileID: 3424598787754243289, guid: 7e2af97fd0ba4434d968d27060cea4e9, type: 3}
   constructObject: {fileID: 0}
   virtualObjectGreen: {fileID: 0}
   heightOfBuilding: 0

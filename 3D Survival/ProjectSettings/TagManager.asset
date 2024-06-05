@@ -7,6 +7,7 @@ TagManager:
   - Jumper
   - Trees
   - Bushes
+  - Rocks
   layers:
   - Default
   - TransparentFX
