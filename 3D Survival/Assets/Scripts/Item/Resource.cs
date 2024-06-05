@@ -3,6 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
+
+public enum ResourceType
+{ 
+    Wood,
+    Bush,
+    Rock,
+    Ores
+}
+
 public class Resource : MonoBehaviour
 {
     public ItemData itemToGive;
@@ -11,14 +20,21 @@ public class Resource : MonoBehaviour
     public int maxCapacity;
     public Material[] _materials;
     public float tempY;
+
+    [Header("Regeneration")]
+    public float reGroathTime;
+    public ResourceType resourceType;
     
 
     private void Start()
     {
         capacity = maxCapacity;
 
-        
-        _materials = GetComponent<MeshRenderer>().materials;
+
+        if (resourceType == ResourceType.Wood || resourceType == ResourceType.Bush)
+        {
+            _materials = GetComponent<MeshRenderer>().materials;
+        }
         
     }
 
@@ -36,15 +52,21 @@ public class Resource : MonoBehaviour
 
             if (capacity == 0)
             {
-                ReGroath();
+                if ((resourceType == ResourceType.Wood || resourceType == ResourceType.Bush))
+                {
+                    PlantReGroath();
+                    return;
+                }
+                gameObject.SetActive(false);
             }
+            
         }
     }
 
-    private void ReGroath()
+    private void PlantReGroath() // wood && bush regroath
     { 
         gameObject.SetActive(false);
-        Invoke("ResourceInit", 5f);
+        Invoke("ResourceInit", reGroathTime);
 
     }
 

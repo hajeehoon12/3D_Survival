@@ -313,6 +313,7 @@ public class UIInventory : MonoBehaviour
     public void OnConstructButton()
     {
         Debug.Log("OnConstructMode");
+        AudioManager.instance.PlaySFX("Hammer");
         tempedItem = selectedItem;
         CharacterManager.Instance.Player.controller.constructMode = true;
         ConstructSync();

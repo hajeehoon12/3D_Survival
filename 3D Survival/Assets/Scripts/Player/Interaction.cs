@@ -19,11 +19,11 @@ public class Interaction : MonoBehaviour
     public Text promptDes;
     public GameObject promptObj;
 
-    public Camera camera;
+    public Camera interactionCamera;
 
     private void Start()
     {
-        camera = Camera.main;
+        interactionCamera = Camera.main;
     }
 
     private void Update() // 계속 체크하면서 시점의 가운데에 물체가 오는지 검사
@@ -33,7 +33,7 @@ public class Interaction : MonoBehaviour
         {
             lastCheckTime = Time.time;
 
-            Ray ray = camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2)); // 화면 중앙 기준 Ray발사
+            Ray ray = interactionCamera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2)); // 화면 중앙 기준 Ray발사
             RaycastHit hit;
 
             if (Physics.Raycast(ray, out hit, maxCheckDistance + CameraManager.instance.addDistance, layerMask)) // 충돌 됬을 때 hit에 정보넘김
