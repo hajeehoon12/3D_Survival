@@ -4,27 +4,14 @@ using UnityEngine;
 using UnityEngine.AI;
 using DG.Tweening;
 
-public enum AIState
-{ 
-    Idle,
-    Wandering,
-    Attacking,
-    Staying,
-    Fleeing
-}
+//public enum AIState
+//public enum MonsterPattern
 
-public enum MonsterPattern
-{
-    None,
-    Coward
-}
-
-public class NPC : MonoBehaviour , IDamagable
+public class NPC_2 : MonoBehaviour , IDamagable
 {
 
     [Header("Stats")]
     public int health;
-    public int maxHealth;
     public float walkSpeed;
     public float runSpeed;
     public ItemData[] dropOnDeath;
@@ -48,15 +35,10 @@ public class NPC : MonoBehaviour , IDamagable
     public float attackDistance;
     public float attackSpeed;
 
-    [Header("Sound")]
-    public string hitSound;
-
-    public string dieSound;
-
-
-
     private float playerDistance;
+
     private bool takingDmg = false;
+
     private bool isDie = false;
 
     public float fieldOfView = 120f;
@@ -82,8 +64,7 @@ public class NPC : MonoBehaviour , IDamagable
 
 
     void Start()
-    {   
-        maxHealth = health;
+    {
         SetState(AIState.Wandering);
     }
 
@@ -110,10 +91,6 @@ public class NPC : MonoBehaviour , IDamagable
             case AIState.Attacking:
                 if (takingDmg) return;
                 AttackingUpdate();
-
-                break;
-            case AIState.Fleeing:
-                FleeingUpdate();
 
                 break;
             case AIState.Staying:
@@ -151,33 +128,10 @@ public class NPC : MonoBehaviour , IDamagable
                 
 
                 break;
-            case AIState.Fleeing:
-
-                agent.speed = runSpeed;
-                agent.isStopped = false;
-
-                break;
         }
 
         animator.speed = agent.speed / walkSpeed;
 
-    }
-
-    void FleeingUpdate() //Fleeing pattern
-    {
-        Vector3 directionAwayFromPlayer = transform.position - CharacterManager.Instance.Player.transform.position;
-        Vector3 fleeDestination = transform.position + directionAwayFromPlayer.normalized * detectDistance;
-
-        NavMeshHit hit;
-        if (NavMesh.SamplePosition(fleeDestination, out hit, maxWanderDistance, NavMesh.AllAreas))
-        {
-            agent.SetDestination(hit.position);
-        }
-
-        if (playerDistance > detectDistance * 1.5f)
-        {
-            SetState(AIState.Wandering);
-        }
     }
 
     void PassiveUpdate()
@@ -239,7 +193,7 @@ public class NPC : MonoBehaviour , IDamagable
         //isAttacking = true;
 
         yield return new WaitForSeconds(attackSpeed);
-        AudioManager.instance.PlaySFX(hitSound);
+        AudioManager.instance.PlaySFX("BearHit");
         if (playerDistance < attackDistance && IsPlayerInFieldOfView())
             CharacterManager.Instance.Player.controller.GetComponent<IDamagable>().TakePhysicalDamage(damage);
         attackCoroutine = null;
@@ -299,6 +253,8 @@ public class NPC : MonoBehaviour , IDamagable
         Vector3 directionToPlayer = CharacterManager.Instance.Player.transform.position - transform.position;
         float angle = Vector3.Angle(transform.forward, directionToPlayer); // NPC�� ����� �÷��̾��� ����
         return angle < fieldOfView * 0.5f; // �Ѱ����� �����̱⿡ �������� ����
+
+        
     }
 
     public void TakePhysicalDamage(int damage) // get damaged
@@ -313,11 +269,8 @@ public class NPC : MonoBehaviour , IDamagable
         health -= damage;
         if (health <= 0)
         {
+            //�״´�
             Die();
-        }
-        else if (pattern == MonsterPattern.Coward && health <= maxHealth * 0.3f)
-        {
-            SetState(AIState.Fleeing);
         }
 
         // ������ ȿ��
@@ -333,7 +286,7 @@ public class NPC : MonoBehaviour , IDamagable
 
     void Die() // when DIed
     {
-        AudioManager.instance.PlaySFX(dieSound);
+        AudioManager.instance.PlaySFX("BearDie");
         for (int i = 0; i < dropOnDeath.Length; i++)
         {
             GameObject DropItems = Instantiate(dropOnDeath[i].dropPrefab, transform.position + Vector3.up * 2, Quaternion.identity );
