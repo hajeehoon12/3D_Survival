@@ -30,8 +30,11 @@ public class Resource : MonoBehaviour
     {
         capacity = maxCapacity;
 
-        
-        _materials = GetComponent<MeshRenderer>().materials;
+
+        if (resourceType == ResourceType.Wood || resourceType == ResourceType.Bush)
+        {
+            _materials = GetComponent<MeshRenderer>().materials;
+        }
         
     }
 
@@ -47,10 +50,16 @@ public class Resource : MonoBehaviour
             GameObject resources = Instantiate(itemToGive.dropPrefab, hitPoint - Vector3.forward * 1, Quaternion.LookRotation(hitNormal, Vector3.up));
             resources.GetComponent<Rigidbody>().AddForce((resources.transform.up + resources.transform.forward)*2 , ForceMode.Impulse);
 
-            if (capacity == 0 && (resourceType == ResourceType.Wood || resourceType == ResourceType.Bush))
+            if (capacity == 0)
             {
-                PlantReGroath();
+                if ((resourceType == ResourceType.Wood || resourceType == ResourceType.Bush))
+                {
+                    PlantReGroath();
+                    return;
+                }
+                gameObject.SetActive(false);
             }
+            
         }
     }
 
