@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
     public GameObject spawnConstructPrefab;
     public GameObject virtualSpawn;
     public GameObject virtualConstructGreen;
-    public GameObject virtualConstructRed;
+    public float heightOfConstruct;
     public InteractableUI interUI;
 
 
@@ -145,7 +145,7 @@ public class PlayerController : MonoBehaviour
         if (Physics.Raycast(ray, out hit, 10f + CameraManager.instance.addDistance, (1 << LayerMask.NameToLayer("Ground"))))
         {
             //Debug.Log(hit.point);
-            virtualSpawn.transform.position=(hit.point)+ new Vector3(0, 3, 0);
+            virtualSpawn.transform.position=(hit.point)+ new Vector3(0, heightOfConstruct, 0);
             virtualSpawn.transform.LookAt(transform.position);
             virtualSpawn.transform.localEulerAngles = new Vector3(0, virtualSpawn.transform.localEulerAngles.y, virtualSpawn.transform.localEulerAngles.z);
         }

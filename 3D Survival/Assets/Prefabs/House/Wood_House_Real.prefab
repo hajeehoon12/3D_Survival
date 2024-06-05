@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3555561245304157231}
   - component: {fileID: 4589827889423869952}
   - component: {fileID: 5742946289198911597}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Wall_Narrow_02_b
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 1361825137318256111}
   - component: {fileID: 8688244563222170602}
   - component: {fileID: 4842425765939060543}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Wall_Narrow_01_b
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -224,7 +224,7 @@ GameObject:
   - component: {fileID: 5468781213955368873}
   - component: {fileID: 4252554147241204441}
   - component: {fileID: 2699829695267495205}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Floor_01_b
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -330,7 +330,7 @@ GameObject:
   - component: {fileID: 2390866660334512755}
   - component: {fileID: 8240910504852558589}
   - component: {fileID: 8286153179085028340}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Roof_01_b
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -436,7 +436,7 @@ GameObject:
   - component: {fileID: 9140629129944767906}
   - component: {fileID: 6244583444190786501}
   - component: {fileID: 575443977563169135}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Wall_Wide_02_b
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -542,7 +542,7 @@ GameObject:
   - component: {fileID: 5674615676510504363}
   - component: {fileID: 8072843125808531339}
   - component: {fileID: 6164982789704373480}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Wall_Wide_01_b
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -647,7 +647,7 @@ GameObject:
   - component: {fileID: 641083348771880170}
   - component: {fileID: 4462293292378243484}
   - component: {fileID: 5422003392554579642}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Wood_House_Real
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -324,7 +324,7 @@ public class UIInventory : MonoBehaviour
     {
         CharacterManager.Instance.Player.controller.constructPrefab = tempedItem.constructObject;
         CharacterManager.Instance.Player.controller.virtualConstructGreen = tempedItem.virtualObjectGreen;
-        CharacterManager.Instance.Player.controller.virtualConstructRed = tempedItem.virtualObjectRed;
+        CharacterManager.Instance.Player.controller.heightOfConstruct = tempedItem.heightOfBuilding;
     }
 
     public void ConstructCancel()
