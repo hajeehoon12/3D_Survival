@@ -104,8 +104,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d66fb22a93201e34d9887e3a2477a791, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRate: 0.8
-  attackDistance: 4
+  attackRate: 1
+  attackDistance: 3
   useStamina: 10
   isAttacking: 0
   doesGatherResources: 1
