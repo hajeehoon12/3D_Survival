@@ -546,12 +546,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  maxHealth: 0
   walkSpeed: 2.5
   runSpeed: 15
   dropOnDeath:
   - {fileID: 11400000, guid: 9f1f4eb3787566d43b2edbd658d33def, type: 2}
   - {fileID: 11400000, guid: 8a71728f4cd93de44acd7b28938bc8fe, type: 2}
   detectDistance: 30
+  pattern: 0
   minWanderDistance: 2
   maxWanderDistance: 5
   minWanderWaitTime: 1
@@ -560,6 +562,8 @@ MonoBehaviour:
   attackRate: 1.5
   attackDistance: 3
   attackSpeed: 0.4
+  hitSound: BearHit
+  dieSound: BearDie
   fieldOfView: 160
   _body: {fileID: 777941482670298824}
 --- !u!65 &8088414317234498603
