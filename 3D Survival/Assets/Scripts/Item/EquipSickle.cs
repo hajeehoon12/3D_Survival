@@ -60,6 +60,7 @@ public class EquipSickle : Equip
         {
             if (doesGatherBush && hit.collider.TryGetComponent(out Resource bushResource) && hit.collider.CompareTag("Bushes")) // Hit Resources
             {
+                Debug.Log("Bush");
                 bushResource.Gather(hit.point, hit.normal);
 
                 if (gameObject.name == "Equip_Sickle(Clone)")
