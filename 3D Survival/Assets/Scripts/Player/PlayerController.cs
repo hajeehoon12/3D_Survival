@@ -26,6 +26,19 @@ public class PlayerController : MonoBehaviour
     public float lookSensitivity;
     private Vector2 mouseDelta;
 
+    [Header("Contruct Mode")]
+    public GameObject constructPrefab;
+    public bool constructMode = false;
+    public GameObject spawnConstructPrefab;
+    public GameObject virtualSpawn;
+    public GameObject virtualConstructGreen;
+    public float heightOfConstruct;
+    public InteractableUI interUI;
+
+
+    public bool canConstruct = false;
+
+
     public bool canLook = true;
 
     public Action inventory;
@@ -53,12 +66,20 @@ public class PlayerController : MonoBehaviour
         uiInven.SetActive(true);
         CharacterManager.Instance.Player.addItem += uiInventory.AddItem;
         Cursor.lockState = CursorLockMode.Locked;
+        constructMode = false;
 
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+
+        if (constructMode)
+        {
+            DoConstructMode();
+            //return; // if Memory Leak go return
+        }
+
         Move();
 
         if (isJumping)
@@ -105,6 +126,71 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(JumpBoolChange());
         }
     }
+
+
+    private void DoConstructMode()
+    {
+
+        if (virtualSpawn == null)
+        {
+            virtualSpawn= Instantiate(virtualConstructGreen);
+        }
+
+
+        Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
+        RaycastHit hit;
+
+        
+
+        if (Physics.Raycast(ray, out hit, 10f + CameraManager.instance.addDistance, (1 << LayerMask.NameToLayer("Ground"))))
+        {
+            //Debug.Log(hit.point);
+            virtualSpawn.transform.position=(hit.point)+ new Vector3(0, heightOfConstruct, 0);
+            virtualSpawn.transform.LookAt(transform.position);
+            virtualSpawn.transform.localEulerAngles = new Vector3(0, virtualSpawn.transform.localEulerAngles.y, virtualSpawn.transform.localEulerAngles.z);
+        }
+
+
+        if (Input.GetMouseButtonDown(0)) // left mouse button = do construct target object
+        {
+            // Do construct
+
+            if (!canConstruct)
+            {
+                interUI.CantBuildMessage(hit);
+                AudioManager.instance.PlaySFX("CantBuild");
+                return;
+            }
+
+            AudioManager.instance.PlaySFX("Construct");
+
+            virtualSpawn.SetActive(false);
+            spawnConstructPrefab = Instantiate(constructPrefab);
+            spawnConstructPrefab.transform.position = virtualSpawn.transform.position;
+            spawnConstructPrefab.transform.localEulerAngles = virtualSpawn.transform.localEulerAngles;
+            constructPrefab = null;
+            Destroy(virtualSpawn);
+            virtualSpawn = null;
+            //uiInventory.ConstructCancel();
+            constructMode = false;
+            
+            
+        }
+        if (Input.GetKeyDown(KeyCode.Escape)) // Esc button = cancel construct
+        {
+            // cancel constructmode
+            Destroy(virtualSpawn);
+            constructPrefab = null;
+            virtualSpawn = null;
+            uiInventory.ConstructCancel();
+            constructMode = false;
+            AudioManager.instance.PlaySFX("CancelConstruct");
+            
+        }
+    }
+
+
+
 
     private void Climb() // Climbing
     {

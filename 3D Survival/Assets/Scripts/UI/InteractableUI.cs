@@ -142,6 +142,28 @@ public class InteractableUI : MonoBehaviour
 
     }
 
+    public void CantBuildMessage(RaycastHit hit)
+    {
+        InterfaceUI.SetActive(true);
+        
+        InterfaceUI.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) +  3* transform.forward *0.8f  + (0.5f * transform.up); //(hit.distance)
+        InterfaceUI.transform.rotation = transform.rotation;
+
+        InteractMethod.text = "There is Something in the Way!!";
+        LayerName.text = "You can't build there!!";
+
+
+        StartCoroutine(OffMessage());
+
+    }
+
+    IEnumerator OffMessage()
+    {
+        yield return new WaitForSeconds(3f);
+        InterfaceUI.SetActive(false);
+    }
+
+
     private void ShowDataBase(LayerNum layerName)
     {
         switch (layerName)

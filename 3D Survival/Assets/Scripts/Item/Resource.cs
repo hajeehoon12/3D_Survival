@@ -11,6 +11,7 @@ public class Resource : MonoBehaviour
     public int maxCapacity;
     public Material[] _materials;
     public float tempY;
+    
 
     private void Start()
     {
