@@ -738,11 +738,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemToGive: {fileID: 11400000, guid: e1ba4fb8c68badb4a9bd7ebdee704250, type: 2}
   quantityPerHit: 1
-  capacity: 1
-  maxCapacity: 1
+  capacity: 5
+  maxCapacity: 5
   _materials: []
   tempY: 0
   maxScale: {x: 0, y: 0, z: 0}
+  isConstruct: 0
   noneResource: 1
   reGroathTime: 0
   resourceType: 0
