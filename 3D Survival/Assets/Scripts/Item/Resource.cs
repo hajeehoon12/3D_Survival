@@ -24,6 +24,7 @@ public class Resource : MonoBehaviour
     public Vector3 maxScale;
 
     [Header("Regeneration")]
+    public bool noneResource; // if none resource object
     public float reGroathTime;
     public ResourceType resourceType;
     
@@ -36,7 +37,8 @@ public class Resource : MonoBehaviour
 
         if (resourceType == ResourceType.Wood || resourceType == ResourceType.Bush)
         {
-            _materials = GetComponent<MeshRenderer>().materials;
+            if (!noneResource) 
+            _materials = GetComponent<MeshRenderer>()?.materials;
         }
         
     }
@@ -63,6 +65,11 @@ public class Resource : MonoBehaviour
             {
                 if ((resourceType == ResourceType.Wood || resourceType == ResourceType.Bush))
                 {
+                    if (noneResource)
+                    {
+                        Destroy(gameObject);
+                        return;
+                    }
                     PlantReGroath();
                     return;
                 }

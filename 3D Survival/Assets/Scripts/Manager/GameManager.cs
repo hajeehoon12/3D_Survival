@@ -27,6 +27,9 @@ public class GameManager : MonoBehaviour
         //Debug.Log(CanConsumeItem("Carrot", 1));
     //}
 
+    
+    //("carrot" , 3) , ("Wood" , 4)
+        //(carrot wood) (3,4)
 
     public bool CanConsumeItem(string Item_Name, int Item_Amount) // if having target item? return true else false
     {
@@ -46,6 +49,7 @@ public class GameManager : MonoBehaviour
                 if (Item_Amount <= 0) return true;
             }
         }
+        if (Item_Amount <= 0) return true;
         Debug.Log("You don't have enough resource");
         return false;
     }
@@ -54,6 +58,7 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < inventory.slots.Length; i++)
         {
+            if (Item_Amount == 0) return;
             if (inventory.slots[i]?.item?.displayName == null) continue;
 
             if (inventory.slots[i].item.displayName == Item_Name)

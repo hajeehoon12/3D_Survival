@@ -314,7 +314,11 @@ public class UIInventory : MonoBehaviour
     {
         Debug.Log("OnConstructMode");
 
-        if (GameManager.instance.CanConsumeItem("Wood", 3)) GameManager.instance.ConsumeItem("Wood", 3);
+        if (GameManager.instance.CanConsumeItem("Wood", selectedItem.woodNeedAmount) && GameManager.instance.CanConsumeItem("Rock", selectedItem.rockNeedAmount))
+        {
+            GameManager.instance.ConsumeItem("Wood", selectedItem.woodNeedAmount);
+            GameManager.instance.ConsumeItem("Rock", selectedItem.rockNeedAmount);
+        }
         else return;
 
         AudioManager.instance.PlaySFX("Hammer");
