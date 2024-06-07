@@ -22,6 +22,7 @@ public class Resource : MonoBehaviour
     public Material[] _materials;
     public float tempY;
     public Vector3 maxScale;
+    public bool isConstruct;
 
     [Header("Regeneration")]
     public bool noneResource; // if none resource object
@@ -52,8 +53,12 @@ public class Resource : MonoBehaviour
         {
             if (capacity <= 0) break;
             capacity -= 1;
-            GameObject resources = Instantiate(itemToGive.dropPrefab, hitPoint - Vector3.forward * 1, Quaternion.LookRotation(hitNormal, Vector3.up));
-            resources.GetComponent<Rigidbody>().AddForce((resources.transform.up + resources.transform.forward) , ForceMode.Impulse);
+
+            if (!noneResource)
+            {
+                GameObject resources = Instantiate(itemToGive.dropPrefab, hitPoint - Vector3.forward * 1, Quaternion.LookRotation(hitNormal, Vector3.up));
+                resources.GetComponent<Rigidbody>().AddForce((resources.transform.up + resources.transform.forward), ForceMode.Impulse);
+            }
 
             if (resourceType == ResourceType.Rock)
             {
@@ -67,6 +72,8 @@ public class Resource : MonoBehaviour
                 {
                     if (noneResource)
                     {
+                        GameObject resources = Instantiate(itemToGive.dropPrefab, hitPoint - Vector3.forward * 1, Quaternion.LookRotation(hitNormal, Vector3.up));
+                        resources.GetComponent<Rigidbody>().AddForce((resources.transform.up + resources.transform.forward), ForceMode.Impulse);
                         Destroy(gameObject);
                         return;
                     }
