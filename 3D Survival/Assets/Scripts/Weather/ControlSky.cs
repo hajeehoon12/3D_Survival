@@ -67,7 +67,12 @@ public class ControlSky : MonoBehaviour
 #if UNITY_EDITOR
     void OnApplicationQuit() 
     {
-        RenderSettings.skybox.SetFloat("_Rotation", 0);
+        dayMat.SetFloat("_Rotation", 0);
+        nightMat.SetFloat("_Rotation", 0);
+        snowyMat.SetFloat("_Rotation", 0);
+        rainyMat.SetFloat("_Rotation", 0);
+        sunsetMat.SetFloat("_Rotation", 0);
+        sunriseMat.SetFloat("_Rotation", 0);
     }
 #endif
 
