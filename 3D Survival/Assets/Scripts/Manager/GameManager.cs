@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
 
             if (inventory.slots[i].item.displayName == Item_Name)
             {
-                if (inventory.slots[i].item.canStack)
+                if (!inventory.slots[i].item.canStack)
                 {
                     Item_Amount -= 1;
                     inventory.slots[i].item = null;
