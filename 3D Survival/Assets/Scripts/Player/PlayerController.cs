@@ -49,6 +49,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody _rigidbody;
 
     public UIInventory uiInventory;
+    public UICraft uiCraft;
     public GameObject uiInven;
     
 
@@ -336,6 +337,19 @@ public class PlayerController : MonoBehaviour
     public void InvenOn()
     {
         uiInventory.Toggle();
+    }
+
+    public void OnCraft(InputAction.CallbackContext context) 
+    {
+        if (context.phase == InputActionPhase.Started)
+        {
+            CraftOn();
+        }
+    }
+
+    public void CraftOn()
+    {
+        uiCraft.Toggle();
     }
 
 }

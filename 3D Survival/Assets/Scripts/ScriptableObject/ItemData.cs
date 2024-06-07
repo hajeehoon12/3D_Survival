@@ -21,12 +21,17 @@ public enum ConsumableType
     Speed
 }
 
+
+
 [System.Serializable]
 public class ItemDataConsumable
 {
     public ConsumableType type;
     public float value;
 }
+
+
+
 
 
 
