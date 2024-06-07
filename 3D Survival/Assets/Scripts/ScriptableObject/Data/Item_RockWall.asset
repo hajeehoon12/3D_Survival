@@ -15,7 +15,7 @@ MonoBehaviour:
   displayName: BluePrint_RW
   description: Need 1 Ores to Build
   type: 5
-  icon: {fileID: 21300000, guid: 9a8361442e708af4db04bbd57a96affb, type: 3}
+  icon: {fileID: 21300000, guid: 6394ba6acb80cf6458a7928cf070626d, type: 3}
   dropPrefab: {fileID: 1558428595357454635, guid: ef6acddce297db147a1ac02482c7c668, type: 3}
   canStack: 0
   maxStackAmount: 0
