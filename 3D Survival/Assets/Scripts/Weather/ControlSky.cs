@@ -64,6 +64,11 @@ public class ControlSky : MonoBehaviour
         RenderSettings.skybox.SetFloat("_Rotation", Time.time * 2.0f);
     }
 
+    void OnApplicationQuit()
+    {
+        RenderSettings.skybox.SetFloat("_Rotation", 0);
+    }
+
     public void IfDay()
     {
         RenderSettings.skybox = dayMat;
