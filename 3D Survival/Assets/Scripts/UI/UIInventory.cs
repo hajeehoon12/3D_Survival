@@ -313,6 +313,10 @@ public class UIInventory : MonoBehaviour
     public void OnConstructButton()
     {
         Debug.Log("OnConstructMode");
+
+        if (GameManager.instance.CanConsumeItem("Wood", 3)) GameManager.instance.ConsumeItem("Wood", 3);
+        else return;
+
         AudioManager.instance.PlaySFX("Hammer");
         tempedItem = selectedItem;
         CharacterManager.Instance.Player.controller.constructMode = true;
