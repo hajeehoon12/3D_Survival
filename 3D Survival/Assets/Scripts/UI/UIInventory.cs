@@ -185,8 +185,9 @@ public class UIInventory : MonoBehaviour
 
     void ThrowItem(ItemData data)
     {
-        
 
+        GameObject throwItem = Instantiate(data.dropPrefab, dropPosition.position, Quaternion.identity);
+        throwItem.GetComponent<Rigidbody>().AddForce((Vector3.forward * 2f + Vector3.up * 2f) * throwItem.GetComponent<Rigidbody>().mass, ForceMode.Impulse);
 
         if (selectedItem.type == ItemType.Equipable)
         {

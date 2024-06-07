@@ -49,8 +49,9 @@ public class UICraft : MonoBehaviour
             slots[i].index = i;
             slots[i].craft = this;
         }
-        ClearSelectedCraftWindow();
         UpdateUI();
+        ClearSelectedCraftWindow();
+        
 
         craftWindow.SetActive(false);
     }

@@ -62,7 +62,7 @@ public class Resource : MonoBehaviour
 
             if (resourceType == ResourceType.Rock)
             {
-                transform.localScale -= maxScale * (1/ (float)maxCapacity);
+                transform.localScale -= (maxScale) * (1/ (float)maxCapacity);
             }
 
 

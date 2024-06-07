@@ -38,6 +38,8 @@ public class PlayerController : MonoBehaviour
 
     public bool canConstruct = false;
 
+    
+
 
     public bool canLook = true;
 
@@ -49,12 +51,16 @@ public class PlayerController : MonoBehaviour
     private Rigidbody _rigidbody;
 
     public UIInventory uiInventory;
+
     public GameObject uiInven;
-    
+
+    public UICraft uiCraft;
+
 
     private void Awake()
     { 
         _rigidbody = GetComponent<Rigidbody>();
+        uiCraft.gameObject.SetActive(true);
         
     }
 
@@ -337,5 +343,21 @@ public class PlayerController : MonoBehaviour
     {
         uiInventory.Toggle();
     }
+
+    public void OnCraft(InputAction.CallbackContext context) // 인벤 실행
+    {
+        if (context.phase == InputActionPhase.Started)
+        {
+            CraftOn();
+        }
+    }
+
+    public void CraftOn()
+    {
+        uiCraft.Toggle();
+    }
+
+
+
 
 }
