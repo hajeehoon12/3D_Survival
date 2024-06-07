@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < inventory.slots.Length; i++)
         {
             ItemData temp;
+            //inventory.slots[i]?.item?.displayName
             temp = inventory.slots[i]?.item;
             if (temp?.displayName == null) continue;
 
