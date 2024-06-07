@@ -420,7 +420,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _constructMask:
     serializedVersion: 2
-    m_Bits: 393216
+    m_Bits: 393344
   _Renderers:
   - {fileID: 2083388330598255691}
   - {fileID: 7224293633628148455}

@@ -10,13 +10,17 @@ public enum AIState
     Wandering,
     Attacking,
     Staying,
-    Fleeing
+    Fleeing,
+    Patrolling
 }
 
 public enum MonsterPattern
 {
     None,
-    Coward
+    Coward,
+    Berserk,
+    Patroll,
+    Prey
 }
 
 public class NPC : MonoBehaviour , IDamagable
@@ -33,7 +37,7 @@ public class NPC : MonoBehaviour , IDamagable
     private NavMeshAgent agent;
     public float detectDistance;
     private AIState aiState;
-    public MonsterPattern pattern;
+    public MonsterPattern monsterPattern;
 
     [Header("Wandering")]
     public float minWanderDistance;
@@ -50,12 +54,9 @@ public class NPC : MonoBehaviour , IDamagable
 
     [Header("Sound")]
     public string hitSound;
-
     public string dieSound;
 
-
-
-    private float playerDistance;
+    public float playerDistance;
     private bool takingDmg = false;
     private bool isDie = false;
 
@@ -63,6 +64,7 @@ public class NPC : MonoBehaviour , IDamagable
 
     //private bool isAttacking = false;
 
+    private IMonsterPattern currentPattern;
     private Animator animator;
     private SkinnedMeshRenderer[] meshRenderers;
 
@@ -72,23 +74,24 @@ public class NPC : MonoBehaviour , IDamagable
 
     public SkinnedMeshRenderer _body;
 
-
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         meshRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
+
+        InitializePattern();
     }
 
-
-    void Start()
+    public virtual void Start()
     {   
         maxHealth = health;
         SetState(AIState.Wandering);
+        currentPattern?.ApplyOnStart(this);
     }
 
     
-    void Update()
+    public virtual void Update()
     {
 
         if (isDie) return;
@@ -97,6 +100,8 @@ public class NPC : MonoBehaviour , IDamagable
         playerDistance = Vector3.Distance(transform.position, CharacterManager.Instance.Player.transform.position); // �÷��̾�� �Ÿ����� ���
 
         animator.SetBool("Moving", aiState != AIState.Idle); // AIState�� ���� Animator Bool�� ����
+
+        currentPattern?.ApplyOnUpdate(this);
 
         switch (aiState)
         {
@@ -116,15 +121,45 @@ public class NPC : MonoBehaviour , IDamagable
                 FleeingUpdate();
 
                 break;
+            case AIState.Patrolling:
+
+                break;
             case AIState.Staying:
             default:
                 agent.speed = 0;
                 agent.isStopped = false;
                 break;
         }
+
     }
 
-    public void SetState(AIState state) // AI ����
+    void InitializePattern()
+    {
+        switch(monsterPattern)
+        {
+            case MonsterPattern.None:
+                currentPattern = gameObject.AddComponent<NonePattern>();
+            break;
+            case MonsterPattern.Coward:
+                currentPattern = gameObject.AddComponent<CowardPattern>();
+
+            break;
+            case MonsterPattern.Berserk:
+                currentPattern = gameObject.AddComponent<BerserkPattern>();
+
+            break;
+            case MonsterPattern.Patroll:
+                currentPattern = gameObject.AddComponent<PatrollPattern>();
+
+            break;
+            case MonsterPattern.Prey:
+                currentPattern = gameObject.AddComponent<PreyPattern>();
+
+            break;
+        }
+    }
+
+    public virtual void SetState(AIState state) // AI ����
     {
         aiState = state;
 
@@ -157,6 +192,12 @@ public class NPC : MonoBehaviour , IDamagable
                 agent.isStopped = false;
 
                 break;
+            case AIState.Patrolling:
+
+                agent.speed = walkSpeed;
+                agent.isStopped = false;
+
+            break;
         }
 
         animator.speed = agent.speed / walkSpeed;
@@ -250,7 +291,6 @@ public class NPC : MonoBehaviour , IDamagable
     {
         if (playerDistance < attackDistance && IsPlayerInFieldOfView()) // When in distance
         {
-            
             agent.isStopped = true;
             if (Time.time - lastAttackTime > attackRate)
             {
@@ -258,7 +298,6 @@ public class NPC : MonoBehaviour , IDamagable
                 
                 animator.speed = 1;
                 animator.SetTrigger("Attack");
-
 
                 if (attackCoroutine != null )
                 {
@@ -294,14 +333,14 @@ public class NPC : MonoBehaviour , IDamagable
         }
     }
 
-    bool IsPlayerInFieldOfView() // if player is in npc fov
+    public bool IsPlayerInFieldOfView() // if player is in npc fov
     {
         Vector3 directionToPlayer = CharacterManager.Instance.Player.transform.position - transform.position;
         float angle = Vector3.Angle(transform.forward, directionToPlayer); // NPC�� ����� �÷��̾��� ����
         return angle < fieldOfView * 0.5f; // �Ѱ����� �����̱⿡ �������� ����
     }
 
-    public void TakePhysicalDamage(int damage) // get damaged
+    public virtual void TakePhysicalDamage(int damage) // get damaged
     {
         if (isDie) return;
 
@@ -315,13 +354,10 @@ public class NPC : MonoBehaviour , IDamagable
         {
             Die();
         }
-        else if (pattern == MonsterPattern.Coward && health <= maxHealth * 0.3f)
-        {
-            SetState(AIState.Fleeing);
-        }
 
         // ������ ȿ��
         StartCoroutine(DamageFlash());
+        currentPattern?.ApplyOnTakeDamage(this);
 
     }
 
@@ -363,13 +399,10 @@ public class NPC : MonoBehaviour , IDamagable
 
     IEnumerator SlowDie() // Die Slowly
     {
-        
         StartCoroutine(BGM_Change());
         yield return new WaitForSeconds(4f);
         //Debug.Log(isDie);
         Destroy(gameObject);
-        
-
     }
 
     IEnumerator BGM_Change()
@@ -381,9 +414,6 @@ public class NPC : MonoBehaviour , IDamagable
         //AudioManager.instance.bgmPlayer.volume = 0.5f;
         AudioManager.instance.PlayBGM("Peace", 0.3f);
     }
-
-
-
 
     IEnumerator DamageFlash() // NPC get Damaged
     {

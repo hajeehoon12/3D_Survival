@@ -1394,7 +1394,6 @@ GameObject:
   - component: {fileID: 3699432329917333190}
   - component: {fileID: 7665541411957804424}
   - component: {fileID: 8915158364521854334}
-  - component: {fileID: 218275486315763732}
   - component: {fileID: 9188685096635792510}
   - component: {fileID: 1573118015555481671}
   m_Layer: 0
@@ -1490,35 +1489,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &218275486315763732
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6342609943586475242}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87e4c763498eefe47a644757e41220c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 30
-  walkSpeed: 2.5
-  runSpeed: 5
-  dropOnDeath:
-  - {fileID: 11400000, guid: 8a71728f4cd93de44acd7b28938bc8fe, type: 2}
-  - {fileID: 11400000, guid: 90b3286bf2c75da468079c3934cf3497, type: 2}
-  detectDistance: 30
-  minWanderDistance: 2
-  maxWanderDistance: 5
-  minWanderWaitTime: 1
-  maxWanderWaitTime: 2
-  damage: 30
-  attackRate: 1.5
-  attackDistance: 3
-  attackSpeed: 0.4
-  fieldOfView: 120
-  _body: {fileID: 141069732074071262}
 --- !u!114 &9188685096635792510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1539,7 +1509,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8a71728f4cd93de44acd7b28938bc8fe, type: 2}
   - {fileID: 11400000, guid: 90b3286bf2c75da468079c3934cf3497, type: 2}
   detectDistance: 20
-  pattern: 0
+  monsterPattern: 0
   minWanderDistance: 2
   maxWanderDistance: 5
   minWanderWaitTime: 1
@@ -1550,6 +1520,7 @@ MonoBehaviour:
   attackSpeed: 0.4
   hitSound: ZombieAttack
   dieSound: ZombieDie
+  playerDistance: 0
   fieldOfView: 120
   _body: {fileID: 141069732074071262}
 --- !u!195 &1573118015555481671

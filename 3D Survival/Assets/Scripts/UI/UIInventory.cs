@@ -219,6 +219,19 @@ public class UIInventory : MonoBehaviour
             selectedStatName.text += selectedItem.consumables[i].type.ToString() + "\n";
             selectedStatValue.text += selectedItem.consumables[i].value.ToString() + "\n";
         }
+        if (selectedItem.type == ItemType.Construct)
+        {
+            if (selectedItem.woodNeedAmount > 0)
+            {
+                selectedStatName.text += "Wood" + "\n";
+                selectedStatValue.text += selectedItem.woodNeedAmount.ToString() + "\n";
+            }
+            if (selectedItem.rockNeedAmount > 0)
+            {
+                selectedStatName.text += "Rock" + "\n";
+                selectedStatValue.text += selectedItem.rockNeedAmount.ToString() + "\n";
+            }
+        }
 
         // 버튼 활성화
 
@@ -310,9 +323,21 @@ public class UIInventory : MonoBehaviour
         RemoveSelectedItem();
     }
 
-    public void OnConstructButton()
+    public void OnConstructButton() // if use enter construct button
     {
         Debug.Log("OnConstructMode");
+
+        if (GameManager.instance.CanConsumeItem("Wood", selectedItem.woodNeedAmount) && GameManager.instance.CanConsumeItem("Rock", selectedItem.rockNeedAmount)) // can build
+        {
+            GameManager.instance.ConsumeItem("Wood", selectedItem.woodNeedAmount);
+            GameManager.instance.ConsumeItem("Rock", selectedItem.rockNeedAmount);
+        }
+        else // not enough resource 
+        {
+            AudioManager.instance.PlaySFX("Cant", 0.5f);
+            return;
+        }
+
         AudioManager.instance.PlaySFX("Hammer");
         tempedItem = selectedItem;
         CharacterManager.Instance.Player.controller.constructMode = true;

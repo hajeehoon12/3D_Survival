@@ -647,9 +647,10 @@ GameObject:
   - component: {fileID: 641083348771880170}
   - component: {fileID: 4462293292378243484}
   - component: {fileID: 5422003392554579642}
+  - component: {fileID: 3559614704675311126}
   m_Layer: 19
   m_Name: Wood_House_Real
-  m_TagString: Untagged
+  m_TagString: Trees
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -723,3 +724,25 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &3559614704675311126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6551539925880267203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad65ffb3ac720684a8523658a9cdcea5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemToGive: {fileID: 11400000, guid: e1ba4fb8c68badb4a9bd7ebdee704250, type: 2}
+  quantityPerHit: 1
+  capacity: 1
+  maxCapacity: 1
+  _materials: []
+  tempY: 0
+  maxScale: {x: 0, y: 0, z: 0}
+  noneResource: 1
+  reGroathTime: 0
+  resourceType: 0
