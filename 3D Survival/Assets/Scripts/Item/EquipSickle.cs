@@ -56,7 +56,7 @@ public class EquipSickle : Equip
 
         isAttacking = true;
 
-        if (Physics.Raycast(ray, out hit, attackDistance + CameraManager.instance.addDistance, ~(1 << LayerMask.NameToLayer("Player"))))
+        if (Physics.Raycast(ray, out hit, attackDistance + CameraManager.instance.addDistance, ~(1 << LayerMask.NameToLayer("Player") | 1 << LayerMask.NameToLayer("Interactable") )))
         {
             if (doesGatherBush && hit.collider.TryGetComponent(out Resource bushResource) && hit.collider.CompareTag("Bushes")) // Hit Resources
             {

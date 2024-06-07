@@ -58,7 +58,7 @@ public class EquipAxe : Equip
 
         isAttacking = true;
 
-        if (Physics.Raycast(ray, out hit, attackDistance + CameraManager.instance.addDistance, ~(1 << LayerMask.NameToLayer("Player"))))
+        if (Physics.Raycast(ray, out hit, attackDistance + CameraManager.instance.addDistance, ~(1 << LayerMask.NameToLayer("Player") | 1 << LayerMask.NameToLayer("Interactable") ) ) )
         {
             if (doesGatherWood && hit.collider.TryGetComponent(out Resource woodResource) && hit.collider.CompareTag("Trees")) // Hit Resources
             {

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Item_House
   m_EditorClassIdentifier: 
   displayName: BluePrint_WH
-  description: BluePrint of the WoodHouse
+  description: Need 3 Woods to build
   type: 5
   icon: {fileID: 21300000, guid: b605993f8edd89d45baf35903eabdde9, type: 3}
   dropPrefab: {fileID: 176358393337037719, guid: 7eb0677b1a929bd42a7f35ea3471019c, type: 3}
@@ -24,3 +24,4 @@ MonoBehaviour:
   constructObject: {fileID: 6551539925880267203, guid: 2d9fc68281e1f844284548911d1c52eb, type: 3}
   virtualObjectGreen: {fileID: 5260897580060828325, guid: d7ce4dde44fa8fe49a344e3c5699527a, type: 3}
   heightOfBuilding: 3
+  woodNeedAmount: 5

@@ -54,6 +54,8 @@ public class ItemData : ScriptableObject
     public GameObject constructObject;
     public GameObject virtualObjectGreen;
     public float heightOfBuilding;
+    public int woodNeedAmount;
+    public int rockNeedAmount;
 
 
 
