@@ -33,13 +33,14 @@ public class UICraft : MonoBehaviour
 
     private void Awake()
     {
-        controller = CharacterManager.Instance.Player.controller;
-        condition = CharacterManager.Instance.Player.condition;
+        
     }
 
 
     private void Start()
     {
+        controller = CharacterManager.Instance.Player.controller;
+        condition = CharacterManager.Instance.Player.condition;
         slots = new ItemSlot[slotPanel.childCount];
 
         for (int i = 0; i < slots.Length; i++)
