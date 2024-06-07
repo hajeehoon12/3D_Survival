@@ -219,6 +219,7 @@ public class UIInventory : MonoBehaviour
             selectedStatName.text += selectedItem.consumables[i].type.ToString() + "\n";
             selectedStatValue.text += selectedItem.consumables[i].value.ToString() + "\n";
         }
+
         if (selectedItem.type == ItemType.Construct)
         {
             if (selectedItem.woodNeedAmount > 0)
