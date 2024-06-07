@@ -21,8 +21,8 @@ MonoBehaviour:
   maxStackAmount: 0
   consumables: []
   equipPrefab: {fileID: 0}
-  constructObject: {fileID: 5732194697168835325, guid: 7ad41ca43de2d14499fc17608e146c29, type: 3}
-  virtualObjectGreen: {fileID: 3149336646890894762, guid: e0de24c2e9111ed4895e66c8db8d488e, type: 3}
-  heightOfBuilding: 0.5
+  constructObject: {fileID: 3025902525160345158, guid: 7ad41ca43de2d14499fc17608e146c29, type: 3}
+  virtualObjectGreen: {fileID: 6179100524656453683, guid: e0de24c2e9111ed4895e66c8db8d488e, type: 3}
+  heightOfBuilding: 0.4
   woodNeedAmount: 0
   rockNeedAmount: 2
