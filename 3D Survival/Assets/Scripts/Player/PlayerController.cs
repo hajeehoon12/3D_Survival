@@ -149,6 +149,7 @@ public class PlayerController : MonoBehaviour
             virtualSpawn.transform.position=(hit.point)+ new Vector3(0, heightOfConstruct, 0);
             virtualSpawn.transform.LookAt(transform.position);
             virtualSpawn.transform.localEulerAngles = new Vector3(0, virtualSpawn.transform.localEulerAngles.y, virtualSpawn.transform.localEulerAngles.z);
+            if (heightOfConstruct == 0.5f) virtualSpawn.transform.localEulerAngles += new Vector3(-90, 0, 0); // exception for wall
         }
 
 
