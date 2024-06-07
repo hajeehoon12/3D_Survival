@@ -64,10 +64,12 @@ public class ControlSky : MonoBehaviour
         RenderSettings.skybox.SetFloat("_Rotation", Time.time * 2.0f);
     }
 
-    void OnApplicationQuit()
+#if UNITY_EDITOR
+    void OnApplicationQuit() 
     {
         RenderSettings.skybox.SetFloat("_Rotation", 0);
     }
+#endif
 
     public void IfDay()
     {
