@@ -26,7 +26,7 @@ public class UICraft : MonoBehaviour
     private PlayerController controller;
     private PlayerCondition condition;
     public UIInventory inventory;
-    Player player;
+    //Player player;
 
     ItemData selectedItem;
     int selectedItemIndex = 0;
@@ -154,10 +154,10 @@ public class UICraft : MonoBehaviour
         Craft(selectedItem);
     }
 
-    void Craft(ItemData data)
+    void Craft(ItemData data) // DoCraft
     {
         if (!selectedItem.canCraft) return;
-        for (int i = 0; i < selectedItem.craftIngredient.Length; i++)
+        for (int i = 0; i < selectedItem.craftIngredient.Length; i++) // Inspect if can craft
         {
             if (!GameManager.instance.CanConsumeItem(selectedItem.craftIngredient[i].name, selectedItem.craftIngredient[i].amount))
             {
@@ -165,7 +165,7 @@ public class UICraft : MonoBehaviour
                 return;
             }
         }
-        for (int i = 0; i < selectedItem.craftIngredient.Length; i++)
+        for (int i = 0; i < selectedItem.craftIngredient.Length; i++) // Consume Ingredient Items
         {
             GameManager.instance.ConsumeItem(selectedItem.craftIngredient[i].name, selectedItem.craftIngredient[i].amount);
         }
