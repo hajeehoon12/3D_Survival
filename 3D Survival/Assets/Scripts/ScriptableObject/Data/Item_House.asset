@@ -26,3 +26,7 @@ MonoBehaviour:
   heightOfBuilding: 3
   woodNeedAmount: 5
   rockNeedAmount: 0
+  canCraft: 1
+  craftIngredient:
+  - name: Wood
+    amount: 1

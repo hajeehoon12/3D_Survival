@@ -121,6 +121,18 @@ public class UICraft : MonoBehaviour
         selectedItem = slots[index].item;
         selectedItemIndex = index;
 
+        if (!selectedItem.canCraft)
+        {
+            selectedItemName.text = "Can't Craft";
+            selectedDescription.text = string.Empty;
+
+            selectedMaterialName.text = string.Empty;
+            selectedMaterialValue.text = string.Empty; 
+            selectedStatName.text = string.Empty;
+            selectedStatValue.text = string.Empty;
+            return;
+        }
+
         selectedItemName.text = selectedItem.displayName;
         selectedDescription.text = selectedItem.description;
 
@@ -144,6 +156,7 @@ public class UICraft : MonoBehaviour
 
     void Craft(ItemData data)
     {
+        if (!selectedItem.canCraft) return;
         for (int i = 0; i < selectedItem.craftIngredient.Length; i++)
         {
             if (!GameManager.instance.CanConsumeItem(selectedItem.craftIngredient[i].name, selectedItem.craftIngredient[i].amount))
