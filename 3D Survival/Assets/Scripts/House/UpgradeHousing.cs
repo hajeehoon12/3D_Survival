@@ -7,6 +7,7 @@ public class UpgradeHousing : MonoBehaviour
     public MeshRenderer[] childs;
     public Texture[] _textures;
     int num = 0;
+    private bool isClicked = false;
 
     private void Start()
     {
@@ -17,6 +18,14 @@ public class UpgradeHousing : MonoBehaviour
 
     public void UpgradeHouse()
     {
+        if (!isClicked)
+        {
+            isClicked = true;
+            return;
+        }
+        else isClicked = false;
+
+        Debug.Log("Upgrade!!");
         num++;
         for (int i = 0; i < childs.Length; i++)
         {
