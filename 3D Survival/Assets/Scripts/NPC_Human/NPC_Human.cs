@@ -51,8 +51,6 @@ public class NPC_Human : MonoBehaviour, IInteractable
     public void OnInteract()
     {
         Debug.Log("NPC 상호작용");
-        //CharacterManager.Instance.Player.itemData = data;
-        //CharacterManager.Instance.Player.addItem?.Invoke();
         //Destroy(gameObject);
     }
 
