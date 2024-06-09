@@ -68,20 +68,27 @@ public class GameManager : MonoBehaviour
                 {
                     Item_Amount -= 1;
                     inventory.slots[i].item = null;
+                    CharacterManager.Instance.Player.controller.uiInventory.UpdateUI();
                 }
                 else
                 {
                     if (inventory.slots[i].quantity > Item_Amount)
                     {
                         inventory.slots[i].quantity -= Item_Amount;
+                        CharacterManager.Instance.Player.controller.uiInventory.UpdateUI();
                         return;
                     }
                     else
                     {
                         Item_Amount -= inventory.slots[i].quantity;
                         inventory.slots[i].item = null;
+                        //CharacterManager.Instance.Player.controller.uiInventory.UpdateUI();
                     }
-                    if (Item_Amount == 0) return;
+                    if (Item_Amount == 0)
+                    {
+                        CharacterManager.Instance.Player.controller.uiInventory.UpdateUI();
+                        return;
+                    }
 
                 } 
             }

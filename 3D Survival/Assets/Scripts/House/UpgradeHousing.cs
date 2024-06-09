@@ -25,6 +25,17 @@ public class UpgradeHousing : MonoBehaviour
         }
         else isClicked = false;
 
+        if (GameManager.instance.CanConsumeItem("UpgradeScroll", 1))
+        {
+            GameManager.instance.ConsumeItem("UpgradeScroll", 1);
+            AudioManager.instance.PlaySFX("Upgrade");
+            //CharacterManager.Instance.Player.controller.uiInventory.UpdateUI();
+        }
+        else
+        {
+            AudioManager.instance.PlaySFX("Cant");
+            return;
+        }
         Debug.Log("Upgrade!!");
         num++;
         for (int i = 0; i < childs.Length; i++)
