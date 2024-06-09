@@ -9,6 +9,7 @@ public class UIInventory : MonoBehaviour
     public ItemSlot[] slots;
 
     public GameObject inventoryWindow;
+    public GameObject _uICraft;
     public Transform slotPanel;
     public Transform dropPosition;
 
@@ -88,6 +89,8 @@ public class UIInventory : MonoBehaviour
 
     public void Toggle()
     {
+        if(_uICraft.activeSelf) _uICraft.SetActive(false);
+
         if (inventoryWindow.activeSelf)
         {
             inventoryWindow.SetActive(false);

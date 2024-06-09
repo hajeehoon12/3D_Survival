@@ -75,6 +75,8 @@ public class UICraft : MonoBehaviour
 
     public void Toggle()
     {
+        if (inventory.gameObject.activeSelf) inventory.gameObject.SetActive(false);
+
         if (craftWindow.activeSelf)
         {
             craftWindow.SetActive(false);
