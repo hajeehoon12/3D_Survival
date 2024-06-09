@@ -9,7 +9,8 @@ public enum ItemType
     Resource,
     Buff,
     Permanent,
-    Construct
+    Construct,
+    Upgrade
 }
 
 public enum ConsumableType
