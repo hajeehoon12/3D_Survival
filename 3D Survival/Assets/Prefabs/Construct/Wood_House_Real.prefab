@@ -648,6 +648,7 @@ GameObject:
   - component: {fileID: 4462293292378243484}
   - component: {fileID: 5422003392554579642}
   - component: {fileID: 3559614704675311126}
+  - component: {fileID: 9009148992505330955}
   m_Layer: 19
   m_Name: Wood_House_Real
   m_TagString: Trees
@@ -747,3 +748,26 @@ MonoBehaviour:
   noneResource: 1
   reGroathTime: 0
   resourceType: 0
+--- !u!114 &9009148992505330955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6551539925880267203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 352bdf0f3c5a71b4496b780e7e515f44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  childs:
+  - {fileID: 4252554147241204441}
+  - {fileID: 8240910504852558589}
+  - {fileID: 8688244563222170602}
+  - {fileID: 4589827889423869952}
+  - {fileID: 8072843125808531339}
+  - {fileID: 6244583444190786501}
+  _textures:
+  - {fileID: 2800000, guid: d91d8da8e4aa7cf429592f49bcc06d9c, type: 3}
+  - {fileID: 2800000, guid: 5a73d8e79aa7caa44acebab20c95afed, type: 3}
+  - {fileID: 2800000, guid: 851bad9606d04b24882a778dcd49de5b, type: 3}

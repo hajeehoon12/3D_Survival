@@ -86,6 +86,8 @@ public class PlayerController : MonoBehaviour
             //return; // if Memory Leak go return
         }
 
+        
+
         Move();
 
         if (isJumping)
@@ -97,7 +99,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (Input.GetKey(KeyCode.LeftControl))
+        if (Input.GetKey(KeyCode.LeftControl)) // KeyCode.LeftControl
         {
             //Debug.Log("I'm Pressing Ctrl");
             if (IsWallClimbing())
