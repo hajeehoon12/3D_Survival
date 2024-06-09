@@ -28,6 +28,13 @@ public class ItemDataConsumable
     public float value;
 }
 
+[System.Serializable]
+public class CraftDict
+{
+    public string name;
+    public int amount;
+}
+
 
 
 [CreateAssetMenu(fileName = "Item" , menuName = "New Item")]
@@ -57,6 +64,9 @@ public class ItemData : ScriptableObject
     public int woodNeedAmount;
     public int rockNeedAmount;
 
+    [Header("Craft")]
+    public bool canCraft;
+    public CraftDict[] craftList;
 
 
 
