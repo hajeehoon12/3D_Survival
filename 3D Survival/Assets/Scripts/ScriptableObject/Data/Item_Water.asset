@@ -23,3 +23,12 @@ MonoBehaviour:
   - type: 2
     value: 300
   equipPrefab: {fileID: 0}
+  constructObject: {fileID: 0}
+  virtualObjectGreen: {fileID: 0}
+  heightOfBuilding: 0
+  woodNeedAmount: 0
+  rockNeedAmount: 0
+  canCraft: 1
+  craftIngredient:
+  - name: Carrot
+    amount: 2

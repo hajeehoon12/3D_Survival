@@ -24,3 +24,11 @@ MonoBehaviour:
   constructObject: {fileID: 0}
   virtualObjectGreen: {fileID: 0}
   heightOfBuilding: 0
+  woodNeedAmount: 0
+  rockNeedAmount: 0
+  canCraft: 1
+  craftIngredient:
+  - name: Rock
+    amount: 2
+  - name: Wood
+    amount: 2

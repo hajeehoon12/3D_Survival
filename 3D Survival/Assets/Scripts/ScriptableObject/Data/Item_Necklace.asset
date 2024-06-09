@@ -29,6 +29,6 @@ MonoBehaviour:
   canCraft: 1
   craftIngredient:
   - name: Rock
-    amount: 10
+    amount: 12
   - name: Wood
-    amount: 5
+    amount: 12
