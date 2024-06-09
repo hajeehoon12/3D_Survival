@@ -21,3 +21,14 @@ MonoBehaviour:
   maxStackAmount: 0
   consumables: []
   equipPrefab: {fileID: 1969529364270422913, guid: 40c9a274b64e5664caeeff2eaf42fc6e, type: 3}
+  constructObject: {fileID: 0}
+  virtualObjectGreen: {fileID: 0}
+  heightOfBuilding: 0
+  woodNeedAmount: 0
+  rockNeedAmount: 0
+  canCraft: 0
+  craftIngredient:
+  - name: Wood
+    amount: 1
+  - name: Rock
+    amount: 1

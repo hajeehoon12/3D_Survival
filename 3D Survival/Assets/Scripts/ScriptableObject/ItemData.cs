@@ -66,9 +66,7 @@ public class ItemData : ScriptableObject
 
     [Header("Craft")]
     public bool canCraft;
-    public CraftDict[] craftList;
-
-
+    public CraftDict[] craftIngredient;
 
 
 }

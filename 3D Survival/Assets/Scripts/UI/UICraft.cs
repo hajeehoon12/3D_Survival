@@ -25,7 +25,7 @@ public class UICraft : MonoBehaviour
 
     private PlayerController controller;
     private PlayerCondition condition;
-    UIInventory inventory;
+    public UIInventory inventory;
     Player player;
 
     ItemData selectedItem;
@@ -65,8 +65,8 @@ public class UICraft : MonoBehaviour
     {
         selectedItemName.text = string.Empty;
         selectedDescription.text = string.Empty;
-        selectedMaterialName.text = string.Empty;
-        selectedMaterialValue.text = string.Empty;
+        //selectedMaterialName.text = string.Empty;
+        //selectedMaterialValue.text = string.Empty;
         selectedStatName.text = string.Empty;
         selectedStatValue.text = string.Empty;
 
@@ -122,28 +122,42 @@ public class UICraft : MonoBehaviour
         selectedItemName.text = selectedItem.displayName;
         selectedDescription.text = selectedItem.description;
 
-        selectedMaterialName.text = string.Empty;
-        selectedMaterialValue.text = string.Empty;
+        selectedMaterialName.text = "Need";
+        selectedMaterialValue.text = "Amount";
         selectedStatName.text = string.Empty;
         selectedStatValue.text = string.Empty;
 
-        for (int i = 0; i < selectedItem.consumables.Length; i++)
+        for (int i = 0; i < selectedItem.craftIngredient.Length; i++)
         {
-            selectedStatName.text += selectedItem.consumables[i].type.ToString() + "\n";
-            selectedStatValue.text += selectedItem.consumables[i].value.ToString() + "\n";
+            selectedStatName.text += selectedItem.craftIngredient[i].name + "\n";
+            selectedStatValue.text += selectedItem.craftIngredient[i].amount + "\n";
         }
         CraftButton.SetActive(true);
     }
 
-    public void OnCraftButton()
+    public void OnCraftButton() // if you click CraftButton
     {
-        //제작 시, 재료 아이템이 사라지고 인벤에 제작한 아이템이 들어오도록 해야함
         Craft(selectedItem);
     }
 
     void Craft(ItemData data)
     {
-        Instantiate(data.dropPrefab,dropPosition.position, Quaternion.identity);
+        for (int i = 0; i < selectedItem.craftIngredient.Length; i++)
+        {
+            if (!GameManager.instance.CanConsumeItem(selectedItem.craftIngredient[i].name, selectedItem.craftIngredient[i].amount))
+            {
+
+                return;
+            }
+        }
+        for (int i = 0; i < selectedItem.craftIngredient.Length; i++)
+        {
+            GameManager.instance.ConsumeItem(selectedItem.craftIngredient[i].name, selectedItem.craftIngredient[i].amount);
+        }
+        inventory.UpdateUI();
+
+        GameObject craftedItem = Instantiate(data.dropPrefab,dropPosition.position, Quaternion.identity);
+        craftedItem.GetComponent<Rigidbody>().AddForce((Vector3.forward  + Vector3.up) * craftedItem.GetComponent<Rigidbody>().mass, ForceMode.Impulse);
     }
 
 }
