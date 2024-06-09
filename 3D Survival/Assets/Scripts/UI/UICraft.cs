@@ -146,7 +146,7 @@ public class UICraft : MonoBehaviour
         {
             if (!GameManager.instance.CanConsumeItem(selectedItem.craftIngredient[i].name, selectedItem.craftIngredient[i].amount))
             {
-
+                AudioManager.instance.PlaySFX("Cant", 0.5f);
                 return;
             }
         }
@@ -154,10 +154,13 @@ public class UICraft : MonoBehaviour
         {
             GameManager.instance.ConsumeItem(selectedItem.craftIngredient[i].name, selectedItem.craftIngredient[i].amount);
         }
+
+        AudioManager.instance.PlaySFX("Craft", 0.5f);
         inventory.UpdateUI();
 
         GameObject craftedItem = Instantiate(data.dropPrefab,dropPosition.position, Quaternion.identity);
-        craftedItem.GetComponent<Rigidbody>().AddForce((Vector3.forward  + Vector3.up) * craftedItem.GetComponent<Rigidbody>().mass, ForceMode.Impulse);
+        craftedItem.GetComponent<Rigidbody>().AddForce((Vector3.forward * 2f  + Vector3.up * 2f) * craftedItem.GetComponent<Rigidbody>().mass, ForceMode.Impulse);
+        Toggle();
     }
 
 }
