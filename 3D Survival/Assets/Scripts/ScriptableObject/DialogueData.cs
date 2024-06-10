@@ -5,8 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewDialogue", menuName = "New Dialogue")]
 public class DialogueData : ScriptableObject
 {
-    [TextArea(1, 10)] public string[] sentences;
-    [TextArea(1, 10)] public string[] sentenceAccepted;
-    [TextArea(1, 10)] public string[] sentenceCleared;
+    [TextArea(1, 10)] public string[] sentencesNotStarted;
+    [TextArea(1, 10)] public string[] sentencesAccepted;
+    [TextArea(1, 10)] public string[] sentencesCleared;
 
 }

@@ -27,10 +27,15 @@ public class DialogueManager : MonoBehaviour
     public Button acceptButton;
     public Button declineButton;
 
-    private Queue<string> sentences;
-    private DialogueData currentDialogue;
     private Player player;
     private QuestController questController;
+
+    private Queue<string> currentSentences;
+    private DialogueData currentDialogue;
+    private QuestData currentQuestData;
+    
+
+    
 
     private void Awake()
     {
@@ -50,37 +55,58 @@ public class DialogueManager : MonoBehaviour
 
     void Start()
     {
-        sentences = new Queue<string>();
-        UIDialogue.gameObject.SetActive(false);
         player = CharacterManager.Instance.Player;
+        questController = player.GetComponent<QuestController>();
+        currentSentences = new Queue<string>();
+        UIDialogue.gameObject.SetActive(false);
     }
 
-    public void StartDialogue(DialogueData dialogue)
+    public void StartDialogue(QuestData questData)
     {   
-        UIDialogue.gameObject.SetActive(true);
-        currentDialogue = dialogue;
-        // nextButton.gameObject.SetActive(true);
-        // acceptButton.gameObject.SetActive(false);
-        // declineButton.gameObject.SetActive(false);
+        TurnOn();
+        currentDialogue = questData.dialogueData;
+        currentQuestData = questData;
 
-        sentences.Clear();
+        currentSentences.Clear();
 
-        foreach (string sentence in dialogue.sentences)
-        {
-            sentences.Enqueue(sentence);
-        }
-
+        SelectSentence();
         DisplayNextSentence();
+        Debug.Log(UIDialogue.gameObject.activeSelf);
+    }
+
+    public void SelectSentence ()
+    {
+        switch (currentQuestData.questStatus)
+        {
+            case QuestStatus.NotStarted:
+                foreach (string sentence in currentDialogue.sentencesNotStarted)
+                {
+                    currentSentences.Enqueue(sentence);
+                }
+                break;
+            case QuestStatus.InProgress:
+                foreach (string sentence in currentDialogue.sentencesAccepted)
+                {
+                    currentSentences.Enqueue(sentence);
+                }
+                break;
+            case QuestStatus.Completed:
+                foreach (string sentence in currentDialogue.sentencesCleared)
+                {
+                    currentSentences.Enqueue(sentence);
+                }
+                break;
+        }
     }
     public void DisplayNextSentence()
     {
-        if (sentences.Count == 0)
+        if (currentSentences.Count == 0)
         {
             EndDialogue();
             return;
         }
-
-        string sentence = sentences.Dequeue();
+        UpdateButtonStates();
+        string sentence = currentSentences.Dequeue();
         StopAllCoroutines();
         StartCoroutine(TypeSentence(sentence));
     }
@@ -94,20 +120,17 @@ public class DialogueManager : MonoBehaviour
             yield return null;
         }
 
-        if (sentences.Count == 0)
-        {
-            nextButton.gameObject.SetActive(false);
-        }
+        UpdateButtonStates();
     }
 
-    void UpdateButtonStates(QuestData questData)
+    void UpdateButtonStates()
     {
-        bool isLastSentence = sentences.Count == 0;
+        bool isLastSentence = currentSentences.Count == 0;
 
         if (isLastSentence)
         {
             nextButton.gameObject.SetActive(false);
-            if (questController.GetQuestStatus(questData) == QuestStatus.NotStarted)
+            if (currentQuestData.questStatus == QuestStatus.NotStarted)
             {
                 acceptButton.gameObject.SetActive(true);
                 declineButton.gameObject.SetActive(true);
@@ -128,32 +151,13 @@ public class DialogueManager : MonoBehaviour
 
     void EndDialogue()
     {
-        dialoguePanel.SetActive(false);
-        sentences.Clear();
-    }
-
-    void ActivateDialogueUI()
-    {
-        UIDialogue.gameObject.SetActive(true);
-        nextButton.gameObject.SetActive(false);
-    }
-
-    void UpdateButtons()
-    {
-        //check nextBotton, AcceptButton, DeclineButton
-        //if !=sentence.Length nextBotton On & DeclineButton On
+        TurnOff();
+        currentSentences.Clear();
     }
 
     public void AcceptQuest()
     {
-        if (currentDialogue != null)
-        {
-            QuestData quest = FindQuestDataByDialogue(currentDialogue);
-            if (quest != null)
-            {
-                questController.AddQuest(quest);
-            }
-        }
+        questController.AddQuest(currentQuestData);
         EndDialogue();
     }
 
@@ -162,15 +166,30 @@ public class DialogueManager : MonoBehaviour
         EndDialogue();
     }
 
-    private QuestData FindQuestDataByDialogue(DialogueData dialogue)
-    {
-        foreach (var quest in questController.acceptedQuests)
-        {
-            if (quest.dialogueData == dialogue)
-            {
-                return quest;
-            }
-        }
-        return null;
+    public void TurnOn()
+    {   
+        UIDialogue.gameObject.SetActive(true);
+        AudioManager.instance.PlaySFX("Inventory");
+        Cursor.lockState = CursorLockMode.None;
+        CharacterManager.Instance.Player.controller.canLook = false;
     }
+
+    public void TurnOff()
+    {   
+        UIDialogue.gameObject.SetActive(false);
+        AudioManager.instance.PlaySFX("InventoryOff");
+        Cursor.lockState = CursorLockMode.Locked;
+        CharacterManager.Instance.Player.controller.canLook = true;
+    }
+    // private QuestData FindQuestDataByDialogue(DialogueData dialogue)
+    // {
+    //     foreach (var quest in questController.acceptedQuests)
+    //     {
+    //         if (quest.dialogueData == dialogue)
+    //         {
+    //             return quest;
+    //         }
+    //     }
+    //     return null;
+    // }
 }
