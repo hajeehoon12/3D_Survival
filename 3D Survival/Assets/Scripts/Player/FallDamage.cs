@@ -43,16 +43,19 @@ public class FallDamage : MonoBehaviour
     {
         if (FallSec > 2f && FallSec < 3f)
         {
+            AudioManager.instance.PlaySFX("SFX_Click_Punch");
             condition.Heal(-30);
             FallSec = 0f;
         }
         else if (FallSec > 3f && FallSec < 4f)
         {
+            AudioManager.instance.PlaySFX("SFX_Click_Punch");
             condition.Heal(-50);
             FallSec = 0f;
         }
         else if (FallSec > 4f)
         {
+            AudioManager.instance.PlaySFX("SFX_Click_Punch");
             condition.Heal(-80);
             FallSec = 0f;
         }
