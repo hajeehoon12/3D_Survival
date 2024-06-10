@@ -54,8 +54,6 @@ public class QuestUIManager : MonoBehaviour
     void Start()
     {
         questController = CharacterManager.Instance.Player.GetComponent<QuestController>();
-        Debug.Log(questController == null);
-        Debug.Log("??");
     }
 
     void PopulateQuestList()

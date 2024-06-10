@@ -49,7 +49,6 @@ public class NPC_Human : MonoBehaviour, IInteractable
 
     public void OnInteract()
     {
-        Debug.Log("NPC 상호작용");
         DialogueManager.Instance.StartDialogue(questData);
 
     }
