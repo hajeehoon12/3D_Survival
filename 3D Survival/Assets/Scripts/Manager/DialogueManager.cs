@@ -34,9 +34,6 @@ public class DialogueManager : MonoBehaviour
     private DialogueData currentDialogue;
     private QuestData currentQuestData;
     
-
-    
-
     private void Awake()
     {
         if (instance == null)
@@ -155,7 +152,8 @@ public class DialogueManager : MonoBehaviour
     }
 
     public void AcceptQuest()
-    {
+    {   
+        Debug.Log(questController==null);
         questController.AddQuest(currentQuestData);
         EndDialogue();
     }
