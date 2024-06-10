@@ -112,15 +112,14 @@ public class DialogueManager : MonoBehaviour
     }
 
     IEnumerator TypeSentence(string sentence)
-    {
+    {   
+        UpdateButtonStates();
         dialogueText.text = "";
         foreach (char letter in sentence.ToCharArray())
         {
             dialogueText.text += letter;
             yield return null;
         }
-
-        UpdateButtonStates();
     }
 
     void UpdateButtonStates()
@@ -181,15 +180,4 @@ public class DialogueManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         CharacterManager.Instance.Player.controller.canLook = true;
     }
-    // private QuestData FindQuestDataByDialogue(DialogueData dialogue)
-    // {
-    //     foreach (var quest in questController.acceptedQuests)
-    //     {
-    //         if (quest.dialogueData == dialogue)
-    //         {
-    //             return quest;
-    //         }
-    //     }
-    //     return null;
-    // }
 }
