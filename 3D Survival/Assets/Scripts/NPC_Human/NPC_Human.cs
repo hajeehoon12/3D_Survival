@@ -10,6 +10,7 @@ public class NPC_Human : MonoBehaviour, IInteractable
     public float sightDistance = 5f;
     public float rotationSpeed = 2f;
     public QuestData questData;
+    
 
     private Quaternion initialRotation;
 
@@ -49,7 +50,6 @@ public class NPC_Human : MonoBehaviour, IInteractable
 
     public void OnInteract()
     {
-        Debug.Log("NPC 상호작용");
         DialogueManager.Instance.StartDialogue(questData);
 
     }

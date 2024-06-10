@@ -13,18 +13,20 @@ public class Quest : MonoBehaviour, IInteractable
     public GameObject Tombs;
     public GameObject _Zombie;
     public ItemData _rewardItem;
+    public QuestData _questData;
     private int targetNum = 0;
     private int MaxTargetNum;
 
     private void Awake()
     {
         Instance = this;
+        _questData.questStatus = 0;
     }
 
 
     public void QuestStart()
     {
-
+        if (_questData.questStatus != QuestStatus.InProgress) return;
         CharacterManager.Instance.Player.controller.canMove = false;
         MaxTargetNum = _Tombs.Length;
         CoffinDown();
@@ -66,13 +68,17 @@ public class Quest : MonoBehaviour, IInteractable
             {
                 GameObject zombie = Instantiate(_Zombie, _Tombs[i].transform.position, Quaternion.identity);
                 zombie.GetComponent<NPC>().enabled = false;
+                zombie.GetComponent<BoxCollider>().enabled = false;
+                zombie.transform.localPosition -= new Vector3(0, 10, 0);
+                
                 zombie.transform.LookAt(CharacterManager.Instance.Player.transform);
-                zombie.transform.position += zombie.transform.forward * 2f + new Vector3(0, -10, 0);
+                zombie.transform.position += zombie.transform.forward * 2f ;
                 zombie.transform.DOMoveY(0.6f, 3f).OnComplete(() =>
                     {
                         CharacterManager.Instance.Player.controller.canMove = true;
                         zombie.GetComponent<NPC>().enabled = true;
-                    
+                        zombie.GetComponent<BoxCollider>().enabled = true;
+
                     }
                 );
                 
@@ -108,8 +114,9 @@ public class Quest : MonoBehaviour, IInteractable
         AudioManager.instance.PlaySFX("QuestClear", 0.1f);
         AudioManager.instance.StopBGM();
         AudioManager.instance.StopBGM2();
+        _questData.questStatus = QuestStatus.Completed;
         
-        RewardItem();
+        //RewardItem();
     }
 
     public void OnInteract()

@@ -56,6 +56,9 @@ public class PlayerController : MonoBehaviour
 
     public UICraft uiCraft;
 
+    public GameObject questUIWindow;
+    private QuestUIManager questUIManager;
+
 
     private void Awake()
     { 
@@ -361,7 +364,7 @@ public class PlayerController : MonoBehaviour
     }
 
     public void OnQuest(InputAction.CallbackContext context) // �κ� ����
-    {
+    {   
         if (context.phase == InputActionPhase.Started)
         {
             QuestOn();
@@ -369,11 +372,8 @@ public class PlayerController : MonoBehaviour
     }
 
     public void QuestOn()
-    {
-        //uiQuest.Toggle();
+    {   
+        QuestUIManager.Instance.ToggleUI();
     }
-
-
-
 
 }
