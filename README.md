@@ -2,6 +2,11 @@
 Unity 3D_Survive_Simul
 
 
+https://drive.google.com/file/d/1Tuq4eLb4YIoMl9FccZ4TD8M8UWJcu6Po/view?usp=drive_link
+
+위는 게임 플레이 가능한 빌드자료 링크
+
+
 조작 방법:
 
 
