@@ -37,7 +37,8 @@ public class Quest : MonoBehaviour, IInteractable
     private void TombAnimation()
     {
         Tombs.transform.DOScale(1, 10f);
-        Tombs.transform.DORotate(new Vector3(1080, 0 , 0), 10f);
+        Tombs.transform.DOMoveY(-1.2f, 10f);
+        Tombs.transform.DOLocalRotateQuaternion(Quaternion.Euler(0, 180 , 0), 10f);
     }
 
     public void OnInteract()
