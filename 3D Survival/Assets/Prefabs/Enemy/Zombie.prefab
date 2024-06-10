@@ -1507,7 +1507,6 @@ MonoBehaviour:
   runSpeed: 5
   dropOnDeath:
   - {fileID: 11400000, guid: 8a71728f4cd93de44acd7b28938bc8fe, type: 2}
-  - {fileID: 11400000, guid: 90b3286bf2c75da468079c3934cf3497, type: 2}
   detectDistance: 20
   monsterPattern: 0
   minWanderDistance: 2
@@ -1520,6 +1519,7 @@ MonoBehaviour:
   attackSpeed: 0.4
   hitSound: ZombieAttack
   dieSound: ZombieDie
+  isZombie: 1
   playerDistance: 0
   fieldOfView: 120
   _body: {fileID: 141069732074071262}
