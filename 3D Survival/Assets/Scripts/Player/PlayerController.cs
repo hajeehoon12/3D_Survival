@@ -305,7 +305,7 @@ public class PlayerController : MonoBehaviour
 
         for (int i = 0; i < rays.Length; i++)
         {
-            if (Physics.Raycast(rays[i], 0.1f, groundLayerMask)) // Player °¡ °É¸®´Â °æ¿ì Á¦¿Ü
+            if (Physics.Raycast(rays[i], 0.1f, groundLayerMask)) // Player ï¿½ï¿½ ï¿½É¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             {
                 return true;
             }
@@ -325,7 +325,7 @@ public class PlayerController : MonoBehaviour
         for (int i = 0; i < rays.Length; i++)
         {
             //Debug.Log("Inspect");
-            if (Physics.Raycast(rays[i], 0.5f, wallLayerMask)) // Player °¡ °É¸®´Â °æ¿ì Á¦¿Ü
+            if (Physics.Raycast(rays[i], 0.5f, wallLayerMask)) // Player ï¿½ï¿½ ï¿½É¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             {
                 isWall = true;
             }
@@ -334,7 +334,7 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    public void OnInventory(InputAction.CallbackContext context) // ÀÎº¥ ½ÇÇà
+    public void OnInventory(InputAction.CallbackContext context) // ï¿½Îºï¿½ ï¿½ï¿½ï¿½ï¿½
     {
         if (context.phase == InputActionPhase.Started)
         {
@@ -347,7 +347,7 @@ public class PlayerController : MonoBehaviour
         uiInventory.Toggle();
     }
 
-    public void OnCraft(InputAction.CallbackContext context) // ÀÎº¥ ½ÇÇà
+    public void OnCraft(InputAction.CallbackContext context) // ï¿½Îºï¿½ ï¿½ï¿½ï¿½ï¿½
     {
         if (context.phase == InputActionPhase.Started)
         {
@@ -358,6 +358,19 @@ public class PlayerController : MonoBehaviour
     public void CraftOn()
     {
         uiCraft.Toggle();
+    }
+
+    public void OnQuest(InputAction.CallbackContext context) // ï¿½Îºï¿½ ï¿½ï¿½ï¿½ï¿½
+    {
+        if (context.phase == InputActionPhase.Started)
+        {
+            QuestOn();
+        }
+    }
+
+    public void QuestOn()
+    {
+        //uiQuest.Toggle();
     }
 
 
