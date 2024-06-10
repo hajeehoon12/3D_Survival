@@ -8,6 +8,9 @@ public class FallDamage : MonoBehaviour
     public PlayerController playerController;
     public PlayerCondition condition;
 
+    
+    public LayerMask wallLayerMask;
+
     private float FallSec = 0.0f;
 
     public void CheckFalling()
@@ -17,7 +20,7 @@ public class FallDamage : MonoBehaviour
             Falldamage();
             FallSec = 0f;
         }
-        else if(playerController.IsWallClimbing())
+        else if(IsWallClimbing())
         {
             FallSec = 0f;
         }
@@ -61,10 +64,30 @@ public class FallDamage : MonoBehaviour
         }
     }
 
+    public bool IsWallClimbing()
+    {
+        bool isWall = false;
+        Ray[] rays = new Ray[4]
+        {
+            new Ray(transform.position + (transform.forward * 0.1f) + (transform.up * 0.3f), Vector3.left),
+            new Ray(transform.position + (transform.forward * 0.1f) + (transform.up * 0.3f), Vector3.right),
+            new Ray(transform.position + (transform.forward * 0.1f) + (transform.up * 0.3f), Vector3.back),
+            new Ray(transform.position + (transform.forward * 0.1f) + (transform.up * 0.3f), Vector3.forward),
+        };
+
+        for (int i = 0; i < rays.Length; i++)
+        {
+            if (Physics.Raycast(rays[i], 0.5f, wallLayerMask))
+            {
+                isWall = true;
+            }
+        }
+        return isWall;
+    }
+
     private void Update()
     {
         CheckFalling();
-        Debug.Log(FallSec);
     }
 
 
