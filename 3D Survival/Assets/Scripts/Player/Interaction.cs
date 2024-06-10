@@ -90,7 +90,7 @@ public class Interaction : MonoBehaviour
         promptDes.DOFade(1, 2f);
     }
 
-
+   
 
 
 

@@ -55,6 +55,7 @@ public class NPC : MonoBehaviour , IDamagable
     [Header("Sound")]
     public string hitSound;
     public string dieSound;
+    public bool isZombie;
 
     public float playerDistance;
     private bool takingDmg = false;
@@ -234,7 +235,7 @@ public class NPC : MonoBehaviour , IDamagable
             if (!inBattle)
             {
                 inBattle = true;
-                AudioManager.instance.PlayBGM("Battle", 0.2f);
+                if(!isZombie) AudioManager.instance.PlayBGM("Battle", 0.2f);
             }
             SetState(AIState.Attacking);
         }
@@ -399,7 +400,9 @@ public class NPC : MonoBehaviour , IDamagable
 
     IEnumerator SlowDie() // Die Slowly
     {
-        StartCoroutine(BGM_Change());
+
+        if(!isZombie) StartCoroutine(BGM_Change());
+        Quest.Instance.TargetMission();
         yield return new WaitForSeconds(4f);
         //Debug.Log(isDie);
         Destroy(gameObject);

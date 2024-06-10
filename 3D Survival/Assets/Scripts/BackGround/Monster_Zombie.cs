@@ -140,7 +140,7 @@ public class Monster_Zombie : MonoBehaviour , IDamagable
             if (!inBattle)
             {
                 inBattle = true;
-                AudioManager.instance.PlayBGM("Battle", 0.2f);
+                //AudioManager.instance.PlayBGM("Battle", 0.2f);
             }
             SetState(AIState.Attacking);
         }

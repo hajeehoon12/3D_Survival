@@ -1412,7 +1412,7 @@ Transform:
   m_GameObject: {fileID: 6342609943586475242}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -36.137203, y: 0.21231496, z: -54.542393}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1507,7 +1507,6 @@ MonoBehaviour:
   runSpeed: 5
   dropOnDeath:
   - {fileID: 11400000, guid: 8a71728f4cd93de44acd7b28938bc8fe, type: 2}
-  - {fileID: 11400000, guid: 90b3286bf2c75da468079c3934cf3497, type: 2}
   detectDistance: 20
   monsterPattern: 0
   minWanderDistance: 2
@@ -1516,10 +1515,11 @@ MonoBehaviour:
   maxWanderWaitTime: 2
   damage: 30
   attackRate: 1.5
-  attackDistance: 3
+  attackDistance: 1.5
   attackSpeed: 0.4
   hitSound: ZombieAttack
   dieSound: ZombieDie
+  isZombie: 1
   playerDistance: 0
   fieldOfView: 120
   _body: {fileID: 141069732074071262}
