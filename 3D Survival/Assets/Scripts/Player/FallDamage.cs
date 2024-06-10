@@ -64,7 +64,7 @@ public class FallDamage : MonoBehaviour
     private void Update()
     {
         CheckFalling();
-        Debug.Log(FallSec);
+        //Debug.Log(FallSec);
     }
 
 
