@@ -56,6 +56,8 @@ public class PlayerController : MonoBehaviour
 
     public UICraft uiCraft;
 
+    public GameObject questUIManager;
+
 
     private void Awake()
     { 
@@ -371,6 +373,7 @@ public class PlayerController : MonoBehaviour
     public void QuestOn()
     {
         //uiQuest.Toggle();
+        if (questUIManager.activeSelf) return;
     }
 
 
