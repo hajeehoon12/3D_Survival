@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 151d0f3ac91b2474bb0e93670aa87757, type: 3}
   m_Name: GraveQuest
   m_EditorClassIdentifier: 
-  title: "\uBB18\uC9C0 \uBAAC\uC2A4\uD130 \uCC98\uCE58"
+  title: "\uC548\uC2DD\uC744 \uC5BB\uC9C0 \uBABB\uD55C \uC790\uB4E4"
   dialogueData: {fileID: 11400000, guid: e79f457ee31a0a54b8db4576716bb71a, type: 2}
   descriptionText: "\uBB18\uC9C0\uC5D0 \uBE44\uC815\uC0C1\uC801\uC73C\uB85C \uB9CE\uC740
-    \uBAAC\uC2A4\uD130\uB4E4\uC774 \uB098\uD0C0\uB0AC\uB2E4\uACE0 \uD55C\uB2E4.\\n\uBB18\uC9C0\uC758
+    \uC5B8\uB370\uB4DC\uB4E4\uC774 \uB098\uD0C0\uB0AC\uB2E4\uACE0 \uD55C\uB2E4.\\n\uBB18\uC9C0\uC758
     \uBAAC\uC2A4\uD130\uB4E4\uC744 \uD5E4\uCE58\uC6B0\uACE0 \uBCF4\uC0C1\uC744 \uBC1B\uC790."
-  conditionText: "\uBB18\uC9C0\uC5D0 \uADFC\uCC98\uC758 \uBAA8\uB4E0 \uBAAC\uC2A4\uD130
+  conditionText: "\uBB18\uC9C0 \uADFC\uCC98\uC758 \uBAA8\uB4E0 \uBAAC\uC2A4\uD130
     \uCC98\uCE58"
-  rewardText: Neclace x1
+  rewardText: Necklace x1
   rewards:
   - {fileID: 11400000, guid: 77d504bdc9298014aabfbc449bee4af4, type: 2}
-  questStatus: 2
+  questStatus: 1
