@@ -66,13 +66,17 @@ public class Quest : MonoBehaviour, IInteractable
             {
                 GameObject zombie = Instantiate(_Zombie, _Tombs[i].transform.position, Quaternion.identity);
                 zombie.GetComponent<NPC>().enabled = false;
+                zombie.GetComponent<BoxCollider>().enabled = false;
+                zombie.transform.localPosition -= new Vector3(0, 10, 0);
+                
                 zombie.transform.LookAt(CharacterManager.Instance.Player.transform);
-                zombie.transform.position += zombie.transform.forward * 2f + new Vector3(0, -10, 0);
+                zombie.transform.position += zombie.transform.forward * 2f ;
                 zombie.transform.DOMoveY(0.6f, 3f).OnComplete(() =>
                     {
                         CharacterManager.Instance.Player.controller.canMove = true;
                         zombie.GetComponent<NPC>().enabled = true;
-                    
+                        zombie.GetComponent<BoxCollider>().enabled = true;
+
                     }
                 );
                 
