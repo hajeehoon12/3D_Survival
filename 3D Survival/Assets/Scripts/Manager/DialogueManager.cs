@@ -100,30 +100,30 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    // void UpdateButtonStates()
-    // {
-    //     bool isLastSentence = sentences.Count == 0;
+    void UpdateButtonStates(QuestData questData)
+    {
+        bool isLastSentence = sentences.Count == 0;
 
-    //     if (isLastSentence)
-    //     {
-    //         nextButton.gameObject.SetActive(false);
-    //         if (player.GetCurrentQuestStatus() == QuestStatus.NotStarted)
-    //         {
-    //             acceptButton.gameObject.SetActive(true);
-    //             declineButton.gameObject.SetActive(true);
-    //         }
-    //         else
-    //         {
-    //             declineButton.gameObject.SetActive(true);
-    //         }
-    //     }
-    //     else
-    //     {
-    //         nextButton.gameObject.SetActive(true);
-    //         declineButton.gameObject.SetActive(false);
-    //         acceptButton.gameObject.SetActive(false);
-    //     }
-    // }
+        if (isLastSentence)
+        {
+            nextButton.gameObject.SetActive(false);
+            if (questController.GetQuestStatus(questData) == QuestStatus.NotStarted)
+            {
+                acceptButton.gameObject.SetActive(true);
+                declineButton.gameObject.SetActive(true);
+            }
+            else
+            {
+                declineButton.gameObject.SetActive(true);
+            }
+        }
+        else
+        {
+            nextButton.gameObject.SetActive(true);
+            declineButton.gameObject.SetActive(false);
+            acceptButton.gameObject.SetActive(false);
+        }
+    }
 
 
     void EndDialogue()
