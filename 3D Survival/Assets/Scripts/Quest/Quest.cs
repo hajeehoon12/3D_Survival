@@ -8,6 +8,7 @@ public class Quest : MonoBehaviour, IInteractable
 
     public GameObject[] _Tombs;
     public GameObject Tombs;
+    public GameObject _Zombie;
 
     private void Start()
     {
@@ -33,14 +34,33 @@ public class Quest : MonoBehaviour, IInteractable
 
     private void CoffinDown()
     {
-        transform.DOMoveY(transform.position.y - 4 , 3f).onComplete += TombAnimation;
+        transform.DOMoveY(transform.position.y - 4 , 3f).onComplete += StartTombAnimation;
     }
 
-    private void TombAnimation()
+    private void StartTombAnimation()
     {
+        AudioManager.instance.PlayBGM("Tapdance", 0.3f);
+        
         Tombs.transform.DOScale(2, 5f);
         Tombs.transform.DOMoveY(-2.5f, 5f);
-        Tombs.transform.DOLocalRotateQuaternion(Quaternion.Euler(0, 180 , 0), 5f);
+        Tombs.transform.DOLocalRotateQuaternion(Quaternion.Euler(0, 180 , 0), 5f).OnComplete(() =>
+        {
+            for (int i = 0; i < _Tombs.Length; i++)
+            {
+                GameObject zombie = Instantiate(_Zombie, _Tombs[i].transform.position, Quaternion.identity);
+                zombie.transform.position += zombie.transform.forward * 0.5f + new Vector3(0, -2, 0);
+                zombie.transform.DOMoveY(0.6f, 3f);                
+            }
+        }
+        );
+    }
+
+    private void EndTombAnimation()
+    {
+        Tombs.transform.DOScale(0.33f, 5f);
+        Tombs.transform.DOMoveY(-2.37f, 5f);
+        Tombs.transform.DOLocalRotateQuaternion(Quaternion.Euler(0, 180, 0), 5f);
+
     }
 
 
