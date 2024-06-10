@@ -33,9 +33,6 @@ public class DialogueManager : MonoBehaviour
     private Queue<string> currentSentences;
     private DialogueData currentDialogue;
     private QuestData currentQuestData;
-    
-
-    
 
     private void Awake()
     {
@@ -71,7 +68,6 @@ public class DialogueManager : MonoBehaviour
 
         SelectSentence();
         DisplayNextSentence();
-        Debug.Log(UIDialogue.gameObject.activeSelf);
     }
 
     public void SelectSentence ()
@@ -155,7 +151,7 @@ public class DialogueManager : MonoBehaviour
     }
 
     public void AcceptQuest()
-    {
+    {   
         questController.AddQuest(currentQuestData);
         EndDialogue();
     }

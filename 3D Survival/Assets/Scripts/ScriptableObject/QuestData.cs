@@ -17,6 +17,7 @@ public class QuestData : ScriptableObject
     [Header("Info")]
     public string title;
     public DialogueData dialogueData;
+    public string descriptionText;
     [TextArea(1,10)] public string conditionText;
     [TextArea(1,10)] public string rewardText;
     public ItemData[] rewards;
