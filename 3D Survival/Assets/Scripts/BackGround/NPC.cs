@@ -402,6 +402,7 @@ public class NPC : MonoBehaviour , IDamagable
     {
 
         if(!isZombie) StartCoroutine(BGM_Change());
+        Quest.Instance.TargetMission();
         yield return new WaitForSeconds(4f);
         //Debug.Log(isDie);
         Destroy(gameObject);
