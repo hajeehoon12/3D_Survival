@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 151d0f3ac91b2474bb0e93670aa87757, type: 3}
+  m_Name: GraveQuest
+  m_EditorClassIdentifier: 
+  title: "\uBB18\uC9C0 \uBAAC\uC2A4\uD130 \uCC98\uCE58"
+  dialogueData: {fileID: 11400000, guid: e79f457ee31a0a54b8db4576716bb71a, type: 2}
+  conditionText: "\uBB18\uC9C0\uC5D0 \uADFC\uCC98\uC758 \uBAA8\uB4E0 \uBAAC\uC2A4\uD130
+    \uCC98\uCE58"
+  rewardText: Neclace x1
+  rewards:
+  - {fileID: 11400000, guid: 77d504bdc9298014aabfbc449bee4af4, type: 2}
+  questStatus: 0
