@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public enum QuestStatus
@@ -18,7 +19,7 @@ public class QuestData : ScriptableObject
     public DialogueData dialogueData;
     [TextArea(1,10)] public string conditionText;
     [TextArea(1,10)] public string rewardText;
-    
+    public ItemData[] rewards;
     public QuestStatus questStatus = QuestStatus.NotStarted;
 
     [NonSerialized]
@@ -26,6 +27,7 @@ public class QuestData : ScriptableObject
 
     [NonSerialized]
     public Action<Player> Reward;
+    
 
     public virtual bool CheckClearCondition()
     {
@@ -34,8 +36,11 @@ public class QuestData : ScriptableObject
 
     public virtual void GiveClearReward()
     {
-
+         foreach (var item in rewards)
+        {
+            CharacterManager.Instance.Player.itemData = item;
+            CharacterManager.Instance.Player.addItem?.Invoke();
+        }
     }
-
 
 }

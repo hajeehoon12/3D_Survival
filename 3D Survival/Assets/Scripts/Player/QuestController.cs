@@ -16,15 +16,15 @@ public class QuestController : MonoBehaviour
         }
     }
 
-    // public void ClearQuest(QuestData quest)
-    // {
-    //     if (acceptedQuests.Contains(quest))
-    //     {
-    //         quest.questStatus = QuestStatus.Completed;
-    //         quest.GiveClearReward(gameObject);
-    //         Debug.Log($"Quest '{quest.title}' 클리어됨.");
-    //     }
-    // }
+    public void ClearQuest(QuestData quest)
+    {
+        if (acceptedQuests.Contains(quest))
+        {
+            quest.questStatus = QuestStatus.Completed;
+            //quest.GiveClearReward(gameObject);
+            Debug.Log($"Quest '{quest.title}' 클리어됨.");
+        }
+    }
 
     public QuestStatus GetQuestStatus(QuestData quest)
     {
