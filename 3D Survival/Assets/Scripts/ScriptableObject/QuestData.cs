@@ -15,10 +15,10 @@ public class QuestData : ScriptableObject
 {
     [Header("Info")]
     public string title;
-    [TextArea(1,10)] public string descriptionText;
+    public DialogueData dialogueData;
     [TextArea(1,10)] public string conditionText;
     [TextArea(1,10)] public string rewardText;
-
+    
     public QuestStatus questStatus = QuestStatus.NotStarted;
 
     [NonSerialized]

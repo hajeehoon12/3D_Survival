@@ -24,10 +24,13 @@ public class DialogueManager : MonoBehaviour
     public TMP_Text dialogueText;
     public GameObject dialoguePanel;
     public Button nextButton;
+    public Button acceptButton;
+    public Button declineButton;
 
     private Queue<string> sentences;
     private DialogueData currentDialogue;
     private Player player;
+    private QuestController questController;
 
     private void Awake()
     {
@@ -56,8 +59,9 @@ public class DialogueManager : MonoBehaviour
     {   
         UIDialogue.gameObject.SetActive(true);
         currentDialogue = dialogue;
-        dialoguePanel.SetActive(true);
-        nextButton.gameObject.SetActive(true);
+        // nextButton.gameObject.SetActive(true);
+        // acceptButton.gameObject.SetActive(false);
+        // declineButton.gameObject.SetActive(false);
 
         sentences.Clear();
 
@@ -96,6 +100,32 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    // void UpdateButtonStates()
+    // {
+    //     bool isLastSentence = sentences.Count == 0;
+
+    //     if (isLastSentence)
+    //     {
+    //         nextButton.gameObject.SetActive(false);
+    //         if (player.GetCurrentQuestStatus() == QuestStatus.NotStarted)
+    //         {
+    //             acceptButton.gameObject.SetActive(true);
+    //             declineButton.gameObject.SetActive(true);
+    //         }
+    //         else
+    //         {
+    //             declineButton.gameObject.SetActive(true);
+    //         }
+    //     }
+    //     else
+    //     {
+    //         nextButton.gameObject.SetActive(true);
+    //         declineButton.gameObject.SetActive(false);
+    //         acceptButton.gameObject.SetActive(false);
+    //     }
+    // }
+
+
     void EndDialogue()
     {
         dialoguePanel.SetActive(false);
@@ -114,4 +144,33 @@ public class DialogueManager : MonoBehaviour
         //if !=sentence.Length nextBotton On & DeclineButton On
     }
 
+    public void AcceptQuest()
+    {
+        if (currentDialogue != null)
+        {
+            QuestData quest = FindQuestDataByDialogue(currentDialogue);
+            if (quest != null)
+            {
+                questController.AddQuest(quest);
+            }
+        }
+        EndDialogue();
+    }
+
+    public void DeclineQuest()
+    {
+        EndDialogue();
+    }
+
+    private QuestData FindQuestDataByDialogue(DialogueData dialogue)
+    {
+        foreach (var quest in questController.acceptedQuests)
+        {
+            if (quest.dialogueData == dialogue)
+            {
+                return quest;
+            }
+        }
+        return null;
+    }
 }
