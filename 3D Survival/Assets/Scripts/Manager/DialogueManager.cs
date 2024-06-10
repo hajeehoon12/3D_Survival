@@ -91,6 +91,7 @@ public class DialogueManager : MonoBehaviour
                 {
                     currentSentences.Enqueue(sentence);
                 }
+                Quest.Instance.RewardItem();
                 break;
         }
     }

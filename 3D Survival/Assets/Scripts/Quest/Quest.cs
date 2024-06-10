@@ -13,18 +13,20 @@ public class Quest : MonoBehaviour, IInteractable
     public GameObject Tombs;
     public GameObject _Zombie;
     public ItemData _rewardItem;
+    public QuestData _questData;
     private int targetNum = 0;
     private int MaxTargetNum;
 
     private void Awake()
     {
         Instance = this;
+        _questData.questStatus = 0;
     }
 
 
     public void QuestStart()
     {
-
+        if (_questData.questStatus != QuestStatus.InProgress) return;
         CharacterManager.Instance.Player.controller.canMove = false;
         MaxTargetNum = _Tombs.Length;
         CoffinDown();
@@ -112,8 +114,9 @@ public class Quest : MonoBehaviour, IInteractable
         AudioManager.instance.PlaySFX("QuestClear", 0.1f);
         AudioManager.instance.StopBGM();
         AudioManager.instance.StopBGM2();
+        _questData.questStatus = QuestStatus.Completed;
         
-        RewardItem();
+        //RewardItem();
     }
 
     public void OnInteract()

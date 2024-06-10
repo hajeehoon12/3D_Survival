@@ -10,6 +10,7 @@ public class NPC_Human : MonoBehaviour, IInteractable
     public float sightDistance = 5f;
     public float rotationSpeed = 2f;
     public QuestData questData;
+    
 
     private Quaternion initialRotation;
 

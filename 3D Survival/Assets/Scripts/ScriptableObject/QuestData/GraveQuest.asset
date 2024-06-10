@@ -22,4 +22,4 @@ MonoBehaviour:
   rewardText: Neclace x1
   rewards:
   - {fileID: 11400000, guid: 77d504bdc9298014aabfbc449bee4af4, type: 2}
-  questStatus: 0
+  questStatus: 2
