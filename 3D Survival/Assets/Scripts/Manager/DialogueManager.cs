@@ -92,6 +92,7 @@ public class DialogueManager : MonoBehaviour
                     currentSentences.Enqueue(sentence);
                 }
                 Quest.Instance.RewardItem();
+                AudioManager.instance.PlaySFX("Success", 0.5f);
                 break;
         }
     }
