@@ -24,6 +24,7 @@ public class Quest : MonoBehaviour, IInteractable
 
     public void QuestStart()
     {
+
         CharacterManager.Instance.Player.controller.canMove = false;
         MaxTargetNum = _Tombs.Length;
         CoffinDown();
@@ -104,7 +105,8 @@ public class Quest : MonoBehaviour, IInteractable
         DayNightCycle.instance._controlSky.IfSunset();
         DayNightCycle.instance.totalTime = 0.67f;
         EndTombAnimation();
-        AudioManager.instance.PlaySFX("QuestClear", 0.5f);
+        AudioManager.instance.PlaySFX("QuestClear", 0.1f);
+        AudioManager.instance.StopBGM();
         AudioManager.instance.StopBGM2();
         
         RewardItem();
