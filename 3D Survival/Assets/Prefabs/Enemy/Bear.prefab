@@ -550,8 +550,7 @@ MonoBehaviour:
   walkSpeed: 2.5
   runSpeed: 15
   dropOnDeath:
-  - {fileID: 11400000, guid: 9f1f4eb3787566d43b2edbd658d33def, type: 2}
-  - {fileID: 11400000, guid: 8a71728f4cd93de44acd7b28938bc8fe, type: 2}
+  - {fileID: 11400000, guid: 6a034a0269f79e847a128b90bb28a4f9, type: 2}
   detectDistance: 30
   monsterPattern: 0
   minWanderDistance: 2
@@ -564,6 +563,7 @@ MonoBehaviour:
   attackSpeed: 0.4
   hitSound: BearHit
   dieSound: BearDie
+  isZombie: 0
   playerDistance: 0
   fieldOfView: 160
   _body: {fileID: 777941482670298824}
