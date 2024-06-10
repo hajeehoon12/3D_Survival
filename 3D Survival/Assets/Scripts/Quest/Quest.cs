@@ -18,6 +18,8 @@ public class Quest : MonoBehaviour, IInteractable
     public void QuestStart()
     {
         CoffinDown();
+        DayNightCycle.instance._controlSky.IfRainy();
+        DayNightCycle.instance.totalTime = 0f;
         Debug.Log("Quest Start!!");
     
     }
@@ -36,10 +38,12 @@ public class Quest : MonoBehaviour, IInteractable
 
     private void TombAnimation()
     {
-        Tombs.transform.DOScale(1, 10f);
-        Tombs.transform.DOMoveY(-1.2f, 10f);
-        Tombs.transform.DOLocalRotateQuaternion(Quaternion.Euler(0, 180 , 0), 10f);
+        Tombs.transform.DOScale(2, 5f);
+        Tombs.transform.DOMoveY(-2.5f, 5f);
+        Tombs.transform.DOLocalRotateQuaternion(Quaternion.Euler(0, 180 , 0), 5f);
     }
+
+
 
     public void OnInteract()
     {

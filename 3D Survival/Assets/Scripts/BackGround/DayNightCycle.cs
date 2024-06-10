@@ -6,6 +6,8 @@ using UnityEngine;
 public class DayNightCycle : MonoBehaviour
 {
 
+    public static DayNightCycle instance;
+
     [Range(0.0f, 1.0f)]
     public float time;
     public float fullDayLength;
@@ -36,6 +38,14 @@ public class DayNightCycle : MonoBehaviour
     public float totalTime = 0.25f;
     private float latestTime = 0f;
     public int change = 0;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
 
     void Start()
     {
