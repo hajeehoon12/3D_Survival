@@ -9,6 +9,7 @@ public class Quest : MonoBehaviour, IInteractable
     public GameObject[] _Tombs;
     public GameObject Tombs;
     public GameObject _Zombie;
+    public ItemData _rewardItem;
 
     private void Start()
     {
@@ -32,6 +33,12 @@ public class Quest : MonoBehaviour, IInteractable
         return (str, str1);
     }
 
+    public void RewardItem()
+    {
+        CharacterManager.Instance.Player.itemData = _rewardItem;
+        CharacterManager.Instance.Player.controller.uiInventory.AddItem();
+    }
+
     private void CoffinDown()
     {
         transform.DOMoveY(transform.position.y - 4 , 3f).onComplete += StartTombAnimation;
@@ -49,10 +56,13 @@ public class Quest : MonoBehaviour, IInteractable
             {
                 GameObject zombie = Instantiate(_Zombie, _Tombs[i].transform.position, Quaternion.identity);
                 zombie.transform.position += zombie.transform.forward * 0.5f + new Vector3(0, -2, 0);
-                zombie.transform.DOMoveY(0.6f, 3f);                
+                zombie.transform.DOMoveY(0.6f, 3f);
+                
             }
         }
         );
+
+        RewardItem();//Temp
     }
 
     private void EndTombAnimation()
