@@ -24,6 +24,7 @@ public class Quest : MonoBehaviour, IInteractable
 
     public void QuestStart()
     {
+        CharacterManager.Instance.Player.controller.canMove = false;
         MaxTargetNum = _Tombs.Length;
         CoffinDown();
         DayNightCycle.instance._controlSky.IfRainy();
@@ -63,10 +64,19 @@ public class Quest : MonoBehaviour, IInteractable
             for (int i = 0; i < _Tombs.Length; i++)
             {
                 GameObject zombie = Instantiate(_Zombie, _Tombs[i].transform.position, Quaternion.identity);
-                zombie.transform.position += zombie.transform.forward * 0.5f + new Vector3(0, -2, 0);
-                zombie.transform.DOMoveY(0.6f, 3f);
+                zombie.GetComponent<NPC>().enabled = false;
+                zombie.transform.LookAt(CharacterManager.Instance.Player.transform);
+                zombie.transform.position += zombie.transform.forward * 2f + new Vector3(0, -10, 0);
+                zombie.transform.DOMoveY(0.6f, 3f).OnComplete(() =>
+                    {
+                        CharacterManager.Instance.Player.controller.canMove = true;
+                        zombie.GetComponent<NPC>().enabled = true;
+                    
+                    }
+                );
                 
             }
+            
             AudioManager.instance.PlaySFX("ScaryBell",0.5f);
         }
         );
@@ -76,9 +86,9 @@ public class Quest : MonoBehaviour, IInteractable
 
     private void EndTombAnimation()
     {
-        Tombs.transform.DOScale(0.33f, 5f);
-        Tombs.transform.DOMoveY(-2.37f, 5f);
-        Tombs.transform.DOLocalRotateQuaternion(Quaternion.Euler(0, 180, 0), 5f);
+        Tombs.transform.DOScale(0.33f, 7f);
+        Tombs.transform.DOMoveY(-2.37f, 7f);
+        Tombs.transform.DOLocalRotateQuaternion(Quaternion.Euler(0, 180, 0), 7f).OnComplete(() => AudioManager.instance.PlayBGM("Peace", 0.2f));
 
     }
 
@@ -91,8 +101,12 @@ public class Quest : MonoBehaviour, IInteractable
 
     private void EndQuest()
     {
+        DayNightCycle.instance._controlSky.IfSunset();
+        DayNightCycle.instance.totalTime = 0.67f;
         EndTombAnimation();
-        AudioManager.instance.PlayBGM("Peace", 0.2f);
+        AudioManager.instance.PlaySFX("QuestClear", 0.5f);
+        AudioManager.instance.StopBGM2();
+        
         RewardItem();
     }
 
