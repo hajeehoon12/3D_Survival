@@ -25,8 +25,12 @@ MonoBehaviour:
   - type: 1
     value: 20
   - type: 2
-    value: 20
+    value: 100
   equipPrefab: {fileID: 0}
   constructObject: {fileID: 0}
   virtualObjectGreen: {fileID: 0}
   heightOfBuilding: 0
+  woodNeedAmount: 0
+  rockNeedAmount: 0
+  canCraft: 0
+  craftIngredient: []

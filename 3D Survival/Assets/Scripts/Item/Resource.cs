@@ -100,6 +100,7 @@ public class Resource : MonoBehaviour
     {
         gameObject.SetActive(true);
         gameObject.transform.DOScale(maxScale, 5f);
+        capacity = maxCapacity;
     }
 
 
