@@ -8,7 +8,8 @@ https://drive.google.com/file/d/1Tuq4eLb4YIoMl9FccZ4TD8M8UWJcu6Po/view?usp=drive
 
 아래는 최신 버전 실제 플레이 영상 및 발표용 자료
 
-https://www.youtube.com/watch?v=dLlq_Jem5r4
+https://www.youtube.com/watch?v=nvQV_dONy50
+
 
 
 조작 방법:
